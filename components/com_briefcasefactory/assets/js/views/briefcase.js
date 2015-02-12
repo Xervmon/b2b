@@ -1,3 +1,68 @@
+ function deletefun()
+          {
+              var atLeastOneIsChecked = Number(jQuery('input[name="folder[]"]:checked').length);
+              var atleastfile = Number(jQuery('input[name="file[]"]:checked').length);
+              var total = atLeastOneIsChecked + atleastfile;
+              if(total == 0)
+              {
+                  alert('Please select at least one item');
+                  return false;
+              }
+              else
+              {
+                  var folder_ids = '';
+                  jQuery('input[name="folder[]"]:checked').each(function(i,e)
+                  {
+                      folder_ids += e.value+',';
+                  });
+                  var finalfolder_ids = rtrim(folder_ids,','); 
+                 
+                  var file_ids = '';
+                  jQuery('input[name="file[]"]:checked').each(function(i,e)
+                  {
+                      file_ids += e.value+',';
+                      
+                  });
+                  var finalfile_ids = rtrim(file_ids,',');
+                  window.location.href = 'index.php?option=com_briefcasefactory&task=file.deleteeverything&files='+finalfile_ids+'&folders='+finalfolder_ids;
+              }
+          }
+          
+          function downloadfun()
+          {
+              var atLeastOneIsChecked = Number(jQuery('input[name="folder[]"]:checked').length);
+              var atleastfile = Number(jQuery('input[name="file[]"]:checked').length);
+              var total = atLeastOneIsChecked + atleastfile;
+              if(total == 0)
+              {
+                  alert('Please select at least one item');
+                  return false;
+              }
+              else
+              {
+                  var folder_ids = '';
+                  jQuery('input[name="folder[]"]:checked').each(function(i,e)
+                  {
+                      folder_ids += e.value+',';
+                  });
+                  var finalfolder_ids = rtrim(folder_ids,','); 
+                 
+                  var file_ids = '';
+                  jQuery('input[name="file[]"]:checked').each(function(i,e)
+                  {
+                      file_ids += e.value+',';
+                      
+                  });
+                  var finalfile_ids = rtrim(file_ids,',');
+                  window.location.href = 'index.php?option=com_briefcasefactory&task=file.downloadFile&files='+finalfile_ids+'&folders='+finalfolder_ids;
+              }
+          }
+          
+           function rtrim(str, chr) {
+  var rgxtrim = (!chr) ? new RegExp('\\s+$') : new RegExp(chr+'+$');
+  return str.replace(rgxtrim, '');
+}
+
 jQuery(document).ready(function ($) {
   // Share buttons.
   $('.button-share a').click(function (event) {

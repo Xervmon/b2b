@@ -13,12 +13,13 @@ briefcasefactory - Briefcase Factory 4.0.8
 */
 
 defined('_JEXEC') or die;
-
+require JPATH_COMPONENT .'/helpers/S3Helper.php'; 
 class BriefcaseFactoryFrontendControllerFile extends FactoryControllerForm
 {
   protected $view_list = 'briefcase';
   protected $option = 'com_briefcasefactory';
-
+  
+  
   public function download()
   {
     $app      = JFactory::getApplication();
@@ -39,7 +40,8 @@ class BriefcaseFactoryFrontendControllerFile extends FactoryControllerForm
     // Get file.
     $file = $model->getFile($id);
     $src  = $file->getFilePath();
-
+   //echo $file->filename; die;
+  
     if ($file->user_id != JFactory::getUser()->id) {
       $file->hit();
     }
@@ -61,6 +63,8 @@ class BriefcaseFactoryFrontendControllerFile extends FactoryControllerForm
 
     jexit();
   }
+  
+ 
 
   public function save($key = null, $urlVar = null)
   {
@@ -68,10 +72,20 @@ class BriefcaseFactoryFrontendControllerFile extends FactoryControllerForm
     $post  = $input->post->get('jform', array(), 'array');
     $files = $input->files->get('jform', array(), 'array');
     $redirect = $input->post->getBase64('redirect');
-
+    // echo $post['folder_id'];die;   
     foreach ($files as $i => $file) {
       if (!isset($file['error']) || 4 == $file['error']) {
         $files[$i] = null;
+      }
+      else
+      {
+         $tmp_name = $file["tmp_name"];
+         //$name = $file["name"];
+         //move_uploaded_file($tmp_name, "./media/com_briefcasefactory/".$name);
+		   $folder_id = $post['folder_id'];            
+     
+		 S3Helper::uploadFile( JFactory::getUser()->username, $file,$folder_id);  
+  
       }
     }
 
@@ -79,7 +93,7 @@ class BriefcaseFactoryFrontendControllerFile extends FactoryControllerForm
     $input->post->set('jform', $post);
 
     $result = parent::save($key, $urlVar);
-
+    //echo '<pre>';print_r($files);die;
     if ($redirect) {
       $this->setRedirect(base64_decode($redirect));
     }
@@ -104,13 +118,15 @@ class BriefcaseFactoryFrontendControllerFile extends FactoryControllerForm
     $response = array();
 
     $post = $this->input->post->get('jform', array(), 'array');
-    $files = $this->input->files->get('jform', array(), 'array');
-
+    $files = $this->input->files->get('jform', array(), 'array');   
+     
     foreach ($files as $id => $file) {
       if (!isset($file['file']['error']) || 4 == $file['file']['error']) {
         continue;
       }
-
+      $folder_id = $post[$id]['folder_id'];            
+         // echo '<pre>';print_r($file);die;
+		 S3Helper::uploadFile( JFactory::getUser()->username, $file['file'],$folder_id);     
       if (isset($post[$id])) {
         $post[$id]['file'] = $file['file'];
       }
@@ -118,6 +134,8 @@ class BriefcaseFactoryFrontendControllerFile extends FactoryControllerForm
       $this->input->post->set('jform', $post[$id]);
 
       if (parent::save()) {
+        
+		   
         $response[] = array(
           'status'  => 1,
           'id'      => $id,
@@ -134,7 +152,7 @@ class BriefcaseFactoryFrontendControllerFile extends FactoryControllerForm
           'message' => FactoryText::sprintf('file_save_bulk_task_error', $file['file']['name'], $this->getError()),
         );
       }
-    }
+    } 
 
     // Check if ajaxa request.
     if ($this->isXmlHttpRequest()) {
@@ -157,6 +175,141 @@ class BriefcaseFactoryFrontendControllerFile extends FactoryControllerForm
     $this->setRedirect(FactoryRoute::view('briefcase'));
 
     return true;
+  }
+  
+  function getFolderName($id = null)
+  {
+      $db = JFactory::getDBO();
+      $query = "select title from #__briefcasefactory_folders where id = '".$id."'";
+      $db->setQuery($query);
+      return $db->loadResult();
+  }
+  
+  function downloadFile()
+	{
+		 $folders = $_REQUEST['folders'];
+     $files = $_REQUEST['files'];
+     $userid = JFactory::getUser()->id;
+     $db = JFactory::getDBO();
+     if($files)
+     {
+       $explode_files = explode(",",$files);       
+       $downloadurl = 'http://b2b-dev.s3.amazonaws.com/';
+       $zip = new ZipArchive();
+       # create a temp file & open it
+       $tmp_file = tempnam('.','');
+       $zip->open($tmp_file, ZipArchive::CREATE);
+       foreach ($explode_files as $file) {       
+           $query = "select folder_id,filename,user_id from #__briefcasefactory_files where id = '".$file."'";
+           $db->setQuery($query);
+           $object = $db->loadObject();           
+           $user_name = JFactory::getUser($object->user_id)->username;
+           if($object->folder_id != 1)
+          {
+             $fname = $this->getFolderName( $object->folder_id );
+             $durl = $downloadurl.$user_name.'/'.$fname.'/'.$object->filename;
+          }
+          else
+          {
+             $durl = $downloadurl.$user_name.'/'.$object->filename;
+          }           
+           $download_file = file_get_contents($durl);          
+           $zip->addFromString(basename($durl),$download_file);
+        }
+      if($folders)
+      {
+          $query = "select user_id,filename,folder_id from #__briefcasefactory_files where folder_id IN($folders)";
+          $db->setQuery($query);
+          $ids = $db->loadObjectlist();          
+          foreach($ids as $object)
+          {
+            $user_name = JFactory::getUser($object->user_id)->username;
+            if($object->folder_id != 1)
+            {
+               $fname = $this->getFolderName( $object->folder_id );
+               $durl = $downloadurl.$user_name.'/'.$fname.'/'.$object->filename;
+            }
+            else
+            {
+               $durl = $downloadurl.$user_name.'/'.$object->filename;
+            }           
+            $download_file = file_get_contents($durl);          
+            $zip->addFromString(basename($durl),$download_file);          
+          }
+      }  
+        $zip->close();
+        header('Content-disposition: attachment; filename=files.zip');
+        header('Content-type: application/zip');
+        readfile($tmp_file);
+     }
+     exit;     
+	}
+  
+  function deleteeverything()
+  {
+      //echo '<pre>';print_r($_REQUEST); echo '</pre>'; die;
+      $folders = $_REQUEST['folders'];
+      $files = $_REQUEST['files'];
+      $userid = JFactory::getUser()->id;
+      $db = JFactory::getDBO();
+      if($files)
+      {
+        $query = "select count(*) from #__briefcasefactory_files where id IN($files) and user_id = '".$userid."'";
+        $db->setQuery($query);
+        $file_count = $db->loadResult();
+        if($file_count > 0)
+        {
+            $explode_files = explode(",",$files);
+            foreach($explode_files as $ex)
+            {
+                $query = "select folder_id,filename from #__briefcasefactory_files where id = '".$ex."' and user_id = '".$userid."'";
+                $db->setQuery($query);
+                $object = $db->loadObject();
+                $folder_id = $object->folder_id;
+                $filename =  $object->filename;
+                S3Helper::deleteFile( JFactory::getUser()->username, $filename,$folder_id);                
+            }
+            $query = "delete from #__briefcasefactory_files where id IN($files) and user_id = '".$userid."'";
+            $db->setQuery($query);
+            $db->query();
+            
+            $query = "delete from #__briefcasefactory_shares_files where file_id IN($files)";
+            $db->setQuery($query);
+            $db->query(); 
+        }
+               
+      }
+      if($folders)
+      {
+        $query = "select id,filename,folder_id from #__briefcasefactory_files where folder_id IN($folders) and user_id = '".$userid."'";
+        $db->setQuery($query);
+        $ids = $db->loadObjectlist();
+        
+        foreach($ids as $row)
+        {
+          $filename =  $row->filename;
+          S3Helper::deleteFile( JFactory::getUser()->username,$filename, $row->folder_id);  
+          $query = "delete from #__briefcasefactory_files where id = '".$row->id."' and user_id = '".$userid."'";
+          $db->setQuery($query);
+          $db->query();
+          
+          $query = "delete from #__briefcasefactory_shares_files where file_id  = '".$row->id."'";
+          $db->setQuery($query);
+          $db->query(); 
+        }
+        
+        $query = "delete from #__briefcasefactory_folders where id IN($folders) and user_id = '".$userid."'";
+        $db->setQuery($query);
+        $db->query();
+        
+        $query = "delete from #__briefcasefactory_shares_folders where folder_id IN($folders)";
+        $db->setQuery($query);
+        $db->query();
+      }      
+      
+      $app = JFactory::getApplication();
+      $message = JText::_('Files/Folders Deleted Successfully');
+      $app->redirect(JRoute::_('index.php?option=com_briefcasefactory&view=briefcase&Itemid=790', false), $message, 'message');
   }
 
   protected function getRedirectToListAppend()

@@ -37,6 +37,10 @@ class BriefcaseFactoryBackendViewSettings extends FactoryViewSettings
     'permissions' => array(
       'full' => array('permissions'),
     ),
+    
+	 's3' => array(
+      'full' => array('s3_creds'),
+    ),
   );
 
   protected $html = array('behavior.modal');

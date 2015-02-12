@@ -81,8 +81,19 @@ class BriefcaseFactoryFrontendModelShareUsers extends FactoryModelAdmin
   protected function getListQuery()
   {
     $dbo = $this->getDbo();
-    $user = JFactory::getUser();
-
+    $user = JFactory::getUser(); 
+    $query = "select connect_to from #__community_connection where connect_from = '".$user->id."' and status = '1' group by connect_to";
+    $dbo->setQuery($query);
+    $connect_list = $dbo->loadObjectlist();
+    
+    //echo implode(",",$connect_list);
+    $con_arr = array();
+    foreach($connect_list as $obj)
+    {
+        $con_arr[] = $obj->connect_to;
+    }
+   // echo '<pre>';print_r($con_arr);echo '</pre>';
+    $in_users = implode(",",$con_arr);
     // Get main query.
     $query = $dbo->getQuery(true)
       ->from('#__users u')
@@ -92,16 +103,16 @@ class BriefcaseFactoryFrontendModelShareUsers extends FactoryModelAdmin
     // Filter by allowed groups.
     $groups = JComponentHelper::getParams('com_briefcasefactory')->get('restrictions.share_receive', array());
     if ($groups) {
-      $query->leftJoin('#__user_usergroup_map m ON m.user_id = u.id')
-        ->where('m.group_id NOT IN (' . implode(',', $groups) . ')');
+     /* $query->leftJoin('#__user_usergroup_map m ON m.user_id = u.id')
+        ->where('m.group_id NOT IN (' . implode(',', $groups) . ')'); */
     }
-
+    $query->where("u.id in ($in_users)");
     // Filter by username.
     $filter = JFactory::getApplication()->input->getString('search');
     if ('' != $filter) {
       $query->where('u.username LIKE ' . $dbo->quote('%' . $filter . '%'));
     }
-
+   // echo (string) $query;
     return $query;
   }
 

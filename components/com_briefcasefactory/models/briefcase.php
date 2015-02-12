@@ -19,7 +19,14 @@ class BriefcaseFactoryFrontendModelBriefcase extends FactoryModelList
   protected
     $filters = array('search', 'category', 'public', 'extension')
   ;
-
+  public function getFolderName($id = null)
+  {
+      $db = JFactory::getDBO();
+      $query = "select title from #__briefcasefactory_folders where id = '".$id."'";
+      $db->setQuery($query);
+      return $db->loadResult();
+  }
+  
   public function __construct($config = array())
   {
     parent::__construct($config);
@@ -47,8 +54,16 @@ class BriefcaseFactoryFrontendModelBriefcase extends FactoryModelList
       }
 
       // Check if user is allowed to access folder
-      if (!$table->isRoot() && !$table->isOwner() && $table->user_id != 0 && !$table->general) {
-        throw new Exception(FactoryText::sprintf('briefcase_folder_not_auth', $id), 403);
+      
+      
+       //echo $id;
+       $usrid = JFactory::getUser()->id;
+       $db = JFactory::getDBO();
+       $query = "select id from #__briefcasefactory_shares_folders where folder_id = '".$id."' and type_id = '".$usrid."'";
+       $db->setQuery($query);
+       $shared_id = $db->loadResult();
+      if (!$table->isRoot() && !$table->isOwner() && $table->user_id != 0 && !$table->general && !$shared_id) {
+         throw new Exception(FactoryText::sprintf('briefcase_folder_not_auth', $id), 403);
       }
 
       $parents[$id] = $table;
@@ -62,7 +77,7 @@ class BriefcaseFactoryFrontendModelBriefcase extends FactoryModelList
     // Initialise variables.
     $dbo    = $this->getDbo();
     $parent = $this->getParent();
-
+    //echo $parent->id.'<br />';
     // Get the queries for the current folder.
     $queries = $this->getItemsQueries($parent->id);
 
@@ -72,6 +87,10 @@ class BriefcaseFactoryFrontendModelBriefcase extends FactoryModelList
            . ' LIMIT ' . $this->getState('list.start', 0) . ', ' . $this->getState('list.limit', 10);
 
     // Load the results.
+   // echo (string) $query;
+  
+ 
+  
     $results = $dbo->setQuery($query)
       ->loadObjectList();
 
@@ -294,7 +313,7 @@ class BriefcaseFactoryFrontendModelBriefcase extends FactoryModelList
     // Get folders
     $query = $this->getQueryForFolders($folder_id, $total);
     $this->filterItems($query, 'folder');
-    $queries[] = (string)$query;
+    $queries[] = (string)$query; 
 
     return $queries;
   }
@@ -304,17 +323,23 @@ class BriefcaseFactoryFrontendModelBriefcase extends FactoryModelList
     // Initialise variables.
     $dbo     = $this->getDbo();
     $user_id = JFactory::getUser()->id;
-
+    
      // Get the files
 		$query = $dbo->getQuery(true)
 		  ->from('#__briefcasefactory_files f')
       ->where('f.published = 1')
       ->where('f.folder_id = ' . $dbo->quote($folder_id))
-      ->where('f.user_id = ' . $dbo->quote($user_id))
+      ->where('(f.user_id = ' . $dbo->quote($user_id) .' OR  shf.type_id = '.$user_id.' OR  shfo.type_id = '.$user_id.')')
+      ->join('LEFT','#__briefcasefactory_shares_files as shf ON f.id = shf.file_id')
+      ->join('LEFT','#__briefcasefactory_shares_folders as shfo ON f.folder_id = shfo.folder_id and shfo.type_id = '.$user_id)      
       ->where('(f.valid_until = ' . $dbo->quote($dbo->getNullDate()) . ' OR f.valid_until > ' . $dbo->quote(JFactory::getDate()->toSql()) . ')');
 
+  
+  
+ 
+
     if (!$total) {
-      $query->select('f.id, f.title, "file" AS type, f.filename, f.description, f.size, f.share_public, f.share_until, f.user_id, f.valid_until, 0 AS general')
+      $query->select('f.id,f.folder_id as fdid, f.title, "file" AS type, f.filename, f.description, f.size, f.share_public, f.share_until, f.user_id, f.valid_until, 0 AS general')
         ->group('f.id');
 
       $this->addSelectCategoryQuery($query);
@@ -335,10 +360,10 @@ class BriefcaseFactoryFrontendModelBriefcase extends FactoryModelList
     $query = $dbo->getQuery(true)
       ->from('#__briefcasefactory_folders f')
       ->where('f.parent_id = ' . $dbo->quote($folder_id))
-      ->where('(f.user_id = ' . $dbo->quote($user_id) . ' OR f.general = ' . $dbo->quote(1) . ')');
-
+      ->where('(f.user_id = ' . $dbo->quote($user_id) . ' OR f.general = ' . $dbo->quote(1) . '  OR  shf.type_id = '.$user_id.')')
+      ->join('LEFT','#__briefcasefactory_shares_folders as shf ON f.id = shf.folder_id');
     if (!$total) {
-      $query->select('f.id, f.title, "folder" AS type, NULL AS filename, NULL AS description, NULL AS size, f.share_public, f.share_until, f.user_id, ' . $dbo->quote($dbo->getNullDate()) . 'as valid_until, f.general')
+      $query->select('f.id,f.id as fdid, f.title, "folder" AS type, NULL AS filename, NULL AS description, NULL AS size, f.share_public, f.share_until, f.user_id, ' . $dbo->quote($dbo->getNullDate()) . 'as valid_until, f.general')
         ->group('f.id');
 
       $this->addSelectCategoryQuery($query);
@@ -392,6 +417,7 @@ class BriefcaseFactoryFrontendModelBriefcase extends FactoryModelList
 
   protected function getSharesFolders($folders)
   {
+    //echo '<pre>';print_r($folders);echo '</pre>';
     if (!$folders) {
       return array();
     }
@@ -407,6 +433,7 @@ class BriefcaseFactoryFrontendModelBriefcase extends FactoryModelList
       ->from('#__briefcasefactory_shares_folders s')
       ->where('s.folder_id IN (' . implode(',', $folders) . ')')
       ->where('(s.until = ' . $dbo->quote($nullDate) . ' OR s.until >= ' . $dbo->quote($now) . ')');
+      //echo (string)$query;
     $results = $dbo->setQuery($query)
       ->loadObjectList();
 

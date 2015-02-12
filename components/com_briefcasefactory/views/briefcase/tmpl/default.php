@@ -1,5 +1,5 @@
 <?php
-
+         
 /**
 -------------------------------------------------------------------------
 briefcasefactory - Briefcase Factory 4.0.8
@@ -13,9 +13,34 @@ briefcasefactory - Briefcase Factory 4.0.8
 */
 
 defined('_JEXEC') or die;
+$moduleCount = count(JModuleHelper::getModules('js_side_frontpage')) + count(JModuleHelper::getModules('js_side_top'));
+$class = ($moduleCount > 0) ? 'span8' : 'span12';
+$jinput = JFactory::getApplication()->input;
 
+    function renderModules($position, $attribs = array())
+    {
+	    jimport( 'joomla.application.module.helper' );
+
+	    $modules 	= JModuleHelper::getModules( $position );
+	    $modulehtml = '';
+
+	    foreach($modules as $module)
+	    {			
+		    // If style attributes are not given or set, we enforce it to use the xhtml style
+		    // so the title will display correctly.
+		    if( !isset($attribs['style'] ) )
+			    $attribs['style']	= 'xhtml';
+
+		    $modulehtml .= JModuleHelper::renderModule($module, $attribs);
+	    }
+
+	    // Add placholder code for onModuleRender search/replace
+	    $modulehtml .= '<!-- '.$position. ' -->';
+	    echo $modulehtml;
+    }
+                               
 ?>
-
+<?php /* ?>
 <h1><?php echo FactoryText::_('briefcase_page_title'); ?></h1>
 
 <?php echo JHtml::_('BriefcaseFactory.beginForm', FactoryRoute::view('briefcase&parent=' . $this->parent->id)); ?>
@@ -38,17 +63,34 @@ defined('_JEXEC') or die;
     </select>
   </div>
 </form>
-
+<?php */ ?>
+<div class="row-fluid"  id="community-wrap">
+<div class="span8">
+ <div class="cMain">
 <form method="POST" action="" id="briefcaseForm" name="briefcaseForm">
 
   <?php echo $this->loadTemplate('buttons'); ?>
-  <?php echo $this->loadTemplate('breadcrumb'); ?>
+  <?php //echo $this->loadTemplate('breadcrumb'); ?>
 
   <div class="briefcase-update" data-url="index.php?option=com_briefcasefactory&view=briefcase&format=raw&parent=<?php echo $this->parent->id; ?>">
     <?php echo $this->loadTemplate('update'); ?>
   </div>
 
-  <?php echo $this->loadTemplate('buttons'); ?>
+  <?php //echo $this->loadTemplate('buttons'); ?>
 
   <input type="hidden" name="boxchecked" value="0" />
 </form>
+ </div>
+  </div>
+<?php if ($moduleCount > 0) { ?>
+        <div class="span4">
+            <div class="cSidebar">
+                <?php renderModules('js_side_top'); ?>
+                <?php renderModules('js_side_frontpage'); ?>
+
+            </div>
+            <!-- end: .cSidebar -->
+        </div>
+    <?php } ?>
+    
+    </div>
