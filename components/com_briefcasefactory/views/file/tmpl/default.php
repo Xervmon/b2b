@@ -43,7 +43,8 @@ $jinput = JFactory::getApplication()->input;
 ?>
 
 <?php //echo $this->loadTemplate('title'); ?>
-<div class="row-fluid"  id="community-wrap">
+<div id="community-wrap">
+<div class="row-fluid">
 <div class="span8">
  <div class="cMain">
 <form action="<?php echo FactoryRoute::task('file.refresh&id=' . $this->item->id); ?>" method="POST" enctype="multipart/form-data">
@@ -85,4 +86,5 @@ $jinput = JFactory::getApplication()->input;
         </div>
     <?php } ?>
     
+    </div>
     </div>

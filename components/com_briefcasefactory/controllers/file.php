@@ -93,6 +93,7 @@ class BriefcaseFactoryFrontendControllerFile extends FactoryControllerForm
     $input->post->set('jform', $post);
 
     $result = parent::save($key, $urlVar);
+    //rmdir('media/com_briefcasefactory/'.JFactory::getUser()->id);
     //echo '<pre>';print_r($files);die;
     if ($redirect) {
       $this->setRedirect(base64_decode($redirect));
@@ -134,7 +135,8 @@ class BriefcaseFactoryFrontendControllerFile extends FactoryControllerForm
       $this->input->post->set('jform', $post[$id]);
 
       if (parent::save()) {
-        
+      
+        //rmdir('media/com_briefcasefactory/'.JFactory::getUser()->id);
 		   
         $response[] = array(
           'status'  => 1,

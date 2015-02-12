@@ -66,13 +66,13 @@ class S3Helper
 	}
 	
 
-	public static function deleteFile($uid, $file)
+	/*public static function deleteFile($uid, $file)
 	{
 		self::init($uid);
         $filesystem = new Filesystem(self::$adapter);
 		$filesystem->delete(self::$config ['s3_creds']['bucket'].'/'.$uid.'/' .$file['name']);
 	}
-	
+	*/
 
   public static function getFolderName($id = null)
   {

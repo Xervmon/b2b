@@ -10,7 +10,7 @@ briefcasefactory - Briefcase Factory 4.0.8
  * Websites: http://www.thePHPfactory.com
  * Technical Support: Forum - http://www.thePHPfactory.com/forum/
 -------------------------------------------------------------------------
-*/
+*/ 
 
 defined('_JEXEC') or die;
 $moduleCount = count(JModuleHelper::getModules('js_side_frontpage')) + count(JModuleHelper::getModules('js_side_top'));
@@ -64,7 +64,8 @@ $jinput = JFactory::getApplication()->input;
   </div>
 </form>
 <?php */ ?>
-<div class="row-fluid"  id="community-wrap">
+<div  id="community-wrap">
+<div class="row-fluid">
 <div class="span8">
  <div class="cMain">
 <form method="POST" action="" id="briefcaseForm" name="briefcaseForm">
@@ -92,5 +93,5 @@ $jinput = JFactory::getApplication()->input;
             <!-- end: .cSidebar -->
         </div>
     <?php } ?>
-    
+    </div>
     </div>

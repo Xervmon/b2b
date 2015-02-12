@@ -41,7 +41,8 @@ $jinput = JFactory::getApplication()->input;
 ?>
 
 <!--h2><?php echo FactoryText::_('file_bulk_page_title'); ?></h2-->
- <div class="row-fluid"  id="community-wrap">
+ <div id="community-wrap">
+ <div class="row-fluid">
 <div class="span8">
  <div class="cMain">
 <form action="" method="POST" enctype="multipart/form-data" novalidate="novalidate">
@@ -106,4 +107,5 @@ $jinput = JFactory::getApplication()->input;
         </div>
     <?php } ?>
     
+    </div>
     </div>

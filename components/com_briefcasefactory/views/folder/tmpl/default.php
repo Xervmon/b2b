@@ -1,6 +1,6 @@
 <?php
 
-/**
+/** 
 -------------------------------------------------------------------------
 briefcasefactory - Briefcase Factory 4.0.8
 -------------------------------------------------------------------------
@@ -39,7 +39,8 @@ $jinput = JFactory::getApplication()->input;
 	    echo $modulehtml;
     }
 //echo $this->loadTemplate('title'); ?>
-<div class="row-fluid"  id="community-wrap">
+<div id="community-wrap">
+<div class="row-fluid">
 <div class="span8">
  <div class="cMain">
 <form action="<?php echo FactoryRoute::task('folder.refresh&id=' . $this->item->id); ?>" method="POST" enctype="multipart/form-data" novalidate="novalidate">
@@ -72,4 +73,4 @@ $jinput = JFactory::getApplication()->input;
         </div>
     <?php } ?>
     
-    </div>
+    </div></div>
