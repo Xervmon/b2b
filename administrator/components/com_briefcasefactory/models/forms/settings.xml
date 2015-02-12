@@ -18,6 +18,16 @@
       <field name="max_folder_size" type="text" filter="integer" default="10" />
     </fieldset>
   </fields>
+  
+  <fields name="s3_creds">
+  	 <fieldset name="s3_creds">
+      <field name="access_key" type="text" default="10"/>
+      <field name="secret_key" type="text" default="10" />
+      <field name="region" type="text"  default="10"/>
+      <field name="bucket" type="text" default="10" />
+     
+    </fieldset>
+  </fields>
 
 
   <fields name="sharing">

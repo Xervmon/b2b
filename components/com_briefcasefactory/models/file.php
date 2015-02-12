@@ -104,7 +104,7 @@ class BriefcaseFactoryFrontendModelFile extends FactoryModelAdmin
     }
 
     $this->setError(FactoryText::_('file_download_error_not_allowed'));
-
+         
     return false;
   }
 

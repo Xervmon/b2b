@@ -3,13 +3,17 @@
 <form>
 	<fieldset name="details">
 		<field name="title" type="text" />
-    <field name="description" type="textarea" />
-    <field name="user_id" type="BriefcaseUser" />
-		<field name="folder_id" type="BriefcaseFolder" />
-		<field name="category_id" type="category" extension="com_briefcasefactory" />
+    	<field name="description" type="textarea" />
+    	<field name="tags" type="text" label="Enter Tags" />
+		<field name="folder_id" type="getfolder" />
+		<!--field name="user_id" type="BriefcaseUser" />
+    	<field name="category_id" type="category" extension="com_briefcasefactory" />
+    	<field name="valid_until" type="calendar" /-->
+    
     <field name="filename" type="BriefcaseFile" />
     <field name="file" type="BriefcaseFileUpload" validate="BriefcaseFileUpload" />
-    <field name="valid_until" type="calendar" />
-		<field name="id" type="text" readonly="true" />
+  
+    <field name="id" type="hidden" readonly="true" />
+  	
   </fieldset>
 </form>

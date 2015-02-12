@@ -13,7 +13,7 @@ briefcasefactory - Briefcase Factory 4.0.8
 */
 
 defined('_JEXEC') or die;
-
+//echo $this->parent->parent_id;
 if ($this->parent->parent_id): ?>
   <tr>
     <td></td>
@@ -25,7 +25,9 @@ if ($this->parent->parent_id): ?>
     </td>
   </tr>
 <?php endif; ?>
-
+<?php
+ $downloadurl = 'http://b2b-dev.s3.amazonaws.com/';
+?>
 <?php foreach ($this->items as $this->i => $this->item): ?>
   <tr data-url-edit="<?php echo FactoryRoute::task($this->item->type . '.edit&id=' . $this->item->id); ?>">
     <?php if ('com_briefcasefactory' == $this->option): ?>
@@ -37,12 +39,26 @@ if ($this->parent->parent_id): ?>
     <td class="resource-icon">
       <?php echo JHtml::_('BriefcaseFactoryBriefcase.ResourceIcon', $this->item); ?>
     </td>
-
+     <?php
+      $user_name = JFactory::getUser($this->item->user_id)->username;
+      
+      
+      if($this->item->fdid != 1)
+      {
+         $fname = BriefcaseFactoryFrontendModelBriefcase::getFolderName( $this->item->fdid );
+         $durl = $downloadurl.$user_name.'/'.$fname.'/'.$this->item->filename;
+      }
+      else
+      {
+         $durl = $downloadurl.$user_name.'/'.$this->item->filename;
+      }
+      
+     ?>
     <td>
       <?php if ('folder' == $this->item->type): ?>
         <a href="<?php echo FactoryRoute::view('briefcase&parent=' . $this->item->id . '&' . $this->filters); ?>"
       <?php else: ?>
-        <a href="<?php echo FactoryRoute::task('file.download&id=' . $this->item->id); ?>"
+        <a target="_blank" href="<?php echo $durl; ?>"
       <?php endif; ?>
         class="hasTooltip" title="<?php echo $this->item->description; ?>">
           <?php echo $this->item->title; ?>
@@ -67,7 +83,18 @@ if ($this->parent->parent_id): ?>
     </td>
 
     <td class="center">
-      <?php echo JHtml::_('BriefcaseFactoryShares.Shares', $this->item->shares, $this->item->type); ?>
+      <?php 
+     // echo $this->item->user_id;
+      $userid = JFactory::getUser()->id;
+      if($userid != $this->item->user_id)
+      {
+          echo '<i class="icon-user"></i>  '.JFactory::getUser()->username;
+      }
+      else
+      {
+        echo JHtml::_('BriefcaseFactoryShares.Shares', $this->item->shares, $this->item->type);
+      }
+       ?>
     </td>
 
     <td class="center resource-public">
