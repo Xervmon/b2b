@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<form>
+	<fieldset name="details">
+		<field name="title" type="text" required="true" />
+    <field name="general" type="list" default="0" onchange="Joomla.submitbutton('folder.refresh');">
+      <option value="0">JNO</option>
+      <option value="1">JYES</option>
+    </field>
+    <field name="user_id" type="user" onchange="Joomla.submitbutton('folder.refresh');" />
+    <field name="parent_id" type="BriefcaseFolder" />
+    <field name="category_id" type="category" extension="com_briefcasefactory" />
+    <field name="id" type="text" class="readonly" default="0" readonly="true" />
+  </fieldset>
+
+  <fieldset name="share">
+    <field name="share_public" type="FactoryBoolean" default="0" />
+    <field name="share_until" type="calendar" format="%Y-%m-%d" />
+  </fieldset>
+</form>

@@ -1,0 +1,84 @@
+
+February 12, 2015, 4:08 am
+Successfully changed extension-status.
+
+February 12, 2015, 4:08 am
+Going to access following url : http://ppappserver.readybytes.net//index.php?option=com_payplans&plugin=ppappserver&object=release&action=fetch&username=sudhi@xervmon.com&password=Java0man&version=migration&extension_type=file&client_id=0&app_element=migration0.0&app_folder=
+
+February 12, 2015, 4:08 am
+Failed to access following url : http://ppappserver.readybytes.net//index.php?option=com_payplans&plugin=ppappserver&object=release&action=fetch&username=sudhi@xervmon.com&password=Java0man&version=migration&extension_type=file&client_id=0&app_element=migration0.0&app_folder=
+
+February 12, 2015, 4:08 am
+ Migration file {/var/www/html/b2bsphere/jquark/administrator/components/com_ppinstaller/models/migrate/..php} doest not exist. Please contact to <a href='http://www.jpayplans.com/support/forum/28-payplans20-alpha.html' >PayPlans support Team </a>.
+
+February 12, 2015, 4:08 am
+Going to access following url : http://ppappserver.readybytes.net//index.php?option=com_payplans&plugin=ppappserver&object=release&action=fetch&username=sudhi@xervmon.com&password=Java0man&version=3.2&extension_type=com&client_id=0&app_element=com_payplans&app_folder=
+
+February 12, 2015, 4:08 am
+File extracted successfully Extract-Dir:/var/www/html/b2bsphere/jquark/tmp/payplans3.2
+
+February 12, 2015, 4:08 am
+Payplans Installation completed
+
+February 12, 2015, 4:08 am
+Applying patch : secondPatch
+
+February 12, 2015, 4:08 am
+Patch : secondPatch applied successfully
+
+February 12, 2015, 4:08 am
+Applying patch : patch_20_001_create_email_attachment_dir
+
+February 12, 2015, 4:08 am
+Patch : patch_20_001_create_email_attachment_dir applied successfully
+
+February 12, 2015, 4:08 am
+Applying patch : patch_31_002_uninstall_appmanager
+
+February 12, 2015, 4:08 am
+Patch : patch_31_002_uninstall_appmanager applied successfully
+
+February 12, 2015, 4:08 am
+Applying patch : patch_31_003_disable_apps
+
+February 12, 2015, 4:08 am
+Patch : patch_31_003_disable_apps applied successfully
+
+February 12, 2015, 4:08 am
+Applying patch : patch_31_004_remove_rbinstallerlink
+
+February 12, 2015, 4:08 am
+Patch : patch_31_004_remove_rbinstallerlink applied successfully
+
+February 12, 2015, 4:08 am
+Applying patch : patch_32_001_add_invoice_paid_date
+
+February 12, 2015, 4:08 am
+Patch : patch_32_001_add_invoice_paid_date applied successfully
+
+February 12, 2015, 4:08 am
+Applying patch : patch_32_002_invoice_adding_serial
+
+February 12, 2015, 4:08 am
+Patch : patch_32_002_invoice_adding_serial applied successfully
+
+February 12, 2015, 4:08 am
+Applying patch : patch_32_003_rename_email_templates
+
+February 12, 2015, 4:08 am
+Patch : patch_32_003_rename_email_templates applied successfully
+
+February 12, 2015, 4:08 am
+Applying patch : patch_32_004_remaining_wallet_balance_file
+
+February 12, 2015, 4:08 am
+Patch : patch_32_004_remaining_wallet_balance_file applied successfully
+
+February 12, 2015, 4:08 am
+Applying patch : patch_32_005_adding_currency_symbol
+
+February 12, 2015, 4:08 am
+Patch : patch_32_005_adding_currency_symbol applied successfully
+
+February 12, 2015, 4:08 am
+Requested url is failed to open. URL : http://pub.readybytes.net/ppinstaller/broadcast/3.2.5.html

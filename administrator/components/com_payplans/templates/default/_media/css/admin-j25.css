@@ -1,0 +1,146 @@
+/**
+* @copyright	Copyright (C) 2009-2012 Ready Bytes Software Labs Pvt. Ltd. All rights reserved.
+* @license		GNU/GPL, see LICENSE.php
+* @package		PayPlans
+* @contact 		payplans@readybytes.in
+*/
+
+.payplans .pp-filter-warp input,
+.payplans .pp-filter-warp textarea,
+.payplans .pp-filter-warp select{
+	font-size: 1em;
+
+}
+
+.pp-filter-warp .pp-filter .pp-input label {
+  	font-size: 1em;
+}
+
+/*-------------------------------------------------------------------
+				 Toolbar Icons
+---------------------------------------------------------------------*/
+.icon-32-savenew {
+	background-image: url(../images/icons/savenew.png);
+}
+
+.icon-32-extend {
+	background-image: url(../images/icons/extend.png);
+}
+
+.icon-32-search {
+	background-image: url(../images/icons/search.png);
+}
+
+.icon-16-config{
+	background: url("../images/icons/16/ppconfig.png") no-repeat scroll 0 0 transparent !important;
+}
+
+.icon-16-user{
+	background: url("../images/icons/16/ppuser.png") no-repeat scroll 0 0 transparent !important;
+}
+
+.icon-32-upgrade {
+	background-image: url(../images/icons/upgrade.png);
+}
+
+.icon-32-pprefresh {
+	background-image: url(../images/icons/pprefresh.png);
+}
+
+.icon-32-cog {
+	background-image: url(../images/icons/cog.png);
+}
+
+.icon-32-credential {
+	background-image: url(../images/icons/credential.png);
+}
+
+.pp-admin-blankgrid .pp-message .pp-title {
+	font-size : 3.0em;
+}
+
+.pp-app-block-content-name {
+	font-color : #3396C3;
+	font-size : 1.5em;
+}
+
+.pp-app-block-content-type{
+	font-size : .9em;
+}
+
+.pp-app-block-content-desc {
+	font-size : 1em;
+}
+
+.payplans-wrap fieldset label
+{
+	float:none !important;
+}
+
+/*---------------------------------------------------
+	Consistency fixes : for J2.5 
+---------------------------------------------------- */	
+#submenu a:hover, 
+#submenu a.active, 
+#submenu span.nolink.active {
+	background: transparent !important;
+	text-decoration:underline !important;
+}
+
+/* Compatiblity with J2.5, pagination display not properly */
+.payplans .pagination a, .payplans .pagination span {
+    background-color: transparent !important;
+    line-height: 22px !important;
+    padding: 0 20px !important;
+    border-width: 0 !important;
+}
+
+.payplans select{
+    font-size: 1.1em !important;
+    margin: 0 10px !important;
+    padding: 1px !important;
+}
+
+.payplans .pagination {
+    height: auto !important;
+    margin: 0 !important;
+}
+
+.pp-apps{
+	height: 90px; 
+	font-size: 14px;
+	overflow:hidden;
+	padding-bottom: 6px 0;
+	-webkit-transition: height ease .6s;
+    -moz-transition: height ease .6s;
+    -o-transition: height ease .6s;
+    transition: height ease .6s;
+    border-bottom:1px solid #ccc;
+    border-top:0px;
+    padding: 10px 0;
+}
+
+
+@media (max-width: 767px){
+	
+	.pull-left.pp-app-margin.pp-align-center{
+		float: none;
+		text-align:center;
+		padding-left:10px;
+	}
+	
+	.pull-right.pp-align-center{
+		float: none;
+		text-align:center;
+		padding-left:25px;
+	}
+	
+	.pp-font-size{
+	font-size: 12px !important;
+	}
+	
+}
+
+.payplans .pp-statistics-numeric .pp-gap-top30{
+ 	margin-top: 2em;
+}

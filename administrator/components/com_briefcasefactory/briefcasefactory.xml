@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="3.3" method="upgrade">
+  <name>com_briefcasefactory</name>
+  <languages folder="languages/frontend">
+    <language tag="en-GB">en-GB.com_briefcasefactory.ini</language>
+  </languages>
+  <scriptfile>script.php</scriptfile>
+  <install>
+    <sql>
+      <file charset="utf8" driver="mysql">sqls/install.mysql.utf8.sql</file>
+    </sql>
+  </install>
+  <uninstall>
+    <sql>
+      <file charset="utf8" driver="mysql">sqls/uninstall.mysql.utf8.sql</file>
+    </sql>
+  </uninstall>
+  <update>
+    <schemas>
+      <schemapath type="mysql">sqls/updates/mysql</schemapath>
+    </schemas>
+  </update>
+  <files folder="frontend">
+    <folder>assets</folder>
+    <folder>controllers</folder>
+    <folder>helpers</folder>
+    <folder>models</folder>
+    <folder>views</folder>
+    <filename>briefcasefactory.php</filename>
+    <filename>controller.php</filename>
+    <filename>index.html</filename>
+    <filename>router.php</filename>
+  </files>
+  <media destination="com_briefcasefactory" folder="media">
+    <filename>.htaccess</filename>
+    <filename>index.html</filename>
+  </media>
+  <administration>
+    <menu>com_briefcasefactory</menu>
+    <submenu>
+      <menu view="files">com_briefcasefactory_submenu_files</menu>
+      <menu view="folders">com_briefcasefactory_submenu_folders</menu>
+      <menu link="option=com_categories&amp;extension=com_briefcasefactory" view="categories">com_briefcasefactory_submenu_categories</menu>
+      <menu view="users">com_briefcasefactory_submenu_users</menu>
+      <menu view="notifications">com_briefcasefactory_submenu_notifications</menu>
+      <menu view="settings">com_briefcasefactory_submenu_settings</menu>
+      <menu view="about">com_briefcasefactory_submenu_about</menu>
+    </submenu>
+    <languages folder="languages/backend">
+      <language tag="en-GB">en-GB.com_briefcasefactory.ini</language>
+      <language tag="en-GB">en-GB.com_briefcasefactory.sys.ini</language>
+    </languages>
+    <files folder="backend">
+      <folder>assets</folder>
+      <folder>controllers</folder>
+      <folder>helpers</folder>
+      <folder>libraries</folder>
+      <folder>models</folder>
+      <folder>sqls</folder>
+      <folder>tables</folder>
+      <folder>views</folder>
+      <filename>access.xml</filename>
+      <filename>briefcasefactory.php</filename>
+      <filename>controller.php</filename>
+      <filename>index.html</filename>
+      <filename>notifications.xml</filename>
+    </files>
+  </administration>
+  <version>4.0.8</version>
+  <author>thePHPfactory</author>
+  <copyright>SKEPSIS Consult SRL</copyright>
+  <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+  <authorEmail>contact@thephpfactory.com</authorEmail>
+  <authorUrl>http://www.thephpfactory.com</authorUrl>
+  <url>http://www.thephpfactory.com</url>
+  <creationDate>June 2007</creationDate>
+</extension>

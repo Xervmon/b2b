@@ -1,0 +1,12 @@
+.view-file .buttons {
+  padding: 20px 0 0 0;
+}
+
+.view-file h2 {
+  border-bottom: 1px solid #eeeeee;
+  padding-bottom: 5px;
+}
+
+.view-file form {
+  padding: 10px;
+}

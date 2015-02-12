@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<form>
+	<fieldset name="details">
+		<field name="title" type="text" />
+    <field name="description" type="textarea" />
+		<field name="user_id" type="user" onchange="Joomla.submitbutton('file.refresh');" />
+		<field name="folder_id" type="BriefcaseFolderFile"  />
+		<field name="category_id" type="category" extension="com_briefcasefactory" />
+    <field name="filename" type="BriefcaseFile" />
+    <field name="file" type="file" />
+    <field name="valid_until" type="calendar" />
+		<field name="id" type="text" readonly="true" />
+  </fieldset>
+
+  <fieldset name="share_public">
+    <field name="share_public" type="FactoryBoolean" />
+    <field name="share_until" type="calendar" />
+  </fieldset>
+
+  <fieldset name="share_group">
+    <field name="shared_groups" type="BriefcaseFileSharedGroups" />
+    <field name="share_groups" type="BriefcaseFileShareGroups" display="vertical" />
+  </fieldset>
+
+  <fieldset name="share_user">
+    <field name="shared_users" type="BriefcaseFileSharedUsers" />
+    <field name="share_users" type="BriefcaseFileShareUsers" display="vertical" />
+  </fieldset>
+</form>

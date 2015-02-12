@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<form>
+	<fieldset name="details">
+    <!--<field name="share_groups" type="list" default="0">-->
+      <!--<option value="0">JNO</option>-->
+      <!--<option value="1">JYES</option>-->
+    <!--</field>-->
+    <field name="groups" type="BriefcaseShareGroups" multiple="true" size="10" />
+    <field name="share_until" type="calendar" format="%Y-%m-%d" />
+
+    <field name="folders" type="hidden" />
+    <field name="files" type="hidden" />
+  </fieldset>
+</form>

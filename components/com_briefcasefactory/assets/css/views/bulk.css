@@ -1,0 +1,11 @@
+.view-bulk .button-remove-file {
+  float: right;
+}
+
+.view-bulk .files fieldset {
+  padding: 0 0 0 20px;
+}
+
+.view-bulk .buttons {
+  margin: 20px 0;
+}

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<form>
+	<fieldset name="details">
+		<field name="title" type="text" required="true" />
+    <field name="user_id" type="BriefcaseUser" />
+		<field name="parent_id" type="BriefcaseFolder" />
+		<field name="category_id" type="category" extension="com_briefcasefactory" />
+		<field name="id" type="text" readonly="true" />
+  </fieldset>
+</form>

@@ -1,0 +1,109 @@
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.clearfix:after {
+  clear: both;
+}
+.hide-text {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+.input-block-level {
+  display: block;
+  width: 100%;
+  min-height: 30px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.btn.btn-primary {
+  background: #aa824a;
+}
+.btn.btn-primary:hover {
+  background: #86673b;
+}
+input[type='submit'] {
+  background: #d9534f;
+  color: #fff;
+}
+input[type='submit']:hover {
+  background: #d2322d;
+  color: #fff;
+}
+a {
+  color: #634c2b;
+}
+a:hover {
+  color: #aa824a;
+}
+body {
+  color: #333333;
+}
+body.bg {
+  background: #f2f2f2;
+}
+.logo {
+  background-image: url(../../images/presets/preset3/logo.png);
+}
+#sp-main-menu ul.level-0 > li:hover >a,
+#sp-main-menu ul.level-0 > li.active >a {
+  color: #aa824a;
+}
+#sp-main-menu ul .sp-submenu-inner {
+  border-top: 3px solid #aa824a;
+}
+#sp-search-wrapper .container #sp-dir-search {
+  background-color: #aa824a;
+}
+#sp-portfolio-wrapper .sp-portfolio .sp-portfolio-filter a.btn {
+  background-color: #aa824a;
+}
+#sp-portfolio-wrapper .sp-portfolio .sp-portfolio-filter a.btn.active {
+  background-color: #755933;
+}
+#sp-service-wrapper i {
+  color: #755933;
+}
+#sp-bottom-wrapper .container {
+  background: #3f301c;
+  color: #fff;
+}
+#sp-bottom-wrapper .container h3 {
+  color: #fff;
+}
+#sp-bottom-wrapper .container a:not(.btn) {
+  color: #be9b69;
+}
+#sp-bottom-wrapper .container a:not(.btn):hover {
+  color: #ddcab0;
+}
+#sp-team-wrapper .left-arrow,
+#sp-team-wrapper .nav-right {
+  color: #aa824a;
+}
+#sp-team-wrapper .left-arrow:hover,
+#sp-team-wrapper .nav-right:hover {
+  color: #be9b69;
+}
+.module.highlighted {
+  background: #3498DB;
+}
+.module.highlighted a {
+  color: #fff !important;
+}
+#sp-bottom-wrapper #sp-bottom2 a:hover {
+  color: #aa824a;
+}
+#sp-footer-wrapper {
+  background: #f2f2f2;
+  color: #999;
+}

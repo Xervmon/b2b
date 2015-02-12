@@ -1,0 +1,22 @@
+.view-public a i {
+  margin-right: 5px;
+}
+
+.view-public .filters {
+  text-align: right;
+}
+
+.view-public .filters select {
+  width: 130px;
+}
+
+.view-public .chzn-container {
+  vertical-align: middle;
+  text-align: left;
+}
+
+.view-public .filters .search-query {
+  vertical-align: middle;
+  width: 180px;
+  float: left;
+}

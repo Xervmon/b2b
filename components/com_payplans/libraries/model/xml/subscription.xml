@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fields name="params">
+	    <fieldset name="params">			
+		<field
+			name="notes"
+			type="textarea"
+			label="COM_PAYPLANS_SUBSCRIPTION_PARAM_NOTES_LABEL"
+			description="COM_PAYPLANS_SUBSCRIPTION_PARAM_NOTES_DESC"
+			default=""
+			cols="40"
+			rows="5"
+			/>
+	   </fieldset>
+	</fields>
+	
+	<fieldset name="hidden">
+		<field type="hidden" name="subscription_id" default="0"/>
+		<field type="hidden" name="user_id" default="0"/>
+		<field type="hidden" name="order_id" default="0"/>
+	</fieldset>
+</form>

@@ -1,0 +1,33 @@
+[class^="factory-icon-"] {
+  height: 16px;
+  width: 16px;
+  display: inline-block;
+  vertical-align: baseline;
+}
+
+.factory-icon-folder { background-image: url('../images/icons/folder.png'); }
+.factory-icon-folder-plus { background-image: url('../images/icons/folder--plus.png'); }
+.factory-icon-folder-small { background-image: url('../images/icons/folder-small.png'); }
+.factory-icon-blue-folder { background-image: url('../images/icons/blue-folder.png'); }
+.factory-icon-document-zipper { background-image: url('../images/icons/document-zipper.png'); }
+.factory-icon-document-pdf { background-image: url('../images/icons/document-pdf.png'); }
+.factory-icon-document-text { background-image: url('../images/icons/document-text.png'); }
+.factory-icon-document-excel { background-image: url('../images/icons/document-excel.png'); }
+.factory-icon-document { background-image: url('../images/icons/document.png'); }
+.factory-icon-document-plus { background-image: url('../images/icons/document--plus.png'); }
+.factory-icon-image { background-image: url('../images/icons/image.png'); }
+.factory-icon-film { background-image: url('../images/icons/film.png'); }
+.factory-icon-tick { background-image: url('../images/icons/tick.png'); }
+.factory-icon-minus-circle { background-image: url('../images/icons/minus-circle.png'); }
+.factory-icon-share { background-image: url('../images/icons/share.png'); }
+.factory-icon-checkbox { background-image: url('../images/icons/ui-check-box.png'); }
+.factory-icon-tick-button { background-image: url('../images/icons/tick-button.png'); }
+.factory-icon-pencil { background-image: url('../images/icons/pencil.png'); }
+.factory-icon-download { background-image: url('../images/icons/drive-download.png'); }
+.factory-icon-document-share { background-image: url('../images/icons/document-share.png'); }
+.factory-icon-move { background-image: url('../images/icons/arrow-move.png'); }
+.factory-icon-cross { background-image: url('../images/icons/cross.png'); }
+.factory-icon-hand-share { background-image: url('../images/icons/hand-share.png'); }
+.factory-icon-disk { background-image: url('../images/icons/disk.png'); }
+.factory-icon-disk-plus { background-image: url('../images/icons/disk--plus.png'); }
+.factory-icon-information-small { background-image: url('../images/icons/information-small.png'); }

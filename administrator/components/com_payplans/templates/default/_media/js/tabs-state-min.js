@@ -1,0 +1,6 @@
+
+(function($){var loadTab=function(){$(document).find('a[data-toggle="tab"]').on('click',function(e){var clickedTab=this.id;var toolbar=document.getElementById('toolbar');toolbar.show();if(clickedTab=="installedapps"||clickedTab=="availableapps")
+{toolbar.hide();}
+window.localStorage.setItem('tab-href',$(this).attr('href'));});var activateTab=function(href){var $el=$('a[data-toggle="tab"]a[href*='+href+']');$el.tab('show');};var hasTab=function(href){return $('a[data-toggle="tab"]a[href*='+href+']').length;};$(document).ready(function(){if(localStorage.getItem('tab-href')&&localStorage.getItem('tab-href')!=='undefined'){if(!hasTab(localStorage.getItem('tab-href'))){localStorage.removeItem('tab-href');return true;}
+$('a[data-toggle="tab"]').parent().removeClass('active');var tabhref=localStorage.getItem('tab-href');var toolbar=document.getElementById('toolbar');if(tabhref=='#ppmanage'){toolbar.show();}
+activateTab(tabhref);var seperatorIndex=tabhref.indexOf('-');if(seperatorIndex!==-1){var singular=tabhref.substring(0,seperatorIndex);var plural=singular+"s";activateTab(plural);}}});};setTimeout(loadTab,100);})(payplans.jQuery);

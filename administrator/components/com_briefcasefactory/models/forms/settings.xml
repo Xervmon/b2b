@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<form>
+  <fields name="pagination">
+    <fieldset name="pagination">
+      <field name="resources" type="text" filter="integer" default="10" />
+      <field name="users" type="text" filter="integer" default="10" />
+    </fieldset>
+  </fields>
+
+
+  <fields name="uploads">
+    <fieldset name="uploads">
+      <field name="bulk_limit" type="text" filter="integer" default="5" />
+      <field name="folder" type="BriefcaseStorageFolder" />
+      <field name="extensions" type="text" />
+      <field name="max_file_size" type="text" filter="integer" default="1" />
+      <field name="max_folder_size" type="text" filter="integer" default="10" />
+    </fieldset>
+  </fields>
+
+
+  <fields name="sharing">
+    <fieldset name="sharing">
+      <field name="share_only_groups" type="usergroup" size="10" multiple="true" default="" />
+      <field name="autoshare" type="FactoryBoolean" default="0" />
+    </fieldset>
+  </fields>
+
+
+  <fields name="cron">
+    <fieldset name="cron">
+      <field name="password" type="text" />
+      <field name="link" type="BriefcaseCronLink" />
+    </fieldset>
+  </fields>
+
+  <fields name="notifications">
+    <fieldset name="notifications">
+    </fieldset>
+  </fields>
+
+
+  <fields name="restrictions">
+    <fieldset name="restrictions">
+      <field name="share_receive" type="usergroup" multiple="true" />
+    </fieldset>
+  </fields>
+
+
+  <fields name="override">
+    <fieldset name="override">
+      <field name="extensions" type="FactoryBoolean" default="0" />
+      <field name="max_file_size" type="FactoryBoolean" default="0" />
+      <field name="max_folder_size" type="FactoryBoolean" default="0" />
+      <field name="share_only_groups" type="FactoryBoolean" default="0" />
+    </fieldset>
+  </fields>
+
+
+  <fields name="administrators">
+    <fieldset name="administrators">
+      <field name="groups" type="usergroup" default="" multiple="true" />
+    </fieldset>
+  </fields>
+
+  <fieldset name="permissions">
+    <field name="rules" type="FactoryRules" section="component" filter="rules" validate="rules" display="vertical" >
+      <action name="frontend.access" />
+      <action name="frontend.manage" />
+      <action name="frontend.share.public" />
+      <action name="frontend.share.users" />
+      <action name="frontend.share.groups" />
+      <action name="frontend.download.public" />
+      <action name="frontend.upload.global" />
+      <action name="backend.access" />
+      <action name="backend.settings" />
+    </field>
+  </fieldset>
+</form>

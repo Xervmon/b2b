@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<notifications>
+  <notification type="public_shared_file">
+    <option>receiver_username</option>
+    <option>owner_username</option>
+    <option>file_name</option>
+    <option>file_link</option>
+    <option>date</option>
+  </notification>
+
+  <notification type="private_user_shared_file">
+    <option>receiver_username</option>
+    <option>owner_username</option>
+    <option>file_name</option>
+    <option>file_link</option>
+    <option>date</option>
+  </notification>
+
+  <notification type="private_group_shared_file">
+    <option>receiver_username</option>
+    <option>owner_username</option>
+    <option>file_name</option>
+    <option>file_link</option>
+    <option>date</option>
+    <option>group</option>
+  </notification>
+
+  <notification type="file_upload_for_other_user">
+    <option>receiver_username</option>
+    <option>uploader_username</option>
+    <option>file_name</option>
+    <option>file_link</option>
+    <option>date</option>
+  </notification>
+</notifications>

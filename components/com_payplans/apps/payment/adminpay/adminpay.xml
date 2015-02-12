@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+    <name>Admin Payment</name>
+    <icon>adminpay.png</icon>
+    <tags>payment</tags>
+    <description>
+		Admin Payment application can be used in admin panel only. 
+		No one can Add and Delete and make any change in this application.
+	</description>
+	<help>
+	</help>
+	<fields>
+	</fields>
+
+<alias>pp-adminpay</alias>
+<documentation></documentation>
+<version>3.2.5</version>
+
+</config>

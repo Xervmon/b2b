@@ -1,0 +1,21 @@
+.latest-offers{
+	
+}
+
+.latest-offers ul{
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+}
+
+.latest-offers ul li{
+	margin-bottom: 15px;
+}
+
+.latest-offers .offer-image{
+	width: 200px;
+}
+
+.latest-offers .offer-image img{
+	width: 100%;
+}
