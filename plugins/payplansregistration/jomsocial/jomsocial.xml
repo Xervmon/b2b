@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" type="plugin" group="payplansregistration" method="upgrade">
+    <name>PayPlans-Registration-JomSocial </name>
+    <version>3.2.0</version>
+    <creationDate>May 2011</creationDate>
+    <author>Team JoomlaXi</author>
+    <authorEmail>shyam@joomlaxi.com</authorEmail>
+    <authorUrl>http://www.joomlaxi.com</authorUrl>
+    <copyright>2009-11 Ready Bytes Software Labs Pvt. Ltd.</copyright>
+    <license>GNU General Public License v2</license>
+    <description>PayPlans : Paid Membership and Subscription System for Joomla</description>
+	<files>
+		<filename plugin="jomsocial">jomsocial.php</filename>
+		<filename>jomsocialregistration.png</filename>
+		<folder>jomsocial</folder>
+	</files>
+	<config>
+		<fields addpath="/components/com_payplans/elements" name="params">
+			<fieldset name="basic">
+				<field name="skip_ptype" default="1" type="radio" label="PLG_PAYPLANSREGISTRATION_JOMSOCIAL_SKIP_PTYPE_SELECTION_LABEL"
+					description="PLG_PAYPLANSREGISTRATION_JOMSOCIAL_SKIP_PTYPE_SELECTION_DESC">
+					<option value="0">COM_PAYPLANS_NO</option>
+		            <option value="1">COM_PAYPLANS_YES</option>
+				</field>
+				
+				<field name="jsmultiprofile" type="jsmultiprofile" label="PLG_PAYPLANSREGISTRATION_JOMSOCIAL_MULTIPROFILE_LABEL"
+					default="" description="PLG_PAYPLANSREGISTRATION_JOMSOCIAL_MULTIPROFILE_DESC" />
+			</fieldset>
+		</fields>
+	</config>
+<alias>pp-jomsocialregistration</alias>
+<version_number>3.2.0</version_number>
+<version_name>PayPlans-Registration-JomSocial  3.2.0</version_name>
+<icon>jomsocialregistration.png</icon>
+<documentation>http://www.readybytes.net/payplans/documentation/item/jomsocial-registration.html</documentation>
+</extension>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+    <name>Terms of Services</name>
+    <author>Team Payplans</author>
+    <description>
+    	This app allows administrator to forces  users/customers to agree terms and conditions.
+    </description>
+	<icon>tos.png</icon>
+    <tags>userdetail</tags>
+	<help>		
+	</help>
+	<fields name="app_params"> 
+		<fieldset name="app_params" addfieldpath="/components/com_payplans/elements">
+        <field	name="subject" 
+				type="text"
+				default=""
+                class="required"
+				label="COM_PAYPLANS_APP_TOS_SUBJECT"  
+				description="COM_PAYPLANS_APP_TOS_SUBJECT_DESC" 
+				/>
+
+		<field	name="filter"
+				type="parammanipulator" 
+				label="COM_PAYPLANS_APP_TOS_FILTER"  
+				description="COM_PAYPLANS_APP_TOS_FILTER_DESC"
+				default="custom_content">
+				<option value="custom_content" params="custom_content">COM_PAYPLANS_APP_TOS_CUSTOM_CONTENT</option>
+				<option value="joomla_article" params="joomla_article">COM_PAYPLANS_APP_TOS_JOOMLA_ARTICLE</option>
+		</field>
+		
+		<field	name="joomla_article"
+				type="xijarticle"
+				label="COM_PAYPLANS_APP_TOS_JOOMLA_ARTICLE"  
+				description="COM_PAYPLANS_APP_TOS_JOOMLA_ARTICLE_DESC"
+				/>
+		<field	name="custom_content" 
+				type="xieditor"
+				width="300" 
+				height="150"
+				class="required"
+				label="COM_PAYPLANS_APP_TOS_CUSTOM_CONTENT"  
+				description="COM_PAYPLANS_APP_TOS_CUSTOM_CONTENT_DESC" 
+				/>
+		</fieldset>
+	</fields>
+<alias>pp-termsofservice</alias>
+<documentation>http://www.readybytes.net/payplans/documentation/item/terms-of-services-documentation.html</documentation>
+<version>3.1.2</version>
+</config>

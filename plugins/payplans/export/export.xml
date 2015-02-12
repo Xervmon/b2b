@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" type="plugin" group="payplans" method="upgrade" client="admin">
+    <name>PayPlans-Export</name>
+    <version>3.1.13</version>
+    <creationDate>April 2013</creationDate>
+    <author>Team Payplans</author>
+    <authorEmail>support+payplans@readybytes.in</authorEmail>
+	<authorUrl>http://www.readybytes.net/payplans.html</authorUrl>
+	<copyright>2009-14 Ready Bytes Software Labs Pvt. Ltd.</copyright>
+    <license>GNU General Public License v2</license>
+    <description>export tables data of invoice, subscription and user</description>
+	<files>
+		<filename plugin="export">export.php</filename>
+		<filename>export.png</filename>
+		<folder>export</folder>
+	</files>
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field name="export_limit" type="text" default="50" label="PLG_PAYPLANS_EXPORT_LIMIT_LABEL" description="PLG_PAYPLANS_EXPORT_LIMIT_DESC"></field>
+	   		</fieldset>
+		</fields>
+	</config>
+<alias>pp-export</alias>
+<version_number>3.1.13</version_number>
+<version_name>PayPlans-Export 3.1.13</version_name>
+<icon>export.png</icon>
+<documentation>http://www.readybytes.net/payplans/documentation/item/export.html</documentation>
+</extension>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" type="plugin" group="payplans" method="upgrade">
+    <name>PayPlans-ProfileBasedPlan</name>
+    <version>3.2.0</version>
+    <creationDate>May 2014</creationDate>
+    <author>Team Payplans</author>
+    <authorEmail>support+payplans@readybytes.net</authorEmail>
+    <authorUrl>http://www.readybytes.net/payplans.html</authorUrl>
+    <copyright>2009-14 Ready Bytes Software Labs Pvt. Ltd.</copyright>
+    <license>GNU General Public License v2</license>
+    <description>PayPlans : Paid Membership and Subscription System for Joomla</description>
+    <files>
+        <filename plugin="profilebasedplan">profilebasedplan.php</filename>
+        <folder>profilebasedplan</folder>
+    </files>
+
+	<config>
+		<fields addpath="/components/com_payplans/elements" name="params">
+			<fieldset name="basic">
+				<field 	name="defaultPlan"	
+							label="COM_PAYPLANS_CONFIG_DEFAULT_PLAN"
+							description="COM_PAYPLANS_CONFIG_DEFAULT_PLAN_DESC" 
+							type="plans"
+							default="0" 
+							size="40"
+				/>
+				
+				<field  name="profile_used" 
+							default="joomla_usertype" 
+							type="list" 
+							label="PLG_PROFILEBASEDPLAN_PROFILE_USED_LABEL"
+							description="PLG_PROFILEBASEDPLAN_PROFILE_USED_DESC">
+						<option value="joomla_usertype">PLG_PROFILEBASEDPLAN_PROFILE_USED_JOOMLA_USERTYPE</option>
+						<option value="joomlaxi_profiletype">PLG_PROFILEBASEDPLAN_PROFILE_USED_JOOMLAXI_PROFILETYPE</option>
+                        <option value="jomsocial_profiletype">PLG_PROFILEBASEDPLAN_PROFILE_USED_JOOMSOCIAL_PROFILETYPE</option>
+						<option value="easysocial_profiletype">PLG_PROFILEBASEDPLAN_PROFILE_USED_EASYSOCIAL_PROFILETYPE</option>
+				</field>
+			</fieldset>
+		</fields>
+	</config>
+
+	<alias>pp-profilebasedplan</alias>
+	<version_number>3.2.0</version_number>
+	<version_name>PayPlans-ProfileBasedPlan 3.2.0</version_name>
+	<icon>profilebasedplan.png</icon>
+	<documentation>http://www.readybytes.net/payplans/documentation/item/profile-based-plan.html</documentation>
+
+</extension>

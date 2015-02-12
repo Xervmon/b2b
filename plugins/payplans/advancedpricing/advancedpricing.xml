@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension version="2.5" type="plugin" group="payplans" method="upgrade">
+    <name>Payplans-AdvancedPricing</name>
+	<version>3.2.3</version>
+	<creationDate>DEC 2012</creationDate>
+	<author>Team Payplans</author>
+	<authorEmail>payplans@readybytes.in</authorEmail>
+	<authorUrl>http://www.readybytes.in</authorUrl>
+	<copyright>2009-12 Ready Bytes Software Labs Pvt. Ltd.</copyright>
+	<license>GNU/GPL</license>
+	<description>This app can be used to provide advanced pricing options on plans.</description>	
+	<files>
+		<filename plugin="advancedpricing">advancedpricing.php</filename>
+		
+		<folder>advancedpricing</folder>
+	</files>
+<alias>pp-advancepricing</alias>
+<version_number>3.2.3</version_number>
+<version_name>Payplans-AdvancedPricing 3.2.3</version_name>
+</extension>

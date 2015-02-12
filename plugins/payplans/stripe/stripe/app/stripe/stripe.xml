@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+    <name>Stripe</name>
+    <author>Team Payplans</author>
+    <authorEmail>payplans@readybytes.in</authorEmail>
+    <authorUrl>http://www.jpayplans.com</authorUrl>
+    <copyright>2009-2013 Ready Bytes Software Labs</copyright>
+    <icon>stripe.png</icon>
+    <description>
+    <![CDATA[
+    Stripe payment gateway facilitating suitable online payment solutions through credit and debit cards.<br>
+    ]]>
+    </description>
+    <tags>payment</tags>
+    <help>
+    <![CDATA[
+		<ul>
+			<li>Stripe suppport both fixed and recurring payments.</li>
+	  		<li>You can refund the amount at transaction detail screen.</li>
+			<li>This payment gateway support free trial.</li>
+			<li>If there is some amount of trial then minimum amount should be (50cents).</li>
+			<li>
+					Only supported currencies for each country:</br>
+					<strong>United States -</strong>
+					<ul>	
+						<li>United States dollars (USD)</li>
+					</ul>
+					
+					<strong>Canada -</strong>
+					<ul>
+						<li>Canadian dollars (CAD)</li>
+						<li>United States dollars (USD)</li>
+					</ul>
+			</li>
+			<li><strong>Note : </strong> If there is some payment amount other than free trial then it should be atleast integer 10$ for test account and minimum payment should be at least 50cents for live accounts.</li>
+		</ul>
+		
+	]]>
+     </help>
+	
+	<fields name="app_params">
+		<fieldset name="app_params">
+			<field 	name="mode" 
+					default="1" 
+					type="radio"
+					class="btn-group"
+					label="COM_PAYPLANS_APP_STRIPE_MODE"
+					description="COM_PAYPLANS_APP_STRIPE_MODE_DESC">
+					<option value="1">COM_PAYPLANS_APP_STRIPE_TEST_MODE</option>
+				    <option value="0">COM_PAYPLANS_APP_STRIPE_LIVE_MODE</option>
+			</field>
+						
+			<field	name="public_key" 	
+					default="" 		
+					type="text" 	
+					size="50" 
+					label="COM_PAYPLANS_APP_STRIPE_PUBLIC_KEY"  
+					description="COM_PAYPLANS_APP_STRIPE_PUBLIC_KEY_DESC"
+					/> 			
+			<field	name="secret_key" 	
+					default="" 		
+					type="text" 	
+					size="50" 
+					label="COM_PAYPLANS_APP_STRIPE_SECRET_KEY"  
+					description="COM_PAYPLANS_APP_STRIPE_SECRET_KEY_DESC"
+					/> 
+					
+			<field 	name="allow_recurring_cancel" 
+					default="1" 
+					type="radio"  
+					class="btn-group"                        
+					label="COM_PAYPLANS_APP_STRIPE_ALLOW_RECURRING_CANCEL_LABEL"
+					description="COM_PAYPLANS_APP_STRIPE_ALLOW_RECURRING_CANCEL_DESC">
+					<option value="1">COM_PAYPLANS_YES</option>
+				    <option value="0">COM_PAYPLANS_NO</option>
+			</field>		
+	
+		</fieldset>
+	</fields>
+<alias>pp-stripe</alias>
+<documentation>http://www.readybytes.net/payplans/documentation/item/stripe-doc.html</documentation>
+<version>3.2.8</version>
+</config>
+

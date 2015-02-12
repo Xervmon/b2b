@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension version="2.5" type="plugin" group="payplans" method="upgrade">
+    <name>PayPlans-Terms and Conditions</name>
+    <version>3.1.2</version>
+    <creationDate>Jan 2013</creationDate>
+    <author>Team Payplans</author>
+    <authorEmail>payplans@readybytes.in</authorEmail>
+    <authorUrl>http://www.jpayplans.com</authorUrl>
+    <copyright>2009-13 Ready Bytes Software Labs Pvt. Ltd.</copyright>
+    <license>GNU General Public License v2</license>
+    <description>PayPlans : Paid Membership and Subscription System for Joomla</description>
+	<files>
+		<filename plugin="tos">tos.php</filename>
+		<folder>tos</folder>
+	</files>
+<alias>pp-termsofservice</alias>
+<version_number>3.1.2</version_number>
+<version_name>PayPlans-Terms and Conditions 3.1.2</version_name>
+</extension>

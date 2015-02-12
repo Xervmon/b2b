@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>	
+<form>
+  	<fieldset name="basic">
+		<field 	name="title" 
+				type="text" 
+				label="COM_PAYPLANS_APP_ADVANCED_PRICING_EDIT_SLAB_TITLE"
+			   	description="COM_PAYPLANS_APP_ADVANCED_PRICING_EDIT_SLAB_DESC" 
+			   	class="required"/>
+		
+		<field 	name="published" 
+				type="radio" 
+				label="COM_PAYPLANS_APP_ADVANCED_PRICING_EDIT_PUBLISHED" 
+			   	description="COM_PAYPLANS_APP_ADVANCED_PRICING_EDIT_PUBLISHED_DESC" 
+			   	class="btn-group" 
+			   	default="1">
+			  	<option value="1">COM_PAYPLANS_YES</option>
+			  	<option value="0">COM_PAYPLANS_NO</option>
+		</field>
+		
+		<field 	name="advancedpricing_id" 
+				type="hidden" 
+				default="0" /> 
+		
+		<field	name="min_value" 	
+				type="text" 	
+				size="12" 
+				label="COM_PAYPLANS_APP_ADVANCED_PRICING_SLAB_MIN_VALUE"  
+				description="COM_PAYPLANS_APP_ADVANCED_PRICING_SLAB_MIN_VALUE_DESC" 
+				class="number" />
+				
+		<field	name="max_value" 	
+				type="text" 	
+				size="12" 
+				label="COM_PAYPLANS_APP_ADVANCED_PRICING_SLAB_MAX_VALUE"  
+				description="COM_PAYPLANS_APP_ADVANCED_PRICING_SLAB_MAX_VALUE_DESC" 
+				class="number" />
+				
+		<field	name="units_title" 	
+				type="text" 	
+				size="12" 
+				label="COM_PAYPLANS_APP_ADVANCED_PRICING_UNIT_TITLE"  
+				description="COM_PAYPLANS_APP_ADVANCED_PRICING_UNIT_TITLE_DESC"  />
+				
+		<field	name="description" 	
+				type="textarea" 	
+				label="COM_PAYPLANS_APP_ADVANCED_PRICING_DESCRIPTION"  
+				description="COM_PAYPLANS_APP_ADVANCED_PRICING_DESCRIPTION_DESC" 
+				class="number" />
+	
+	</fieldset>
+	
+</form>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension version="2.5" type="plugin" group="payplans" method="upgrade">
+    <name>PayPlans-Multi Login Restriction</name>
+    <version>3.1.2</version>
+    <creationDate>Jan 2010</creationDate>
+    <author>Team JPayplans</author>
+    <authorEmail>team@readybytes.in</authorEmail>
+    <authorUrl>http://www.joomlaxi.com</authorUrl>
+    <copyright>2009-12 Ready Bytes Software Labs Pvt. Ltd.</copyright>
+    <license>GNU General Public License v2</license>
+    <description>PayPlans : Paid Membership and Subscription System for Joomla</description>
+	<files>
+		<filename plugin="multiloginrestriction">multiloginrestriction.php</filename>
+		<filename>multiloginrestriction.png</filename>
+		<folder>multiloginrestriction</folder>
+	</files>
+	
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+			<field type="text" name="violation_limit" label="PLG_PAYPLANS_MULTILOGIN_RESTRICTION_DAILY_VOLIATION_LIMIT" description="PLG_PAYPLANS_MULTILOGIN_RESTRICTION_DAILY_VOLIATION_LIMIT_DESC" default="10">
+			</field>
+			
+			<field type="text" name="allowed_session" label="PLG_PAYPLANS_MULTILOGIN_RESTRICTION_ALLOWED_ACTIVE_SESSION" description="PLG_PAYPLANS_MULTILOGIN_RESTRICTION_ALLOWED_ACTIVE_SESSION_DESC" default="1">
+			</field>
+			
+			<field type="text" name="email_subject" label="PLG_PAYPLANS_MULTILOGIN_RESTRICTION_EMAIL_SUBJECT" description="PLG_PAYPLANS_MULTILOGIN_RESTRICTION_EMAIL_SUBJECT_DESC" default="Login violation">
+			</field>
+			
+			<field type="text" name="from_email" label="PLG_PAYPLANS_MULTILOGIN_RESTRICTION_EMAIL_FROM" description="PLG_PAYPLANS_MULTILOGIN_RESTRICTION_EMAIL_FROM_DESC">
+			</field>
+			
+			<field type="text" name="redirect_failed" label="PLG_PAYPLANS_MULTILOGIN_RESTRICTION_REDIRECT_FAILED" description="PLG_PAYPLANS_MULTILOGIN_RESTRICTION_REDIRECT_FAILED_DESC">
+			</field>
+			
+			<field type="text" name="cron_frequency" label="PLG_PAYPLANS_MULTILOGIN_RESTRICTION_CRON_FREQUENCY" description="PLG_PAYPLANS_MULTILOGIN_RESTRICTION_CRON_FREQUENCY_DESC">
+			</field>
+			
+			<field type="spacer">
+			</field>
+			
+			<field type="editor" class="inputbox" name="email_content"
+				   label="PLG_PAYPLANS_MULTILOGIN_RESTRICTION_EMAIL_BODY" description="PLG_PAYPLANS_MULTILOGIN_RESTRICTION_EMAIL_BODY_DESC"
+				   filter="JComponentHelper::filterText" buttons="true" width="500" height="400" >
+			</field>
+			</fieldset>
+		</fields>
+	</config>
+<alias>pp-multiloginrestriction</alias>
+<version_number>3.1.2</version_number>
+<version_name>PayPlans-Multi Login Restriction 3.1.2</version_name>
+<icon>multiloginrestriction.png</icon>
+<documentation></documentation>
+</extension>

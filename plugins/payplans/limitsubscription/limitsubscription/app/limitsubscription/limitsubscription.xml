@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+    <name>Limit-Subscription</name>
+    <author>www.jpayplans.com</author>
+    <icon>limit_subscription.png</icon>
+    <description>
+    	This integration will allow you to put restriction on users to the number of times they can subscribe a plan.
+    &lt;br/&gt;
+    
+    </description>
+	<icon>limit_subscription.png</icon>
+	<help> 
+	<![CDATA[
+	If nothing is mentioned in subscription status field then Subscription-Active status is considered by default.<br>
+		   If multiple app exists for a single plan then this may create conflicts.<br>
+		   For unlimited subscription count for a plan don't create any app for that plan.<br>
+		   In case you are using Upgrade app and Limit-Subscription app both then make sure ordering of Upgrade plugin should be higher than that of Limit-Subscription plugin.
+				]]>
+	 
+	</help>
+	<fields name="app_params">
+		<fieldset name="app_params">
+		<field	name="limit"	
+				type="text"	
+				class="validate-number"
+				label="COM_PAYPLANS_APP_LIMIT_SUBSCRIPTION_LABEL"  
+				description="COM_PAYPLANS_APP_LIMIT_SUBSCRIPTION_DESC" 
+				/>
+				
+		<field	name="consider_status"	 
+				type="xistatus" 
+				entity="subscription" 
+				multiple="true"
+				default="1601" 
+				exclude="NONE"
+				label="COM_PAYPLANS_APP_LIMIT_SUBSCRIPTION_CONSIDER_STATUS_LABEL"  
+				description="COM_PAYPLANS_APP_LIMIT_SUBSCRIPTION_CONSIDER_STATUS_DESC"
+				/>
+		</fieldset>
+	</fields>
+<alias>pp-limitsubscription</alias>
+<documentation>http://www.readybytes.net/payplans/documentation/item/limit-subscription.html</documentation>
+<version>3.2.2</version>
+</config>

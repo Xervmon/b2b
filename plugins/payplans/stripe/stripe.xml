@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" type="plugin" group="payplans" method="upgrade">
+    <name>PayPlans-Stripe</name>
+ 	<version>3.2.9</version>
+    <creationDate>March 2013</creationDate>
+    <author>Team Payplans</author>
+    <authorEmail>payplans@readybytes.in</authorEmail>
+    <authorUrl>http://www.jpayplans.com</authorUrl>
+    <copyright>2009-11 Ready Bytes Software Labs Pvt. Ltd.</copyright>
+    <license>GNU General Public License v2</license>
+    <description>PayPlans : Stripe Payment gateway Integration</description>
+	<files>
+		<filename plugin="stripe">stripe.php</filename>
+		<folder>stripe</folder>
+	</files>
+<alias>pp-stripe</alias>
+<version_number>3.2.9</version_number>
+<version_name>PayPlans-Stripe 3.2.9</version_name>
+</extension>
+

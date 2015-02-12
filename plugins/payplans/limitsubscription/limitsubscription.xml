@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension version="2.5" type="plugin" group="payplans" method="upgrade">
+    <name>PayPlans-Limit-Subscription</name>
+    <version>3.2.2</version>
+    <creationDate>Jan 2010</creationDate>
+    <author>Team Joomlaxi</author>
+    <authorEmail>team@readybytes.in</authorEmail>
+    <authorUrl>http://www.joomlaxi.com</authorUrl>
+    <copyright>2009-11 Ready Bytes Software Labs Pvt. Ltd.</copyright>
+    <license>GNU General Public License v2</license>
+    <description>PayPlans-LimitSubscription : Restrict user to subscribe plan to only limited number of times</description>
+	<files>
+		<filename plugin="limitsubscription">limitsubscription.php</filename>
+		<folder>limitsubscription</folder>
+	</files>
+<alias>pp-limitsubscription</alias>
+<version_number>3.2.2</version_number>
+<version_name>PayPlans-Limit-Subscription 3.2.2</version_name>
+</extension>

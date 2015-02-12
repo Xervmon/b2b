@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+    <name>Profile Based Plan</name>
+    <author>Team Payplans</author>
+    <description>
+
+    </description>
+	<icon>profilebasedplan.png</icon>
+    <tags>Access Control</tags>
+	<help>
+
+	</help>
+	<fields name="app_params">
+    <fieldset name="app_params" addfieldpath="/components/com_payplans/elements">
+
+            <field type="xispacer" default="PLG_PROFILEBASEDPLAN_NO_PROFILE_INTEGRATION"/>
+
+	</fieldset>
+	</fields>
+
+	<alias>pp-profilebasedplan</alias>
+	<documentation>http://www.readybytes.net/payplans/documentation/item/profile-based-plan.html</documentation>
+	<version>3.2.0</version>
+</config>

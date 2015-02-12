@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+    <name>AUP Discount</name>
+    <description>
+    	Apply AUP towards the price as a discount.
+    </description>
+	<help></help>
+	<fields name="app_params">
+			<fieldset name="app_params">
+				<field	name="max_aup"
+						type="text"
+						size="12"
+						label="COM_PAYPLANS_APP_MAX_AUP"
+						description="COM_PAYPLANS_APP_MAX_AUP_DESC"
+						class="required"
+						/>
+		
+				<field	name="min_aup"
+						type="text"
+						size="12"
+						label="COM_PAYPLANS_APP_MIN_AUP"
+						description="COM_PAYPLANS_APP_MIN_AUP_DESC"
+						class="required"
+						/>
+		
+				<field	name="ratio"
+						type="text"
+						size="12"
+						label="COM_PAYPLANS_APP_AUP_RATIO"
+						description="COM_PAYPLANS_APP_AUP_RATIO_DESC"
+						class="required"
+						/>
+		                
+				<field	name="round"
+						type="radio"
+						label="COM_PAYPLANS_APP_AUP_ROUND"
+						description="COM_PAYPLANS_APP_AUP_ROUND_DESC"
+						class="required btn-group">
+						<option value="0">COM_PAYPLANS_APP_AUP_ROUND_UP</option>
+						<option value="1">COM_PAYPLANS_APP_AUP_ROUND_DOWN</option>
+				</field>
+				
+				<field	name="allowed_quantity" 	
+						type="text" 	
+						size="12" 
+						label="COM_PAYPLANS_APP_DISCOUNT_ALLOWED_QUANTITY"  
+						description="COM_PAYPLANS_APP_DISCOUNT_ALLOWED_QUANTITY_DESC" 
+						class="number" 
+						/>
+		
+				<field	name="publish_start" 	
+						type="calendar" 	
+						label="COM_PAYPLANS_APP_DISCOUNT_PUBLISH_START"  
+						description="COM_PAYPLANS_APP_DISCOUNT_PUBLISH_START_DESC" 
+						/>
+						
+				<field	name="publish_end" 	
+						type="calendar" 	
+						label="COM_PAYPLANS_APP_DISCOUNT_PUBLISH_END"  
+						description="COM_PAYPLANS_APP_DISCOUNT_PUBLISH_END_DESC" 
+						/>
+		
+		        <field	name="reusable"
+		                  type="radio"
+		                  label="COM_PAYPLANS_APP_DISCOUNT_REUSABLE"
+		                  description="COM_PAYPLANS_APP_DISCOUNT_REUSABLE_DESC"
+		                  default="1" class="btn-group">
+		            <option value="0">COM_PAYPLANS_APP_DISCOUNT_REUSABLE_NO</option>
+		            <option value="1">COM_PAYPLANS_APP_DISCOUNT_REUSABLE_YES</option>
+		        </field>
+		
+		        <field 	name="onlyFirstRecurringDiscount"
+		                   default="1"
+		                   type="radio"
+		                   label="COM_PAYPLANS_APP_DISCOUNT_ONLY_FIRST_RECURRING_DISCOUNT"
+		                   description="COM_PAYPLANS_APP_DISCOUNT_ONLY_FIRST_RECURRING_DISCOUNT_DESC" class="btn-group">
+		            <option value="0">COM_PAYPLANS_NO</option>
+		            <option value="1">COM_PAYPLANS_YES</option>
+		        </field>
+		
+		        <field name="totalConsumption"
+		               default="0"
+		               type="text"
+		               class="readonly"
+		               label="COM_PAYPLANS_APP_DISCOUNT_EDIT_CONSUMPTION"
+		               description="COM_PAYPLANS_APP_DISCOUNT_EDIT_CONSUMPTION_DESC">
+		        </field>
+        	</fieldset>
+		</fields>
+<alias>pp-aupdiscount</alias>
+<documentation>http://www.readybytes.net/payplans/documentation/item/aupdiscount.html</documentation>
+<version>3.1.2</version>
+</config>

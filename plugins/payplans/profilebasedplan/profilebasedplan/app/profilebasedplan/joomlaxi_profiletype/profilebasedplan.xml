@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+    <name>Profile Based Plan</name>
+    <author>Team Payplans</author>
+    <description>
+
+    </description>
+	<icon>profilebasedplan.png</icon>
+    <tags>Access Control</tags>
+	<help>
+
+	</help>
+	<fields name="app_params">
+    <fieldset name="app_params" addfieldpath="/components/com_payplans/elements">
+
+           <field name="profile_type"
+                   type="xiprofiletype"
+                   label="COM_PAYPLANS_APP_JUSERTYPE_ASSIGN_USERTYPE_ON_ACTIVE_LABEL"
+                   default="" 
+                   description="COM_PAYPLANS_APP_JUSERTYPE_ASSIGN_USERTYPE_ON_ACTIVE_DESC"
+                   multiple="true"
+                    />
+
+            <field name="signup_plans"
+                   type="plans"
+                   label="COM_PAYPLANS_CONFIG_DEFAULT_PLAN"
+                   default="" description="COM_PAYPLANS_CONFIG_DEFAULT_PLAN_DESC"
+                   multiple="true"/>
+
+	</fieldset>
+	</fields>
+
+	<alias>pp-profilebasedplan</alias>
+	<documentation>http://www.readybytes.net/payplans/documentation/item/profile-based-plan.html</documentation>
+	<version>3.2.0</version>
+</config>
