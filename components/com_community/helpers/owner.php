@@ -46,7 +46,7 @@ class COwnerHelper
 		$jUser = CFactory::getUser($userid);
 
 		if($jUser instanceof CUser && method_exists($jUser,'authorise')){
-			if($jUser->authorise('core.login.admin')){
+			if($jUser->authorise('core.admin')){
                 $resultArr[$userid] = true;
 				return true;
 			} else {

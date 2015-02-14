@@ -125,14 +125,6 @@ class CommunityModelProfile extends JCCModel
 			$db->setQuery($query);
 
 			$fields = $db->loadObjectList();
-	    	
-	    	/*==============HACK TO RUN JSPT CORRECTLY :START ============================*/
-	    	require_once(JPATH_ROOT.DS.'components'.DS.'com_xipt'.DS.'includes.php');
-	    	$pluginHandler= XiptFactory::getPluginHandler();
-	    	$userId = 0;
-	    	$pluginHandler->onProfileLoad($userId, $fields, __FUNCTION__);
-	    	/*==============HACK TO RUN JSPT CORRECTLY : DONE ============================*/
-	        
 
 			$group	= 'ungrouped';
 
@@ -293,13 +285,6 @@ class CommunityModelProfile extends JCCModel
 		$db->setQuery( $query );
 
 		$result	= $db->loadAssocList();
-	    	
-	    	/*==============HACK TO RUN JSPT CORRECTLY :START ============================*/
-			require_once(JPATH_ROOT.DS.'components'.DS.'com_xipt'.DS.'includes.php');
-		    $pluginHandler= XiptFactory::getPluginHandler();
-		    $pluginHandler->onProfileLoad($userId, $result, __FUNCTION__);
-		    /*==============HACK TO RUN JSPT CORRECTLY : DONE ============================*/
-	        
 
 		if($db->getErrorNum())
 		{
@@ -419,13 +404,6 @@ class CommunityModelProfile extends JCCModel
 		$db->setQuery( $query );
 
 		$result	= $db->loadAssocList();
-	    	
-	    	/*==============HACK TO RUN JSPT CORRECTLY :START ============================*/
-			require_once(JPATH_ROOT.DS.'components'.DS.'com_xipt'.DS.'includes.php');
-		    $pluginHandler= XiptFactory::getPluginHandler();
-		    $pluginHandler->onProfileLoad($userId, $result, __FUNCTION__);
-		    /*==============HACK TO RUN JSPT CORRECTLY : DONE ============================*/
-	        
 
 		if($db->getErrorNum())
 		{

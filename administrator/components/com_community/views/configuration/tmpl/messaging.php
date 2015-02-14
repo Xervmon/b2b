@@ -15,7 +15,7 @@ defined('_JEXEC') or die('Restricted access');
 	<div class="widget-header widget-header-flat">
 		<h5><?php echo JText::_( 'COM_COMMUNITY_CONFIGURATION_MESSAGING' ); ?></h5>
 		<div class="widget-toolbar no-border">
-			<a href="http://www.youtube.com/watch?v=dkloiGRLOMo" target="_blank"><i class="js-icon-info-sign"></i> <?php echo JText::_('COM_COMMUNITY_DOC'); ?></a>
+			<a href="http://documentation.jomsocial.com/wiki/Private_Messaging" target="_blank"><i class="js-icon-info-sign"></i> <?php echo JText::_('COM_COMMUNITY_DOC'); ?></a>
 		</div>
 	</div>
 	<div class="widget-body">

@@ -88,8 +88,8 @@ if (!class_exists("CommunityViewGroups")) {
 
             $task = $jinput->get('task', '');
             $config = CFactory::getConfig();
-            $groupid = JRequest::getInt('groupid', '', 'GET');
-            $categoryid = JRequest::getInt('categoryid', '', 'GET');
+            $groupid = JRequest::getInt('groupid', '');
+            $categoryid = JRequest::getInt('categoryid', '');
             $my = CFactory::getUser();
 
 
@@ -185,7 +185,7 @@ if (!class_exists("CommunityViewGroups")) {
             $this->showSubmenu();
 
             $my = CFactory::getUser();
-            $groupId = JRequest::getInt('groupid', '', 'GET');
+            $groupId = JRequest::getInt('groupid', '');
             $this->_addGroupInPathway($groupId);
             $this->addPathway(JText::_('COM_COMMUNITY_GROUPS_INVITE_FRIENDS_TO_GROUP_TITLE'));
 
@@ -943,7 +943,7 @@ if (!class_exists("CommunityViewGroups")) {
             $output = '';
 
             $groupModel = CFactory::getModel('groups');
-            $groupId = JRequest::getInt('groupid', '', 'GET');
+            $groupId = JRequest::getInt('groupid', '');
             $group = JTable::getInstance('Group', 'CTable');
             $group->load($groupId);
 
@@ -1713,7 +1713,7 @@ if (!class_exists("CommunityViewGroups")) {
         public function viewbulletins() {
             $document = JFactory::getDocument();
 
-            $id = JRequest::getInt('groupid', '', 'GET');
+            $id = JRequest::getInt('groupid', '');
             $my = CFactory::getUser();
 
             // Load the group
@@ -2373,7 +2373,7 @@ if (!class_exists("CommunityViewGroups")) {
             $this->showSubmenu();
 
             $config = CFactory::getConfig();
-            $groupId = JRequest::getInt('groupid', '', 'GET');
+            $groupId = JRequest::getInt('groupid', '');
 
             $group = JTable::getInstance('Group', 'CTable');
             $group->load($groupId);

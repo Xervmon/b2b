@@ -492,16 +492,10 @@ jsAdvanceSearch = {
 			<label class="lblradio" style="padding-right: 20px;"><input type="radio" name="operator" id="operator_any" value="or" class="input radio"> <?php echo JText::_("COM_COMMUNITY_MATCH_ANY_CRITERIA"); ?></label>
 			<label class="lblradio" style="padding-right: 20px;"><input type="checkbox" name="avatar" id="avatar" style="margin-right: 5px;" value="1" class="input radio"<?php echo ($avatarOnly) ? ' checked="checked"' : ''; ?>><?php echo JText::_('COM_COMMUNITY_EVENTS_AVATAR_ONLY'); ?></label>
 			<input type="hidden" name="option" value="com_community" />
-			<?php
-			// If non-sef url used, we'd need to add these
-			$app = JFactory::getApplication();
-			$isSef = $app->getCfg( 'sef' );
-			if(!$isSef):
-			?>
 			<input type="hidden" name="view" value="search" />
 			<input type="hidden" name="task" value="advancesearch" />
 			<input type="hidden" name="Itemid" value="<?php echo CRoute::getItemId(); ?>" />
-			<?php endif; ?>
+
 			<input type="submit" class="btn btn-primary cFloat-R" value="<?php echo JText::_("COM_COMMUNITY_SEARCH_BUTTON_TEMP");?>">
 			<?php
 			if( $postresult && COwnerHelper::isCommunityAdmin() )

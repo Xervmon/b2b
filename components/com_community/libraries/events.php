@@ -269,8 +269,6 @@ class CEvents implements
 
         if($event->type == CEventHelper::GROUP_TYPE && $event->contentid != 0 && $event->isPublished()){
 
-
-
             $my = CFactory::getUser();
 
             $group = JTable::getInstance( 'Group' , 'CTable' );

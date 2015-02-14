@@ -28,14 +28,14 @@ class CFieldsTextarea extends CProfileField {
 
         CFactory::attach($js, 'js');
 
-        // If maximum is not set, we define it to a default		
+        // If maximum is not set, we define it to a default
         $class = ($field->required == 1) ? ' required' : '';
         $class .=!empty($field->tips) ? ' jomNameTips tipRight' : '';
         $html = '<textarea id="field' . $field->id . '" name="field' . $field->id . '" class="textarea' . $class . '" title="' . CStringHelper::escape(JText::_($field->tips)) . '"' . $style . $readonly . '>' . $field->value . '</textarea>';
         $html .= '<span id="errfield' . $field->id . 'msg" style="display:none;">&nbsp;</span>';
 		if ( !empty($max_char) ) {
 			$html .= '<script type="text/javascript">cvalidate.setMaxLength("#field' . $field->id . '", "' . $max_char . '");</script>';
-		}        
+		}
 
         return $html;
     }

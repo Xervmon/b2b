@@ -700,7 +700,6 @@ class CommunityInboxController extends CommunityBaseController
 	{
 		$filter = JFilterInput::getInstance();
 		$msgId = $filter->clean($msgId, 'int');
-		//$reply = $filter->clean($reply, 'string');
         $photoId = $filter->clean($photoId, 'int');
 
 		$objResponse = new JAXResponse();
@@ -765,10 +764,6 @@ class CommunityInboxController extends CommunityBaseController
 			return;
 		}
 
-
-		//$cDate = JFactory::getDate();//get the current date from system.
-		//$cDate =  gmdate ( 'Y-m-d H:i:s' ); //get the current date from system. use gmd
-		//$date = cGetDate();
 		$date	= JFactory::getDate(); //get the time without any offset!
 
 
@@ -828,7 +823,7 @@ class CommunityInboxController extends CommunityBaseController
 		{
 			$params = new CParameter( '' );
 			$params->set( 'message' , $reply );
-			$params->set( 'title'	, '' );
+			$params->set( 'title'	, $obj->subject );
 			$params->set('url' , 'index.php?option=com_community&view=inbox&task=read&msgid='. $msgId );
 			$params->set('msg_url' , 'index.php?option=com_community&view=inbox&task=read&msgid='. $msgId );
 			$params->set('msg' , JText::_('COM_COMMUNITY_PRIVATE_MESSAGE'));

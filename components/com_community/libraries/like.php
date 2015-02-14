@@ -53,15 +53,16 @@ class CLike {
 
                 //load the stream id from activity stream
                 $stream = JTable::getInstance('Activity', 'CTable');
-                $stream->load($wall->contentid);
+                $stream->load(array('comment_id' => $wall->contentid, 'app'=>$wall->type));
 
                 if ($stream->id) {
-                    $profile = CFactory::getUser($stream->actor);
+                    $profile = CFactory::getUser();
                     $url = CRoute::_('index.php?option=com_community&view=profile&userid=' . $profile->id . '&actid=' . $stream->id.'#activity-stream-container');
                     $params = new CParameter('');
                     $params->set('url', $url);
                     $params->set('comment', JText::_('COM_COMMUNITY_SINGULAR_COMMENT'));
                     $params->set('comment_url', $url);
+                    $params->set('actor',$profile->getDisplayName());
 
                     //add to notifications
                     CNotificationLibrary::add('comments_like', $my->id, $wall->post_by, JText::sprintf('COM_COMMUNITY_PROFILE_WALL_LIKE_EMAIL_SUBJECT'), '', 'comments.like', $params);

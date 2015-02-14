@@ -1148,7 +1148,7 @@ joms.extend({
                     chunk_size: joms.photos.multiUpload.maxFileSize,
                     unique_names: true,
                     // Resize images on clientside if we can (not supported in some mobile browsers)
-                    resize: isMobile ? false : {width: 2100, height: 2100, quality: 90},
+                    //resize: isMobile ? false : {width: 2100, height: 2100, quality: 90},
                     // Specify what files to browse for
                     filters: [
                         {title: "Image files", extensions: "jpg,gif,png,jpeg"}
@@ -3338,18 +3338,27 @@ joms.extend({
             });
         },
         checkSize: function(data) {
-            //disable the button
-            joms.jQuery('form#uploadVideo button').prop("disabled", true);
+            var form = joms.jQuery('form#uploadVideo'),
+                file = form.find( data ),
+                btn  = form.find('button');
 
-            if (joms.jQuery.browser.msie)
-            {
+            // Disable the button.
+            btn.prop( 'disabled', true );
+
+            // Update file button.
+            btn = file.siblings('.btn');
+            file = file.val();
+            file = file.replace(/\\/g, '/').split('/');
+            btn.html( file.pop() );
+
+            if (joms.jQuery.browser.msie) {
                 joms.jQuery('form#uploadVideo button').prop("disabled", false);
                 return false;
-            }
-            else
-            {
+            } else {
                 Size = data.files[0].size;
             }
+
+            jax.loadingFunction = function(){};
             jax.call('community', 'videos,ajaxCheckFileSize', Size);
         }
 
@@ -3603,7 +3612,12 @@ joms.extend({
             parent.append('<div class="noclick" style="position:absolute;top:0;right:0;left:0;bottom:0" />');
 
             setTimeout(function() {
-                label.html('Processing...');
+                var processing = 'Processing...';
+                if (joms.lang && joms.lang.processing) {
+                    processing = joms.lang.processing;
+                }
+
+                label.html( processing );
                 label.removeAttr('class');
                 joms.events.submitRSVP.processing = true;
                 joms.ajax.call( 'events,ajaxUpdateStatus', [ eventId, select.val() ], {
@@ -4390,7 +4404,7 @@ joms.extend({
             joms.jQuery('#' + joms.cover.parentId).prop('src', path);
             joms.jQuery('img#' + joms.cover.parentId).css({'top': '0px'});
             jax.call("community", "photos,ajaxSetPhotoPhosition", joms.cover.type, joms.cover.parentId, 0);
-            joms.cover.reposition(joms.jQuery('#' + joms.cover.parentId), joms.cover.parentId, cancelText, SaveText);
+            // joms.cover.reposition(joms.jQuery('#' + joms.cover.parentId), joms.cover.parentId, cancelText, SaveText);
         },
         uploader: function(url)
         {

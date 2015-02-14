@@ -57,11 +57,14 @@ class CFieldsCheckbox extends CProfileField
 		$elementSelected	= 0;
 		$elementCnt	        = 0;
 		$style 				= ' style="margin: 0 5px 5px 0;' .$this->getStyle() . '" ';
-		$cnt = 0;
-		//CFactory::load( 'helpers' , 'string' );
-                //Removed tooltip
-		//$class	.= !empty( $field->tips ) ? ' jomNameTips tipRight' : '';
-                //title="' . CStringHelper::escape( JText::_( $field->tips ) ). '"
+		$cnt 				= 0;
+
+		$params = new CParameter($field->params);
+        $disabled = '';
+        if($params->get('readonly') == 1){
+            $disabled='disabled="disabled"';
+        }
+
 		$html	.= '<div class="' . $class . '" style="display: inline-block;">';
 		if( is_array( $field->options ) )
 		{
@@ -80,7 +83,7 @@ class CFieldsCheckbox extends CProfileField
 
 
 				$html .= '<label class="lblradio-block">';
-				$html .= '<input type="checkbox" name="field' . $field->id . '[]" value="' . $option . '"' . $selected . ' class="checkbox '.$class . '"' .$style.' />';
+				$html .= '<input type="checkbox" name="field' . $field->id . '[]" value="' . $option . '"' . $selected . ' class="checkbox '.$class . '"' .$style.' '.$disabled.'/>';
 				$html .= JText::_( $option ) . '</label>';
 				$elementCnt++;
 

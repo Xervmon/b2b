@@ -793,7 +793,9 @@ class CommunityPhotosController extends CommunityBaseController {
         CActivities::remove('photos.comment', $photo->id);
 
         //add user points
-        CUserPoints::assignPoint('photo.remove');
+        if($photo->creator == $my->id){
+            CUserPoints::assignPoint('photo.remove');
+        }
 
         if (empty($action)) {
             $response->addScriptCall('window.location.reload');
@@ -1676,8 +1678,9 @@ class CommunityPhotosController extends CommunityBaseController {
         $viewType = $document->getType();
         $viewName = JRequest::getCmd('view', $this->getName());
         $view = $this->getView($viewName, '', $viewType);
+        $albumid = JRequest::getCmd('albumid',null);
 
-        if ($this->checkPhotoAccess()) {
+        if ($this->checkPhotoAccess($albumid)) {
             echo $view->get(__FUNCTION__);
         }
     }
@@ -1692,8 +1695,9 @@ class CommunityPhotosController extends CommunityBaseController {
         $viewType = $document->getType();
         $viewName = JRequest::getCmd('view', $this->getName());
         $view = $this->getView($viewName, '', $viewType);
+        $albumid = JRequest::getCmd('albumid',null);
 
-        if ($this->checkPhotoAccess()) {
+        if ($this->checkPhotoAccess($albumid)) {
             echo $view->get(__FUNCTION__);
         }
     }
@@ -1763,8 +1767,9 @@ class CommunityPhotosController extends CommunityBaseController {
                 }
             }
         }
+        $albumid = JRequest::getCmd('albumid',null);
 
-        if ($this->checkPhotoAccess()) {
+        if ($this->checkPhotoAccess($albumid)) {
             echo $view->get(__FUNCTION__);
         }
     }
@@ -1795,8 +1800,9 @@ class CommunityPhotosController extends CommunityBaseController {
         $viewName = JRequest::getCmd('view', $this->getName());
         $view = $this->getView($viewName, '', $viewType);
         $my = CFactory::getUser();
+        $albumid = JRequest::getCmd('albumid',null);
 
-        if ($this->checkPhotoAccess()) {
+        if ($this->checkPhotoAccess($albumid)) {
             // Log user engagement
             CEngagement::log('photo.display', $my->id);
 
@@ -1857,8 +1863,9 @@ class CommunityPhotosController extends CommunityBaseController {
             $this->cacheClean(array(COMMUNITY_CACHE_TAG_FRONTPAGE));
             $mainframe->redirect($url, JText::_('COM_COMMUNITY_PHOTOS_STATUS_ALBUM_EDITED'));
         }
+        $albumid = JRequest::getCmd('albumid',null);
 
-        if ($this->checkPhotoAccess()) {
+        if ($this->checkPhotoAccess($albumid)) {
             echo $view->get(__FUNCTION__);
         }
     }
@@ -2026,7 +2033,7 @@ class CommunityPhotosController extends CommunityBaseController {
         // Load models, libraries
 
 
-        $albumid = JRequest::getInt('albumid', '', 'GET');
+        $albumid = JRequest::getInt('albumid', '');
         $groupId = JRequest::getInt('groupid', '0');
 
         if (!empty($groupId)) {
@@ -2055,9 +2062,9 @@ class CommunityPhotosController extends CommunityBaseController {
                 return;
             }
         }
+        $albumid = JRequest::getCmd('albumid',null);
 
-
-        if ($this->checkPhotoAccess()) {
+        if ($this->checkPhotoAccess($albumid)) {
             echo $view->get(__FUNCTION__);
         }
     }
@@ -3260,6 +3267,7 @@ class CommunityPhotosController extends CommunityBaseController {
                 $act->target = 0;
                 $act->title = '';
                 $act->content = '';
+                $act->access = $my->_cparams->get("privacyPhotoView",0);
                 $act->app = 'profile.avatar.upload'; /* Profile app */
                 $act->cid = 0;
                 $act->verb = 'upload'; /* We uploaded new avatar - NOT change avatar */
@@ -3475,7 +3483,9 @@ class CommunityPhotosController extends CommunityBaseController {
                         $album->store();
                     }
                 }
+
                 $my = CFactory::getUser();
+
                 // Generate activity stream.
                 $act = new stdClass();
                 $act->cmd = 'cover.upload';
@@ -3483,6 +3493,7 @@ class CommunityPhotosController extends CommunityBaseController {
                 $act->target = 0;
                 $act->title = '';
                 $act->content = '';
+                $act->access = ($type == 'profile') ? $my->_cparams->get("privacyPhotoView"): 0;
                 $act->app = 'cover.upload';
                 $act->cid = $photo->id;
                 $act->comment_id = CActivities::COMMENT_SELF;
@@ -3492,7 +3503,6 @@ class CommunityPhotosController extends CommunityBaseController {
                 $act->group_access = ($type == 'group') ? $cTable->approvals : 0;
                 $act->event_access = ($type == 'event') ? $cTable->permission : 0;
                 $act->like_id = CActivities::LIKE_SELF;
-                ;
                 $act->like_type = 'cover.upload';
 
                 $params = new JRegistry();
@@ -3599,6 +3609,7 @@ class CommunityPhotosController extends CommunityBaseController {
             $act->target = 0;
             $act->title = '';
             $act->content = '';
+            $act->access = ($type == 'profile') ? $my->_cparams->get("privacyPhotoView"): 0;
             $act->app = 'cover.upload';
             $act->cid = $photo->id;
             $act->comment_id = CActivities::COMMENT_SELF;

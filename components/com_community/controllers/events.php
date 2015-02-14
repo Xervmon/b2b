@@ -1407,9 +1407,14 @@ class CommunityEventsController extends CommunityBaseController {
         $config = CFactory::getConfig();
         $groupId = $jinput->get->get('groupid', 0, 'Int');
         $groupLink = $groupId > 0 ? '&groupid=' . $groupId : '';
+        $my = CFactory::getUser();
 
         if (!$config->get('event_import_ical')) {
             $mainframe->redirect(CRoute::_('index.php?option=com_community&view=events' . $groupLink, false), JText::_('COM_COMMUNITY_EVENTS_IMPORT_DISABLED'), 'error');
+        }
+
+        if ( !$my->canCreateEvents() ) {
+           $mainframe->redirect(CRoute::_('index.php?option=com_community&view=events' . $groupLink, false), JText::_('COM_COMMUNITY_EVENTS_IMPORT_DISABLED'), 'error');
         }
 
         if ($jinput->getMethod() == 'POST') {

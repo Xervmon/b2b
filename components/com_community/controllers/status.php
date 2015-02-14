@@ -173,7 +173,7 @@ class CommunityStatusController extends CommunityBaseController
 
 			// $objResponse->addScriptCall( "joms.jQuery('title').val('" . $status . "');");
 			// also update hellome module if available
- 			$objResponse->addScriptCall( "if(joms.jQuery('#helloMeStatus').length != 0){ joms.jQuery('#helloMeStatus').html('".$status."');joms.jQuery('#hellomeLoading').hide() }");
+ 			$objResponse->addScriptCall( "if(joms.jQuery('.helloMeStatus').length != 0){ joms.jQuery('.helloMeStatus').html('".$status."');joms.jQuery('.helloMeLoading').hide() }");
 
 			//$objResponse->addAssign('activity-stream-container' , 'innerHTML' , $html );
 		}

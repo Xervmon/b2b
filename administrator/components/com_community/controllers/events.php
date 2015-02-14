@@ -261,6 +261,7 @@ class CommunityControllerEvents extends CommunityController
 		$contents = ob_get_contents();
 		ob_end_clean();
 
+		$response->addAssign('cwin_logo', 'innerHTML', JText::_('COM_COMMUNITY_EVENT_EDIT_TITLE'));
 		$response->addAssign('cWindowContent', 'innerHTML', $contents);
 
 		$action = '<input type="button" class="btn btn-small btn-primary pull-right" onclick="azcommunity.saveEvent();" name="' . JText::_('COM_COMMUNITY_SAVE') . '" value="' . JText::_('COM_COMMUNITY_SAVE') . '" />';

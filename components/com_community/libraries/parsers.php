@@ -49,7 +49,7 @@ if (!class_exists('CParsers')) {
             $regex .= "([A-Za-z0-9+!*(),;?&=\$_.-]+(\:[A-Za-z0-9+!*(),;?&=\$_.-]+)?@)?"; // User and Pass
             $regex .= "([A-Za-z0-9-.]*)\.([A-Za-z]{2,4})"; // Host or IP
             $regex .= "(\:[0-9]{2,5})?"; // Port
-            $regex .= "(\/([A-Za-z0-9+\$_-]\.?)+)*\/?"; // Path
+            $regex .= "(\/([A-Za-z0-9+\$\._-]*[A-Za-z0-9+\$_-])+)*\/?"; // Path
             $regex .= "(\?[A-Za-z+&\$_.-][A-Za-z0-9;:@&%=+\/\$_.-]*)?"; // GET Query
             $regex .= "(#[A-Za-z_.-][A-Za-z0-9+\$_.-]*)?"; // Anchor
             //$return = preg_match_all('#\bhttps?://[^\s()<>]+(?:\([\w\d]+\)|([^[:punct:]\s]|/))#', $this->get('content'), $matchs);

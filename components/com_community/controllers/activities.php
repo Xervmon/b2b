@@ -820,6 +820,13 @@ class CommunityActivitiesController extends CommunityBaseController {
         }else{
             $activity->title = $value;
             $activity->store();
+
+            $status = $this->getModel('status');
+            $status->update($my->id, $value, $activity->access);
+
+            $today = JFactory::getDate();
+            $my->set('_status', $value);
+            $my->set('_posted_on', $today->toSql());
         }
 
         $params = new CParameter($activity->params);

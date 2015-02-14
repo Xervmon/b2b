@@ -116,7 +116,7 @@ class CPhotos {
                             $photo->load($row);
                         }
 
-                        if ($photo->status != 'delete') {
+                        if ($photo->status != 'delete' && $photo->id){
                             $photos[] = $photo;
                         }
 

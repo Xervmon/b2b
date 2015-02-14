@@ -70,6 +70,7 @@ class CommunityControllerPhotos extends CommunityController
 
 		$notiHtml = '<img src="'.$photo->getImageURI().'" />';
 
+		$response->addAssign('cwin_logo', 'innerHTML', JText::_('COM_COMMUNITY_PHOTO_VIEW_TITLE'));
 		$response->addScriptCall('cWindowAddContent', $notiHtml);
 		$response->addScriptCall('joms.jQuery("#cWindowContent").addClass("text-center");');
 
@@ -104,6 +105,7 @@ class CommunityControllerPhotos extends CommunityController
 		$contents = ob_get_contents();
 		ob_end_clean();
 
+		$response->addAssign('cwin_logo', 'innerHTML', JText::_('COM_COMMUNITY_PHOTO_EDIT_TITLE'));
 		$response->addAssign('cWindowContent', 'innerHTML', $contents);
 
 		$action = '<input type="button" class="btn btn-small btn-primary pull-right" onclick="azcommunity.savePhoto();" name="' . JText::_('COM_COMMUNITY_SAVE') . '" value="' . JText::_('COM_COMMUNITY_SAVE') . '" />';

@@ -26,24 +26,24 @@ class CommunityControllerUpdate extends CommunityController
 	{
 		$response		= new JAXResponse();
 
-		$data			= $this->_getCurrentVersionData();
+        $communityController = new CommunityController();
+        $stableVersion = $communityController->_getCurrentVersionData();
+        $localVersion =  $communityController->_getLocalVersionNumber();
+
+        $data			= $this->_getCurrentVersionData(); //this is only used to get the links for change log and update instructions
 		ob_start();
 
-		// Get the current build number
-		$build			= $this->_getLocalBuildNumber();
-		$version		= $this->_getLocalVersionNumber();
-
-		if($data)
+		if($stableVersion)
 		{
 			// Test versions
-			if( version_compare($version , $data->version ,'<') )
+			if(  version_compare($localVersion, $stableVersion->version,'<') )
 			{
 	?>
 
 			<h5><?php echo JText::_('COM_COMMUNITY_UPDATE_SUMMARY');?></h5>
 			<div style="color: red"><?php echo JText::_('COM_COMMUNITY_OLDER_VERSION_OF_JOM_SOCIAL');?></div>
 			<div><?php echo JText::sprintf('Version installed: <span style="font-weight:700; color: red">%1$s</span>' , $this->_getLocalVersionString() );?></div>
-			<div><?php echo JText::sprintf('Latest version available: <span style="font-weight:700;">%1$s</span>', $data->version ); ?></div>
+			<div><?php echo JText::sprintf('Latest version available: <span style="font-weight:700;">%1$s</span>', $stableVersion->version ); ?></div>
 			<div><?php echo JText::sprintf('View full changelog at <a href="%1$s" target="_blank">%2$s</a>', $data->changelogURL , $data->changelogURL ); ?></div>
 			<div><?php echo JText::sprintf('View the upgrade instructions at <a href="%1$s" target="_blank">%2$s</a>', $data->instructionURL , $data->instructionURL ); ?></div>
 	<?php
@@ -100,7 +100,7 @@ class CommunityControllerUpdate extends CommunityController
 		if(ini_get('allow_url_fopen'))
 		{
 			$data	= new stdClass();
-			$xml	= 'http://cloud.jomsocial.com/jomsocial.xml';
+			$xml	= 'http://www.jomsocial.com/jomsocial.xml';
 			$parser	= new SimpleXMLElement( $xml , NULL , true );
 
 			/** Get version **/

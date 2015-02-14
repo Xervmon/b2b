@@ -218,7 +218,7 @@ class CommunityViewPhotos extends CommunityView
 		$my			= CFactory::getUser();
  		$model		= CFactory::getModel('photos');
  		$groupModel	= CFactory::getModel( 'groups' );
-		$albumId	= JRequest::getInt('albumid' , '' , 'GET');
+		$albumId	= JRequest::getInt('albumid' , '');
  		$defaultId	= $jinput->get->get('photo' , '', 'INT'); //JRequest::getVar('photo' , '' , 'GET');
 		$groupId	= JRequest::getInt( 'groupid' , '' , 'REQUEST' );
 		$group		= JTable::getInstance( 'Group' , 'CTable' );

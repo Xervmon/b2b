@@ -67,7 +67,7 @@ if (!class_exists("CommunityViewEvents")) {
                 //$jConfig	= JFactory::getConfig();
                 $limit = JRequest::getInt('limit', 5, 'REQUEST');
                 $limitstart = JRequest::getInt('limitstart', 0, 'REQUEST');
-                $eventId = JRequest::getInt('eventid', '', 'GET');
+                $eventId = JRequest::getInt('eventid', '');
                 $my = CFactory::getUser();
                 $config = CFactory::getConfig();
 
@@ -644,7 +644,7 @@ if (!class_exists("CommunityViewEvents")) {
             $totalEventCount = $model->getEventsCreationCount($my->id);
 
             if ($event->catid == NULL)
-                $event->catid = JRequest::getInt('categoryid', 0, 'GET');
+                $event->catid = JRequest::getInt('categoryid', 0);
 
             $event->startdatetime = $jinput->post->get('startdatetime', '00:01', 'NONE');
             $event->enddatetime = $jinput->post->get('enddatetime', '23:59', 'NONE');
@@ -711,7 +711,7 @@ if (!class_exists("CommunityViewEvents")) {
             }
 
 
-            $groupId = JRequest::getInt('groupid', 0, 'GET');
+            $groupId = JRequest::getInt('groupid', 0);
             $groupLink = $groupId > 0 ? '&groupid=' . $groupId : '';
             $saveImportLink = CRoute::_('index.php?option=com_community&view=events&task=saveImport' . $groupLink);
 
@@ -759,8 +759,6 @@ if (!class_exists("CommunityViewEvents")) {
             $document = JFactory::getDocument();
             $config = CFactory::getConfig();
             $mainframe = JFactory::getApplication();
-            //CFactory::load( 'helpers' , 'owner' );
-            //CFactory::load( 'helpers' , 'event' );
             $handler = CEventHelper::getHandler($event);
 
             if (!$handler->creatable()) {
@@ -813,19 +811,14 @@ if (!class_exists("CommunityViewEvents")) {
         }
 
         public function printpopup($event) {
-            $config = CFactory::getConfig();
-            $my = CFactory::getUser();
-            // We need to attach the javascirpt manually
-
-            $js = JURI::root(true) . '/components/com_community/assets/joms.jquery-1.8.1.min.js';
-            $script = '<script type="text/javascript" src="' . $js . '"></script>';
-
-            $js = JURI::root(true) . '/components/com_community/assets/script-1.2.min.js';
-
-            $script .= '<script type="text/javascript" src="' . $js . '"></script>';
-
-            $creator = CFactory::getUser($event->creator);
-            $creatorUtcOffset = $creator->getUtcOffset();
+            $config              = CFactory::getConfig();
+            $my                  = CFactory::getUser();
+            $js                  = JURI::root(true) . '/components/com_community/assets/joms.jquery-1.8.1.min.js';
+            $script              = '<script type="text/javascript" src="' . $js . '"></script>';
+            $js                  = JURI::root(true) . '/components/com_community/assets/script-1.2.min.js';
+            $script              .= '<script type="text/javascript" src="' . $js . '"></script>';
+            $creator             = CFactory::getUser($event->creator);
+            $creatorUtcOffset    = $creator->getUtcOffset();
             $creatorUtcOffsetStr = CTimeHelper::getTimezone($event->offset);
 
             // Get the formated date & time

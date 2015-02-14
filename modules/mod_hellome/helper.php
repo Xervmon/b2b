@@ -91,51 +91,52 @@ if(!class_exists('modHelloMeHelper'))
 
 			$script =<<<SHOWJS
 				var helloMe = {
-					changeStatus:function(){
-						joms.jQuery('#helloMeEdit').show();
-						joms.jQuery('#helloMeDisplay').hide();
-						joms.jQuery('#editLink').hide();
-						joms.jQuery('#saveLink').show();
-						cur_status = joms.jQuery('#helloMeStatusText').val();
-
+					changeStatus: function(ref) {
+						joms.jQuery('.helloMeEdit').show();
+						joms.jQuery('.helloMeDisplay').hide();
+						joms.jQuery('.helloMeEditLink').hide();
+						joms.jQuery('.helloMeSaveLink').show();
+						cur_status = joms.jQuery('input.helloMeStatusText').val();
 					},
-					saveStatus:function(){
-						if ( cur_status != joms.jQuery('#helloMeStatusText').val() ) {
-							var inputVal	= joms.jQuery('#helloMeStatusText').val();
-							//inputVal = escape(inputVal);
-							joms.jQuery('#hellomeLoading').show();
-							jax.call('community', 'status,ajaxUpdate', inputVal);
+					saveStatus: function(ref) {
+						var input = joms.jQuery( ref ).closest('div.helloMeStatusText').find('input.helloMeStatusText'),
+							inputVal;
+
+						if ( cur_status != input.val() ) {
+							inputVal = input.val();
+							joms.jQuery('.helloMeLoading').show();
+							jax.call( 'community', 'status,ajaxUpdate', inputVal );
 							$isMineScript
-							//joms.jQuery('#helloMeStatus').html(inputVal);
-							//joms.jQuery('title').val(inputVal);
 							cur_status = inputVal;
+							joms.jQuery('input.helloMeStatusText').val( inputVal );
 						}
-						joms.jQuery('#helloMeEdit').hide();
-						joms.jQuery('#helloMeDisplay').show();
-						joms.jQuery('#editLink').show();
-						joms.jQuery('#saveLink').hide();
+
+						joms.jQuery('.helloMeEdit').hide();
+						joms.jQuery('.helloMeDisplay').show();
+						joms.jQuery('.helloMeEditLink').show();
+						joms.jQuery('.helloMeSaveLink').hide();
 						return false;
 					},
-					saveChanges:function(e){
-						var unicode = e.keyCode? e.keyCode : e.charCode;
-
-						if ( unicode == 13 )
-						{
-							helloMe.saveStatus();
+					saveChanges: function( e ) {
+						var key = e.keyCode ? e.keyCode : e.charCode;
+						if ( key === 13 ) {
+							helloMe.saveStatus( e.target );
 							return false;
 						}
 					},
-					logout:function(){
+					logout: function() {
 						document.hellomelogout.submit();
 					}
 				};
 
 				joms.jQuery(document).ready( function() {
-					joms.jQuery('#helloMeStatus').html('$cleanProfileStatus');
-					joms.jQuery('#helloMeStatusText').val('$profileStatus');
+					joms.jQuery('.helloMeStatus').html('$cleanProfileStatus');
+					joms.jQuery('.helloMeStatusText').val('$profileStatus');
 				});
 SHOWJS;
+
 				return $script;
+
 		}
 	}
 }

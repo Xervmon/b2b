@@ -356,7 +356,7 @@ class CTableGroup extends JTable {
 
         $groupannouncementfilesharing = JRequest::getInt('groupannouncementfilesharing', '0', 'REQUEST');
         $params->set('groupannouncementfilesharing', $groupannouncementfilesharing);
-        
+
         $this->params = $params->toString();
 
         return true;
@@ -689,6 +689,7 @@ class CTableGroup extends JTable {
      */
     public function setCover($path) {
         $this->cover = $path;
+        $this->storage = 'file';
         return $this->store();
     }
 
@@ -712,7 +713,7 @@ class CTableGroup extends JTable {
     public function getCover() {
 
         if (empty($this->cover)) {
-            $this->cover = '';            
+            $this->cover = '';
         } else { /* if not local than get remote storage */
             if ($this->storage != 'file') {
                 $storage = CStorage::getStorage($this->storage);

@@ -138,33 +138,9 @@ class CProfile implements CCommentInterface
 		}
 
 		$fieldType	= strtolower( $fieldType );
-
-		//CFactory::load( 'libraries/fields' , $fieldType );
-
 		$class	= 'CFields' . ucfirst( $fieldType );
 
 		$default_status = true;
-		/* === extra validations for fields based on field params === */
-		/*
-		$profilemodel	= CFactory::getModel('profile');
-		$raw_param = $profilemodel->getFieldParams($fieldId);
-
-		$params = new CParameter($raw_param);
-
-		//validate the extra param first
-		//CFactory::load( 'helpers' , 'validate' );
-
-
-		//only check if there is any parameter in the param field of that field
-		if(is_object($params)){
-			//check for string limit
-			if($params->get('min_char') != '' && $params->get('max_char') != '' && $params->get('min_char') >= 0 && $params->get('max_char') >= 0){
-				$default_status = CValidateHelper::characterLength( $params->get('min_char'), $params->get('max_char'), $value);
-			}
-
-			//additional checking here:
-		}*/
-		/* === End of extra validation === */
 
 		if( class_exists( $class ) && $default_status)
 		{
@@ -213,12 +189,12 @@ class CProfile implements CCommentInterface
 		$countryCode			= $locale[2];
 		$countryLangExtension	= "";
 
-		$countryListLanguage =   explode(',', trim(COUNTRY_LIST_LANGUAGE) );
+		// $countryListLanguage =   explode(',', trim(COUNTRY_LIST_LANGUAGE) );
 
-		if(in_array($countryCode,$countryListLanguage)==COUNTRY_LANG_AVAILABLE)
-		{
-			$countryLangExtension = "_".$countryCode;
-		}
+		// if(in_array($countryCode,$countryListLanguage)==COUNTRY_LANG_AVAILABLE)
+		// {
+		// 	$countryLangExtension = "_".$countryCode;
+		// }
 
 		jimport( 'joomla.filesystem.file' );
 		$file	= JPATH_ROOT .'/components/com_community/libraries/fields/countries'.$countryLangExtension.'.xml';

@@ -29,7 +29,7 @@ if (!class_exists('CActivity')) {
 
         /**
          * Actor id
-         * @var int 
+         * @var int
          */
         public $actor = null;
 
@@ -60,13 +60,13 @@ if (!class_exists('CActivity')) {
         /**
          * String
          * @link http://activitystrea.ms/registry/verbs/
-         * @var type 
+         * @var type
          */
         public $verb = null;
 
         /**
          * Content id
-         * @var  
+         * @var
          */
         public $cid = null;
         public $groupid = null;
@@ -77,7 +77,7 @@ if (!class_exists('CActivity')) {
 
         /**
          * Access permission of activity
-         * @var int 
+         * @var int
          */
         public $access = null;
         public $params = null;
@@ -93,7 +93,7 @@ if (!class_exists('CActivity')) {
 
         /**
          * Array of actors in JSON format
-         * @var string 
+         * @var string
          */
         public $actors = null;
 
@@ -169,6 +169,15 @@ if (!class_exists('CActivity')) {
          * @return int
          */
         public function setPrivacy($newPrivacy) {
+
+            // Set privacy on the related Video first
+            if(stristr($this->app,'videos.')) {
+                $videoTable = JTable::getInstance('Video','CTable');
+                $videoTable->load($this->cid);
+                $videoTable->set('permissions',$newPrivacy);
+                $videoTable->store();
+            }
+
             return $this->set('access', $newPrivacy);
         }
 
@@ -233,7 +242,7 @@ if (!class_exists('CActivity')) {
         }
 
         /**
-         * 
+         *
          * @param int $userId
          * @return int
          */

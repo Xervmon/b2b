@@ -2476,7 +2476,7 @@ class CommunityGroupsController extends CommunityBaseController {
 
         $discussion->groupid = $groupid;
         $discussion->created = isset($discussion->created) && $discussion->created != '' ? $discussion->created : $now->toSql();
-        $discussion->lastreplied = $discussion->created;
+        $discussion->lastreplied = (isset($discussion->lastreplied)) ? $discussion->lastreplied : $discussion->created;
         $discussion->message = JRequest::getVar('message', '', 'post', 'string', JREQUEST_ALLOWRAW);
         $discussion->message = $inputFilter->clean($discussion->message);
 
@@ -3008,6 +3008,8 @@ class CommunityGroupsController extends CommunityBaseController {
                 CActivityStream::remove('groups.discussion', $topicid);
                 // Remove Discussion Files
                 $fileModel->alldelete($topicid, 'discussion');
+                // Assuming all files are deleted, remove the folder if exists
+                JFolder::delete(JPATH_ROOT . '/' . 'images/files/discussion/'.$topicid);
 
                 $this->cacheClean(array(COMMUNITY_CACHE_TAG_GROUPS, COMMUNITY_CACHE_TAG_GROUPS_DETAIL, COMMUNITY_CACHE_TAG_ACTIVITIES));
                 $mainframe->redirect(CRoute::_('index.php?option=com_community&view=groups&task=viewgroup&groupid=' . $groupid, false), JText::_('COM_COMMUNITY_DISCUSSION_REMOVED'));

@@ -95,12 +95,12 @@ class CActivities {
             $userPointModel = CFactory::getModel('Userpoints');
 
             $point = $userPointModel->getPointData($cmd);
-
-            if ($point) {
-                if (!$point->published) {
-                    return;
-                }
-            }
+            //no reason to disable activity if no points is given
+//            if ($point) {
+//                if (!$point->published) {
+//                    return;
+//                }
+//            }
         }
 
         // If params is an object, instead of a string, we convert it to string
@@ -1109,7 +1109,7 @@ class CActivities {
         $filterId = 0;
         switch ($filter) {
             case "active-profile" :
-                $profileUserId = JRequest::getInt('userid', $my->id); //JRequest::getVar('userid' , '' , 'GET' );
+                $profileUserId = JRequest::getInt('userid', $my->id);
                 $activeProfile = CFactory::getUser($profileUserId);
                 $filterId = $activeProfile->id;
                 break;
@@ -1517,6 +1517,8 @@ class CActivities {
 
         // Escape it first
         $str = CStringHelper::escape(rtrim(str_replace('&nbsp;', '', $str)));
+
+        $str = str_replace('&amp;quot;','"',$str);
 
         // Autolink url
         $str = CStringHelper::autoLink($str);

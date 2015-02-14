@@ -20,7 +20,7 @@ class CommunityViewEvents extends CommunityView
 		$mainframe	= JFactory::getApplication();
 		$document 	= JFactory::getDocument();
 		$userid   	= JRequest::getCmd('userid', null );
-		$groupId	= JRequest::getInt( 'groupid', '', 'GET' );
+		$groupId	= JRequest::getInt( 'groupid', '');
 		$my			= CFactory::getUser();
 
 		$document->setLink(CRoute::_('index.php?option=com_community'));

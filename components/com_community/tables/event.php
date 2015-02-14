@@ -904,7 +904,7 @@ class CTableEvent extends JTable implements CGeolocationInterface, CTaggable_Ite
         /**
          * False if this's not member or be rejected
          */
-        if ($member->id == '0' || $member->status == 2) {
+        if ($member->id == '0' || $member->status != 1) {
             return false;
         }
 
@@ -1112,6 +1112,7 @@ class CTableEvent extends JTable implements CGeolocationInterface, CTaggable_Ite
      */
     public function setCover($path) {
         $this->cover = $path;
+        $this->storage = 'file';
         return $this->store();
     }
 

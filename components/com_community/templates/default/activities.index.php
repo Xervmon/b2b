@@ -181,6 +181,15 @@ if (isset($freshInstallMsg)) :
                                 $stream->access = 10;
                             }
 
+                             $date = JFactory::getDate($act->created);
+                            if ( $config->get('activitydateformat') == "lapse" ) {
+                                $createdTime = CTimeHelper::timeLapse($date);
+                            } else {
+                                $createdTime = $date->format($config->get('profileDateFormat'));
+                            }
+
+                            $stream->createdtime = $createdTime;
+
                             $this->set('stream', $stream);
                             $this->load('activities.stream');
                         }

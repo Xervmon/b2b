@@ -34,7 +34,7 @@ $document = JFactory::getDocument();
 $frontpageUsers = intval($config->get('frontpageusers',5));
 
 $document->addScriptDeclaration("var frontpageUsers	= " . $default . ";");
-$document->addScriptDeclaration('joms.filters.bind()');
+$document->addScriptDeclaration('joms.filters && joms.filters.bind && joms.filters.bind();');
 
 $model = CFactory::getModel('user');
 //$latestMembers = $model->getLatestMember($default);

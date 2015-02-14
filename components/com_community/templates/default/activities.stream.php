@@ -45,7 +45,17 @@ if(!isset($stream->groupid))
     if ($stream->message) {
         ?>
 
-            <p><span><?php echo $stream->message; ?></span></p>
+                <div data-type="stream-editor" class="cStream-Respond" style="display:none">
+                    <div class="cStream-Form" style="display:block">
+                        <div class="cStream-FormInput"><textarea><?php echo $stream->message;; ?></textarea></div>
+                        <div class="cStream-FormSubmit">
+                            <a data-action="cancel" href="javascript:" class="cStream-FormCancel"><?php echo JText::_('COM_COMMUNITY_CANCEL_BUTTON') ?></a>
+                            <button data-action="save" class="btn btn-primary btn-small"><?php echo JText::_('COM_COMMUNITY_EDIT_POST_BUTTON') ?></button>
+                        </div>
+                    </div>
+                </div>
+
+            <p data-type="stream-content"><span><?php echo $stream->message; ?></span></p>
 
     <?php } ?>
 

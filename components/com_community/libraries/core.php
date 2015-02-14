@@ -759,13 +759,7 @@ class CFactory {
             'tmhOAuth' => '/libraries/twitter/tmhOAuth.php',
             'tmhUtilities' => '/libraries/twitter/tmhUtilities.php',
             'CFilesLibrary' => '/libraries/files.php',
-            'CTwitter'	=> '/libraries/twitter.php',
-	    	
-	    	/*==============HACK TO RUN JSPT CORRECTLY :START ============================*/
-			'CFieldsProfiletypes'				=> '/libraries/fields/profiletypes.php',
-			'CFieldsTemplates'					=> '/libraries/fields/templates.php',
-		    /*==============HACK TO RUN JSPT CORRECTLY : DONE ============================*/
-	        
+            'CTwitter' => '/libraries/twitter.php',
             'CEngagement' => '/libraries/engagement.php',
             'CActivity' => '/libraries/activity.php',
             /* Services */

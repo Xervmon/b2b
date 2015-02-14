@@ -112,7 +112,7 @@ $title = $activity->get('title');
     <p data-type="stream-content">
         <span><?php echo empty($title) ? ltrim(CActivities::format($activity->get('title'), $mood),' -') : CActivities::format($activity->get('title'), $mood); ?></span>
         <?php if ($address) { ?>
-        <span class="joms-status-location"><?php if(!empty($title)){?>- <?php }?><?php echo JText::_("COM_COMMUNITY_IN") ?>
+        <span class="joms-status-location"><?php if(!empty($title)){?>- <?php }?><?php echo JText::_("COM_COMMUNITY_AT") ?>
             <a data-action="open-map" data-stream-id="<?php echo $activity->get('id'); ?>" href="javascript:"
                 onclick="joms.share.map('<?php echo $activity->get('id'); ?>')"><?php echo $address ?></a></span>
         <?php } ?>
@@ -133,7 +133,10 @@ $title = $activity->get('title');
 
                 }else{
                     $href = $headMetaParams->get('link') ? $headMetaParams->get('link') : '#';
-                    $href = "href='".$href."' target='_blank'";
+                    
+                    $isNewTab = CFactory::getConfig()->get('newtab',false);
+                    if ($isNewTab) $href = "href='".$href."' target='_blank'";
+                    else $href = "href='".$href."'";
                 }
             ?>
 

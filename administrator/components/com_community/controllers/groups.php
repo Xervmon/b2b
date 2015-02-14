@@ -135,6 +135,7 @@ class CommunityControllerGroups extends CommunityController
 		$contents	= ob_get_contents();
 		ob_end_clean();
 
+		$response->addAssign('cwin_logo', 'innerHTML', JText::_('COM_COMMUNITY_GROUP_CHANGE_OWNER_TITLE'));
 		$response->addAssign( 'cWindowContent' , 'innerHTML' , $contents );
 
 		$action = '<input type="button" class="btn btn-small btn-primary pull-right" onclick="azcommunity.saveGroupOwner();" name="' . JText::_('COM_COMMUNITY_SAVE') . '" value="' . JText::_('COM_COMMUNITY_SAVE') . '" />';
@@ -391,6 +392,7 @@ class CommunityControllerGroups extends CommunityController
 		$contents	= ob_get_contents();
 		ob_end_clean();
 
+		$response->addAssign('cwin_logo', 'innerHTML', JText::_('COM_COMMUNITY_GROUP_EDIT_TITLE'));
 		$response->addAssign( 'cWindowContent' , 'innerHTML' , $contents );
 
 		$action = '<input type="button" class="btn btn-small btn-primary pull-right" onclick="azcommunity.saveGroup();" name="' . JText::_('COM_COMMUNITY_SAVE') . '" value="' . JText::_('COM_COMMUNITY_SAVE') . '" />';

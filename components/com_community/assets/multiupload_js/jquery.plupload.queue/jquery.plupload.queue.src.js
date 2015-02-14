@@ -19,7 +19,9 @@
 		size: 'Size',
 		status: 'Status',
 		drag_files: 'Drag files here.',
-		start_upload: 'Start upload'
+		start_upload: 'Start upload',
+		add_files: 'Add files',
+		filename: 'Filename'
 	};
 
 	// Override with joms.language.multiupload
@@ -52,7 +54,7 @@
 
 						'<div class="plupload_content">' +
 							'<div class="plupload_filelist_header">' +
-								'<div class="plupload_file_name">' + _('Filename') + '</div>' +
+								'<div class="plupload_file_name">' + languages.filename + '</div>' +
 							'</div>' +
 
 							'<ul id="' + id + '_filelist" class="plupload_filelist"></ul>' +
@@ -60,7 +62,7 @@
 							'<div class="plupload_filelist_footer">' +
 								'<div class="plupload_file_name">' +
 									'<div class="plupload_buttons">' +
-										'<a href="#" class="plupload_button plupload_add">' + _('Add files') + '</a>' +
+										'<a href="#" class="plupload_button plupload_add">' + languages.add_files + '</a>' +
 										'<a href="#" class="plupload_button plupload_start">' + languages.start_upload + '</a>' +
 									'</div>' +
 									'<span class="plupload_upload_status"></span>' +

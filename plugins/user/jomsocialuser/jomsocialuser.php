@@ -28,11 +28,11 @@ if (!class_exists('plgUserJomSocialUser')) {
         /**
          * This method should handle any login logic and report back to the subject
          *
-         * @access	public
-         * @param 	array 	holds the user data
-         * @param 	array    extra options
-         * @return	boolean	True on success
-         * @since	1.5
+         * @access  public
+         * @param   array   holds the user data
+         * @param   array    extra options
+         * @return  boolean True on success
+         * @since   1.5
          */
         public function onLoginUser($user, $options) {
             $id = CUserHelper::getUserId($user['username']);
@@ -46,13 +46,18 @@ if (!class_exists('plgUserJomSocialUser')) {
          * This method should handle any login logic and report back to the subject
          * For Joomla 1.6, onLoginUser is now onUserLogin
          *
-         * @access	public
-         * @param 	array 	holds the user data
-         * @param 	array    extra options
-         * @return	boolean	True on success
-         * @since	1.6
+         * @access  public
+         * @param   array   holds the user data
+         * @param   array    extra options
+         * @return  boolean True on success
+         * @since   1.6
          */
         public function onUserLogin($user, $options) {
+            $app    = JFactory::getApplication();
+            $cUser = CFactory::getUser(CUserHelper::getUserId($user['username']));
+            if($cUser->block){
+                $app->setUserState('users.login.form.return','index.php?option=com_users&view=profile');
+            }
             return $this->onLoginUser($user, $options);
         }
 
@@ -74,11 +79,11 @@ if (!class_exists('plgUserJomSocialUser')) {
          * This method should handle any logout logic and report back to the subject
          * For Joomla 1.6, onLogoutUser is now onUserLogout
          *
-         * @access	public
-         * @param 	array 	holds the user data
-         * @param 	array    extra options
-         * @return	boolean	True on success
-         * @since	1.6
+         * @access  public
+         * @param   array   holds the user data
+         * @param   array    extra options
+         * @return  boolean True on success
+         * @since   1.6
          */
         public function onUserLogout($user) {
             return $this->onLogoutUser($user);
@@ -115,9 +120,9 @@ if (!class_exists('plgUserJomSocialUser')) {
          * To handle onBeforeDeleteUser event
          * For Joomla 1.6, onBeforeDeleteUser is now onUserBeforeDelete
          *
-         * @access	public
-         * @return	boolean	True on success
-         * @since	1.6
+         * @access  public
+         * @return  boolean True on success
+         * @since   1.6
          */
         function onUserBeforeDelete($user) {
             $this->onBeforeDeleteUser($user);
@@ -178,10 +183,10 @@ if (!class_exists('plgUserJomSocialUser')) {
 
             $sql = "DELETE
 
-				FROM
-						" . $db->quoteName("#__community_users") . "
-				WHERE
-						" . $db->quoteName("userid") . " = " . $db->quote($user['id']);
+                FROM
+                        " . $db->quoteName("#__community_users") . "
+                WHERE
+                        " . $db->quoteName("userid") . " = " . $db->quote($user['id']);
 
             $db->setQuery($sql);
             $db->Query();
@@ -215,11 +220,11 @@ if (!class_exists('plgUserJomSocialUser')) {
 
             if (!empty($gids)) {
                 $sql = "SELECT
-							" . $db->quoteName("id") . "
-					FROM
-							" . $db->quoteName("#__community_groups_discuss") . "
-					WHERE
-							" . $db->quoteName("groupid") . " IN (" . $gids . ")";
+                            " . $db->quoteName("id") . "
+                    FROM
+                            " . $db->quoteName("#__community_groups_discuss") . "
+                    WHERE
+                            " . $db->quoteName("groupid") . " IN (" . $gids . ")";
                 $db->setQuery($sql);
                 $row = $db->loadobjectList();
                 if ($db->getErrorNum()) {
@@ -239,17 +244,17 @@ if (!class_exists('plgUserJomSocialUser')) {
                     }
                 }
                 $condition = $db->quoteName("creator") . " = " . $db->quote($user['id']) . " OR
-						" . $db->quoteName("groupid") . " IN (" . $gids . ")";
+                        " . $db->quoteName("groupid") . " IN (" . $gids . ")";
             } else {
                 $condition = $db->quoteName("creator") . " = " . $db->quote($user['id']);
             }
 
             $sql = "DELETE
 
-				FROM
-						" . $db->quoteName("#__community_groups_discuss") . "
-				WHERE
-						" . $condition;
+                FROM
+                        " . $db->quoteName("#__community_groups_discuss") . "
+                WHERE
+                        " . $condition;
             $db->setQuery($sql);
             $db->Query();
             if ($db->getErrorNum()) {
@@ -258,18 +263,18 @@ if (!class_exists('plgUserJomSocialUser')) {
 
             if (!empty($ids)) {
                 $condition = "(" . $db->quoteName("post_by") . " = " . $db->quote($user['id']) . " OR
-						   " . $db->quoteName("contentid") . " IN (" . $ids . "))";
+                           " . $db->quoteName("contentid") . " IN (" . $ids . "))";
             } else {
                 $condition = $db->quoteName("post_by") . " = " . $db->quote($user['id']);
             }
 
             $sql = "DELETE
 
-				FROM
-						" . $db->quoteName("#__community_wall") . "
-				WHERE
-						" . $condition . " AND
-						" . $db->quoteName("type") . " = " . $db->quote('discussions');
+                FROM
+                        " . $db->quoteName("#__community_wall") . "
+                WHERE
+                        " . $condition . " AND
+                        " . $db->quoteName("type") . " = " . $db->quote('discussions');
             $db->setQuery($sql);
             $db->Query();
             if ($db->getErrorNum()) {
@@ -291,11 +296,11 @@ if (!class_exists('plgUserJomSocialUser')) {
             }
             //remove user's albums
             $sql = "SELECT
-						" . $db->quoteName("id") . "
-				FROM
-						" . $db->quoteName("#__community_photos_albums") . "
-				WHERE
-						" . $db->quoteName("creator") . " = " . $db->quote($user['id']);
+                        " . $db->quoteName("id") . "
+                FROM
+                        " . $db->quoteName("#__community_photos_albums") . "
+                WHERE
+                        " . $db->quoteName("creator") . " = " . $db->quote($user['id']);
 
             $db->setQuery($sql);
             $albums = $db->loadobjectList();
@@ -317,10 +322,10 @@ if (!class_exists('plgUserJomSocialUser')) {
 
             $sql = "DELETE
 
-				FROM
-						" . $db->quoteName("#__community_photos_tokens") . "
-				WHERE
-						" . $db->quoteName("userid") . " = " . $db->quote($user['id']);
+                FROM
+                        " . $db->quoteName("#__community_photos_tokens") . "
+                WHERE
+                        " . $db->quoteName("userid") . " = " . $db->quote($user['id']);
 
             $db->setQuery($sql);
             $db->Query();
@@ -336,10 +341,10 @@ if (!class_exists('plgUserJomSocialUser')) {
 
             $sql = "DELETE
 
-				FROM
-						" . $db->quoteName("#__community_msg") . "
-				WHERE
-						" . $db->quoteName("from") . " = " . $db->quote($user['id']);
+                FROM
+                        " . $db->quoteName("#__community_msg") . "
+                WHERE
+                        " . $db->quoteName("from") . " = " . $db->quote($user['id']);
             $db->setQuery($sql);
             $db->Query();
             if ($db->getErrorNum()) {
@@ -348,11 +353,11 @@ if (!class_exists('plgUserJomSocialUser')) {
 
             $sql = "DELETE
 
-				FROM
-						" . $db->quoteName("#__community_msg_recepient") . "
-				WHERE
-						" . $db->quoteName("msg_from") . " = " . $db->quote($user['id']) . " OR
-						" . $db->quoteName("to") . " = " . $db->quote($user['id']);
+                FROM
+                        " . $db->quoteName("#__community_msg_recepient") . "
+                WHERE
+                        " . $db->quoteName("msg_from") . " = " . $db->quote($user['id']) . " OR
+                        " . $db->quoteName("to") . " = " . $db->quote($user['id']);
 
             $db->setQuery($sql);
             $db->Query();
@@ -364,8 +369,8 @@ if (!class_exists('plgUserJomSocialUser')) {
         /**
          * Remove all events related to the user that is being removed.
          *
-         * 	@param	Array	An array of user's information
-         * 	@return	null
+         *  @param  Array   An array of user's information
+         *  @return null
          * */
         public function deleteFromCommunityEvents($user) {
             $db = JFactory::getDBO();
@@ -408,10 +413,10 @@ if (!class_exists('plgUserJomSocialUser')) {
 
             $sql = "DELETE
 
-				FROM
-						" . $db->quoteName("#__community_groups_bulletins") . "
-				WHERE
-						" . $db->quoteName("created_by") . " = " . $db->quote($user['id']);
+                FROM
+                        " . $db->quoteName("#__community_groups_bulletins") . "
+                WHERE
+                        " . $db->quoteName("created_by") . " = " . $db->quote($user['id']);
 
             $db->setQuery($sql);
             $db->Query();
@@ -420,11 +425,11 @@ if (!class_exists('plgUserJomSocialUser')) {
             }
 
             $sql = "SELECT
-						" . $db->quoteName("id") . "
-				FROM
-						" . $db->quoteName("#__community_groups") . "
-				WHERE
-						" . $db->quoteName("ownerid") . " = " . $db->quote($user['id']);
+                        " . $db->quoteName("id") . "
+                FROM
+                        " . $db->quoteName("#__community_groups") . "
+                WHERE
+                        " . $db->quoteName("ownerid") . " = " . $db->quote($user['id']);
             $db->setQuery($sql);
             $row = $db->loadobjectList();
             if ($db->getErrorNum()) {
@@ -445,11 +450,11 @@ if (!class_exists('plgUserJomSocialUser')) {
 
                 $sql = "DELETE
 
-					FROM
-							" . $db->quoteName("#__community_groups_members") . "
-					WHERE
-							" . $db->quoteName("groupid") . " IN (" . $ids . ") OR
-							" . $db->quoteName("memberid") . " = " . $db->Quote($user['id']);
+                    FROM
+                            " . $db->quoteName("#__community_groups_members") . "
+                    WHERE
+                            " . $db->quoteName("groupid") . " IN (" . $ids . ") OR
+                            " . $db->quoteName("memberid") . " = " . $db->Quote($user['id']);
                 $db->setQuery($sql);
                 $db->Query();
                 if ($db->getErrorNum()) {
@@ -469,11 +474,11 @@ if (!class_exists('plgUserJomSocialUser')) {
 
             $sql = "DELETE
 
-				FROM
-						" . $db->quoteName("#__community_wall") . "
-				WHERE
-						" . $db->quoteName("post_by") . " = " . $db->quote($user['id']) . " AND
-						" . $db->quoteName("type") . " = " . $db->quote('groups');
+                FROM
+                        " . $db->quoteName("#__community_wall") . "
+                WHERE
+                        " . $db->quoteName("post_by") . " = " . $db->quote($user['id']) . " AND
+                        " . $db->quoteName("type") . " = " . $db->quote('groups');
             $db->setQuery($sql);
             $db->Query();
             if ($db->getErrorNum()) {
@@ -541,14 +546,14 @@ if (!class_exists('plgUserJomSocialUser')) {
             $db = JFactory::getDBO();
 
             $sql = "SELECT
-						a." . $db->quoteName("connect_from") . "
-				FROM
-						" . $db->quoteName("#__community_connection") . " a
-			INNER JOIN
-						" . $db->quoteName("#__community_connection") . " b ON a." . $db->quoteName("connect_from") . "=b." . $db->quoteName("connect_to") . "
-				WHERE
-						a." . $db->quoteName("connect_to") . " = " . $db->quote($user['id']) . " AND
-						b." . $db->quoteName("connect_from") . " = " . $db->quote($user['id']);
+                        a." . $db->quoteName("connect_from") . "
+                FROM
+                        " . $db->quoteName("#__community_connection") . " a
+            INNER JOIN
+                        " . $db->quoteName("#__community_connection") . " b ON a." . $db->quoteName("connect_from") . "=b." . $db->quoteName("connect_to") . "
+                WHERE
+                        a." . $db->quoteName("connect_to") . " = " . $db->quote($user['id']) . " AND
+                        b." . $db->quoteName("connect_from") . " = " . $db->quote($user['id']);
             $db->setQuery($sql);
             $row = $db->loadobjectList();
             if ($db->getErrorNum()) {
@@ -568,11 +573,11 @@ if (!class_exists('plgUserJomSocialUser')) {
                 }
 
                 $sql = "UPDATE
-							" . $db->quoteName("#__community_users") . "
-					SET
-							" . $db->quoteName("friendcount") . " = " . $db->quoteName("friendcount") . " - 1
-					WHERE
-							" . $db->quoteName("userid") . " IN (" . $ids . ")";
+                            " . $db->quoteName("#__community_users") . "
+                    SET
+                            " . $db->quoteName("friendcount") . " = " . $db->quoteName("friendcount") . " - 1
+                    WHERE
+                            " . $db->quoteName("userid") . " IN (" . $ids . ")";
                 $db->setQuery($sql);
                 $db->Query();
                 if ($db->getErrorNum()) {
@@ -582,11 +587,11 @@ if (!class_exists('plgUserJomSocialUser')) {
 
             $sql = "DELETE
 
-				FROM
-						" . $db->quoteName("#__community_connection") . "
-				WHERE
-						" . $db->quoteName("connect_from") . " = " . $db->quote($user['id']) . " OR
-						" . $db->quoteName("connect_to") . " = " . $db->quote($user['id']);
+                FROM
+                        " . $db->quoteName("#__community_connection") . "
+                WHERE
+                        " . $db->quoteName("connect_from") . " = " . $db->quote($user['id']) . " OR
+                        " . $db->quoteName("connect_to") . " = " . $db->quote($user['id']);
             $db->setQuery($sql);
             $db->Query();
             if ($db->getErrorNum()) {
@@ -599,10 +604,10 @@ if (!class_exists('plgUserJomSocialUser')) {
 
             $sql = "DELETE
 
-				FROM
-						" . $db->quoteName("#__community_apps") . "
-				WHERE
-						" . $db->quoteName("userid") . " = " . $db->quote($user['id']);
+                FROM
+                        " . $db->quoteName("#__community_apps") . "
+                WHERE
+                        " . $db->quoteName("userid") . " = " . $db->quote($user['id']);
             $db->setQuery($sql);
             $db->Query();
             if ($db->getErrorNum()) {
@@ -615,12 +620,12 @@ if (!class_exists('plgUserJomSocialUser')) {
 
             $sql = "DELETE
 
-				FROM
-						" . $db->quoteName("#__community_activities") . "
-				WHERE
-						(" . $db->quoteName("actor") . " = " . $db->quote($user['id']) . " OR
-						" . $db->quoteName("target") . " = " . $db->quote($user['id']) . ") AND
-						" . $db->quoteName("archived") . " = " . $db->quote(0);
+                FROM
+                        " . $db->quoteName("#__community_activities") . "
+                WHERE
+                        (" . $db->quoteName("actor") . " = " . $db->quote($user['id']) . " OR
+                        " . $db->quoteName("target") . " = " . $db->quote($user['id']) . ") AND
+                        " . $db->quoteName("archived") . " = " . $db->quote(0);
             $db->setQuery($sql);
             $db->Query();
 
@@ -752,10 +757,10 @@ if (!class_exists('plgUserJomSocialUser')) {
 
             $sql = "DELETE
 
-				FROM
-						" . $db->quoteName("#__contact_details") . "
-				WHERE
-						" . $db->quoteName("user_id") . " = " . ($user['id']);
+                FROM
+                        " . $db->quoteName("#__contact_details") . "
+                WHERE
+                        " . $db->quoteName("user_id") . " = " . ($user['id']);
             $db->setQuery($sql);
             $db->Query();
             if ($db->getErrorNum()) {

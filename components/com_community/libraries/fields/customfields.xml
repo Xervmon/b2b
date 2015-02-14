@@ -57,13 +57,5 @@
 			<type>birthdate</type>
 			<name>Birthdate</name>
 		</field>
-	<field>
-		    	<type>profiletypes</type>
-		    	<name>Profiletypes</name>
-		    	</field>
-				<field>
-					<type>templates</type>
-					<name>Templates</name>
-				</field>
-				</fields>
+	</fields>
 </jomsocial>

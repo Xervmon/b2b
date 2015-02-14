@@ -59,7 +59,7 @@ class CFieldsUrl extends CProfileField
 		<option value="http://"<?php echo ($scheme == 'http') ? ' selected="selected"' : '';?>><?php echo JText::_('http://');?></option>
 		<option value="https://"<?php echo ($scheme == 'https') ? ' selected="selected"' : '';?>><?php echo JText::_('https://');?></option>
 	</select>
-	<input title="<?php echo CStringHelper::escape( $field->tips );?>" type="text" value="<?php echo $field->value;?>" id="field<?php echo $field->id;?>" name="field<?php echo $field->id;?>[]" maxlength="<?php echo $field->max;?>"  class="validate-profile-url<?php echo $class;?>"<?php echo $style; ?> />
+	<input title="<?php echo CStringHelper::escape( JText::_($field->tips) );?>" type="text" value="<?php echo $field->value;?>" id="field<?php echo $field->id;?>" name="field<?php echo $field->id;?>[]" maxlength="<?php echo $field->max;?>"  class="validate-profile-url<?php echo $class;?>"<?php echo $style; ?> />
 	<span id="errfield<?php echo $field->id;?>msg" style="display:none;">&nbsp;</span>
 <?php
 		$html	= ob_get_contents();
@@ -75,12 +75,12 @@ class CFieldsUrl extends CProfileField
 		$isValid	= CValidateHelper::url( $value );
 
 		$url		= parse_url( $value );
-		$host		= isset($url['host']) ? $url['host'] : '';		
+		$host		= isset($url['host']) ? $url['host'] : '';
 		/* this field is required OR user entered something */
 		if ( $required || $value != '' ) {
 			/* it must be valid AND NOT empty host AND validLength*/
-			return ($isValid) && (!empty($host)) && $this->validLength($value); 
-		}		
+			return ($isValid) && (!empty($host)) && $this->validLength($value);
+		}
 		/* no required and user no entered anything than of course VALID */
 		return true;
 	}

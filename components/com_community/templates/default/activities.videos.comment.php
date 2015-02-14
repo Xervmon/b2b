@@ -21,6 +21,12 @@ if ( $config->get('activitydateformat') == "lapse" ) {
   $createdTime = $date->format($config->get('profileDateFormat'));
 }
 
+if($video->permissions == 30 && !CFriendsHelper::isConnected($my->id,$video->creator)){
+
+return false;
+
+}
+
 //generate activity based on the video owner
 $url = $this->video->getViewURI();
 if ($video->creator != $act->actor ) {
@@ -35,6 +41,8 @@ if ($video->creator != $act->actor ) {
     //user comment on his own photo
     $activityString = Jtext::sprintf('COM_COMMUNITY_ACTIVITIES_COMMENT_OWN_VIDEO', CUrlHelper::userLink($user->id), $user->getDisplayName(), $url);
 }
+
+
 
 ?>
 <div class="joms-stream-avatar">

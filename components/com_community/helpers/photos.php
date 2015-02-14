@@ -63,6 +63,9 @@ class CPhotosHelper {
         $cTable = JTable::getInstance(ucfirst($type), 'CTable');
         $cTable->load($id);
 
+        $cTable->storage = 'file';
+        $cTable->store();
+
         $srcPath = JPATH_ROOT . '/' . $cTable->avatar;
         $destPath = JPATH_ROOT . '/' . $cTable->thumb;
 

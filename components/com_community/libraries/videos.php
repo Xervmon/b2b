@@ -227,7 +227,7 @@
                         $params->set('url', JURI::root().$table->getViewURI());
                         $params->set('target', $video->creator);
 
-                        CNotificationLibrary::add('videos_convert_success', NULL, $video->creator, JText::sprintf('COM_COMMUNITY_VIDEOS_CONVERT_SUCCESS_SUBJECT',$table->getViewURI(),$table->getTitle()), '', 'videos.convert.success',$params);
+                        CNotificationLibrary::add('videos_convert_success', NULL, $video->creator, JText::sprintf('COM_COMMUNITY_VIDEOS_CONVERT_SUCCESS_SUBJECT', $table->getTitle()), '', 'videos.convert.success',$params);
 
                     } // end if video converted
                     else
@@ -297,7 +297,9 @@
             $cmd[]	= '-acodec aac -ab 64k'; /* Set a lower bitrate (for example "-ab 64k") */
             $cmd[]  = '-strict -2';
             $cmd[]  = '-crf 23';
-            $cmd[]	= '-s ' . $videoSize;
+            $cmd[] = '-metadata:s:v rotate="0" -vf "transpose=1"';
+            //$cmd[] = '-vf scale="width"":-1';
+            //$cmd[]	= '-s ' . $videoSize;
             $cmd[]	= $config->get('customCommandForVideo');
             $cmd[]	= $videoFullPath;
 
@@ -885,6 +887,14 @@
                 $act->cid		= $video->id;
                 $act->content	= '<img src="' . $video->getThumbnail() . '" style="border: 1px solid #eee;margin-right: 3px;" />';
                 $act->access    = $video->permissions;
+
+                if ($video->creator_type == VIDEO_GROUP_TYPE) {
+                    $groupLib = new CGroups();
+                    $group = JTable::getInstance('Group', 'CTable');
+                    $group->load($video->groupid);
+                    $act->groupid = $video->groupid;
+                    $act->group_access = $group->approvals;
+                }
 
                 $act->comment_id 	= $video->id;
                 $act->comment_type 	= 'videos';

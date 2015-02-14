@@ -19,8 +19,19 @@ if ($this->act->app == 'groups.like') {
   $this->load('activities.profile.like');
 } else if ($this->act->app == 'videos.like') {
   $this->load('activities.videos.like');
-} else { ?>
+} else { 
 
+$photo = JTable::getInstance('Photo',  'CTable');
+$photo->load($act->cid);
+
+$album = JTable::getInstance('Album', 'CTable');
+$album->load($photo->albumid);
+
+if($album->permissions == 30 && !CFriendsHelper::isConnected($my->id,$album->creator)){
+  return false;
+}
+
+?>
 <div class="joms-stream-content">
     <p><i class="joms-icon-users"></i>
     <?php echo CLikesHelper::generateHTML($act, $likedContent); ?></p>

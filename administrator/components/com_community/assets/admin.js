@@ -305,16 +305,16 @@ function AzrulCommunity() {
 	}
 
 	this.reportAction = function( actionId, ignore ){
-		cWindowShow( 'jax.call("community","admin,reports,ajaxPerformAction", "' + actionId + '", "' + ignore + '");' , 'Report' , 450 , 200 );
+		cWindowShow( 'jax.call("community","admin,reports,ajaxPerformAction", "' + actionId + '", "' + ignore + '");' , '' , 450 , 200 );
 	}
 
 	this.ruleScan = function(){
-		cWindowShow('jax.call("community","admin,userpoints,ajaxRuleScan");', 'User Rule Scan' , 450 ,400 );
+		cWindowShow('jax.call("community","admin,userpoints,ajaxRuleScan");', '' , 450 ,400 );
 		return false;
 	}
 
 	this.editRule = function( ruleId ){
-		cWindowShow( 'jax.call("community","admin,userpoints,ajaxEditRule","' + ruleId + '");' , 'Edit Rule' , 450 , 300 );
+		cWindowShow( 'jax.call("community","admin,userpoints,ajaxEditRule","' + ruleId + '");' , '' , 450 , 300 );
 		return false;
 	}
 
@@ -328,7 +328,7 @@ function AzrulCommunity() {
 	}
 
 	this.editEvent = function( eventId ){
-		cWindowShow('jax.call("community","admin,events,ajaxEditEvent", ' + eventId + ');', 'Editing Event' , 450 , 350 );
+		cWindowShow('jax.call("community","admin,events,ajaxEditEvent", ' + eventId + ');', '' , 450 , 350 );
 	}
 
 	this.saveEvent = function(){
@@ -382,7 +382,7 @@ function AzrulCommunity() {
 	}
 
 	this.editVideo = function( videoId ){
-		cWindowShow('jax.call("community","admin,videos,ajaxEditVideo", ' + videoId + ');', 'Editing Video' , 450 , 350 );
+		cWindowShow('jax.call("community","admin,videos,ajaxEditVideo", ' + videoId + ');', '' , 450 , 350 );
 	}
 
 	this.saveVideo = function(){
@@ -390,7 +390,7 @@ function AzrulCommunity() {
 	}
 
 	this.viewVideo = function(videoId){
-		cWindowShow('jax.call("community","admin,videos,ajaxViewVideo", ' + videoId + ');', 'View Video' , 450 , 350 );
+		cWindowShow('jax.call("community","admin,videos,ajaxViewVideo", ' + videoId + ');', '' , 450 , 350 );
 	}
 
 	this.toggleStatus = function(userid,status){
@@ -398,11 +398,11 @@ function AzrulCommunity() {
 	}
 	this.showImage = function(id)
 	{
-		cWindowShow('jax.call("community","admin,photos,ajaxViewPhoto", ' + id + ');', 'View Photo' , 450 , 350 );
+		cWindowShow('jax.call("community","admin,photos,ajaxViewPhoto", ' + id + ');', '' , 450 , 350 );
 	}
 	this.editPhoto = function(id)
 	{
-		cWindowShow('jax.call("community","admin,photos,ajaxEditPhoto", ' + id + ');', 'Editing Photo', 450, 350 );
+		cWindowShow('jax.call("community","admin,photos,ajaxEditPhoto", ' + id + ');', '', 450, 350 );
 	}
 	this.savePhoto = function(){
 		joms.jQuery('#editphoto').submit();

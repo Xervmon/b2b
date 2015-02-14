@@ -124,7 +124,7 @@ if (!class_exists('CHeadHelper')) {
             }
             if ($images !== null) {
                 foreach ($images as $image) {
-                    self::addOpengraph('og:image', $image, true);
+                    self::addOpengraph('og:image', str_replace(JUri::root(true),'',JUri::root()). $image, true);
                 }
             }
             switch ($type) {
@@ -132,22 +132,22 @@ if (!class_exists('CHeadHelper')) {
                  * @link https://developers.facebook.com/docs/reference/opengraph/object-type/website
                  */
                 case 'website':
-                    self::addOpengraph('og:see_also', CRoute::_('index.php?option=com_community&view=frontpage'), true);
-                    self::addOpengraph('og:see_also', CRoute::_('index.php?option=com_community&view=groups&task=display'), true);
-                    self::addOpengraph('og:see_also', CRoute::_('index.php?option=com_community&view=photos&task=display'), true);
-                    self::addOpengraph('og:see_also', CRoute::_('index.php?option=com_community&view=videos&task=display'), true);
-                    self::addOpengraph('og:see_also', CRoute::_('index.php?option=com_community&view=events&task=display'), true);
+                    self::addOpengraph('og:see_also', CRoute::_(JURI::root().'index.php?option=com_community&view=frontpage'), true);
+                    self::addOpengraph('og:see_also', CRoute::_(JURI::root().'index.php?option=com_community&view=groups&task=display'), true);
+                    self::addOpengraph('og:see_also', CRoute::_(JURI::root().'index.php?option=com_community&view=photos&task=display'), true);
+                    self::addOpengraph('og:see_also', CRoute::_(JURI::root().'index.php?option=com_community&view=videos&task=display'), true);
+                    self::addOpengraph('og:see_also', CRoute::_(JURI::root().'index.php?option=com_community&view=events&task=display'), true);
                     self::addOpengraph('og:site_name', JFactory::getConfig()->get('sitename'));
                     break;
                 /**
                  * @link https://developers.facebook.com/docs/reference/opengraph/object-type/profile/
                  */
                 case 'profile':
-                    self::addOpengraph('og:see_also', CRoute::_('index.php?option=com_community&view=frontpage'), true);
-                    self::addOpengraph('og:see_also', CRoute::_('index.php?option=com_community&view=groups&task=display'), true);
-                    self::addOpengraph('og:see_also', CRoute::_('index.php?option=com_community&view=photos&task=display'), true);
-                    self::addOpengraph('og:see_also', CRoute::_('index.php?option=com_community&view=videos&task=display'), true);
-                    self::addOpengraph('og:see_also', CRoute::_('index.php?option=com_community&view=events&task=display'), true);
+                    self::addOpengraph('og:see_also', CRoute::_(JURI::root().'index.php?option=com_community&view=frontpage'), true);
+                    self::addOpengraph('og:see_also', CRoute::_(JURI::root().'index.php?option=com_community&view=groups&task=display'), true);
+                    self::addOpengraph('og:see_also', CRoute::_(JURI::root().'index.php?option=com_community&view=photos&task=display'), true);
+                    self::addOpengraph('og:see_also', CRoute::_(JURI::root().'index.php?option=com_community&view=videos&task=display'), true);
+                    self::addOpengraph('og:see_also', CRoute::_(JURI::root().'index.php?option=com_community&view=events&task=display'), true);
                     self::addOpengraph('og:site_name', JFactory::getConfig()->get('sitename'));
                     break;
             }

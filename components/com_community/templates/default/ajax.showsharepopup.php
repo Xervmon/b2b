@@ -82,7 +82,7 @@ joms.jQuery(document).ready(function($){
 
 
       <div class="joms-share-status-inner">
-        <?php if ( $this->act->app == 'profile' || $this->act->app == 'videos' ) { ?>
+        <?php if ( $this->act->app == 'profile' || $this->act->app == 'videos' || $this->act->app == 'groups.wall' ) { ?>
           <p><?php echo $this->act->title?><p>
         <?php } ?>
         <p class="joms-share-status-content"><?php echo $this->act->content; ?></p>

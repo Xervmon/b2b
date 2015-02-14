@@ -7,6 +7,8 @@
 * The PHP code portions are distributed under the GPL license. If not otherwise stated, all images, manuals, cascading style sheets, and included JavaScript *are NOT GPL, and are released under the IJOOMLA Proprietary Use License v1.0
 * More info at https://www.jomsocial.com/license-agreement
 */
+defined('_JEXEC') or die();
+
 JHtml::_('behavior.framework', true);
 ?>
 <script type="text/javascript">

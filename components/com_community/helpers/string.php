@@ -57,7 +57,8 @@ class CStringHelper {
 	       {
 	       		$url = \'http://\'.$url;
 	       }
-		   $isInternal = JURI::isInternal($url) ? \'\': \'target="_blank" \';
+           $isNewTab = CFactory::getConfig()->get(\'newtab\',false);
+		   $isInternal = !$isNewTab ? \'\': \'target="_blank" \';
 	       return sprintf(\'<a rel="nofollow" \'.$isInternal .\' href="%s">%s</a>\', $url, $text);
 	   ');
         return preg_replace_callback($pattern, $callback, $text);

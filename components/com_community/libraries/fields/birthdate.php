@@ -88,12 +88,11 @@ class CFieldsBirthdate extends CFieldsDate {
         $max_ok = true;
         $min_ok = true;
 
-        //$ret = true;
 
         if ($max_range) {
             if (strtotime($max_range)) {
                 $max_range = JFactory::getDate(strtotime($max_range))->toUnix();
-                $max_ok = ($value < $max_range);
+                $max_ok = ($value > $max_range);
             } elseif (is_numeric($max_range) && intval($max_range) > 0) {
                 //consider as age format
                 $datetime = new Datetime();
@@ -108,7 +107,7 @@ class CFieldsBirthdate extends CFieldsDate {
         if ($min_range) {
             if (strtotime($min_range)) {
                 $min_range = JFactory::getDate(strtotime($min_range))->toUnix();
-                $min_ok = ($value > $min_range);
+                $min_ok = ($value < $min_range);
             } elseif (is_numeric($min_range) && intval($min_range) > 0) {
                 //consider as age format
                 $datetime = new Datetime();

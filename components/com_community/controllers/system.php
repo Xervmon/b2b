@@ -710,7 +710,6 @@ class CommunitySystemController extends CommunityBaseController {
     public function ajaxStreamAdd($message, $attachment) {
 
         $streamHTML = '';
-        // $attachment pending filter
 
         $cache = CFactory::getFastCache();
         $cache->clean(array('activities'));
@@ -734,7 +733,6 @@ class CommunitySystemController extends CommunityBaseController {
 
         // @rule: Autolink hyperlinks
         // @rule: Autolink to users profile when message contains @username
-        // $message		= CUserHelper::replaceAliasURL($message); // the processing is done on display side
         $emailMessage = CUserHelper::replaceAliasURL($rawMessage, true);
 
         // @rule: Spam checks
@@ -757,7 +755,6 @@ class CommunitySystemController extends CommunityBaseController {
 
         switch ($attachment['type']) {
             case 'message':
-                //if (!empty($message)) {
                 switch ($attachment['element']) {
 
                     case 'profile':
@@ -1188,10 +1185,13 @@ class CommunitySystemController extends CommunityBaseController {
 
                         // Add activity logging
                         // CActivityStream::remove($act->app, $act->cid);
-                        CActivityStream::add($act, $params->toString());
+                        $activityData = CActivityStream::add($act, $params->toString());
 
                         // Add user points
                         CUserPoints::assignPoint('photo.upload');
+
+                        //email and add notification if user are tagged
+                        CUserHelper::parseTaggedUserNotification($message, $my, $activityData, array('type' => 'post-comment'));
 
                         $objResponse->addScriptCall('__callback', JText::sprintf('COM_COMMUNITY_PHOTO_UPLOADED_SUCCESSFULLY', $photo->caption));
                         break;
@@ -1502,6 +1502,8 @@ class CommunitySystemController extends CommunityBaseController {
 
                         $event = $eventController->ajaxCreate($attachment, $objResponse);
 
+                        CEvents::addGroupNotification($event);
+
                         $objResponse->addScriptCall('__callback', '');
 
                         // Reload the stream with new stream data
@@ -1521,7 +1523,10 @@ class CommunitySystemController extends CommunityBaseController {
         }
 
         if (!isset($attachment['filter'])) {
-            $attachment['filter'] = '';
+            $filter = $config->get('frontpageactivitydefault');
+            $filter = explode(':', $filter);
+
+            $attachment['filter'] = (isset($filter[1])) ? $filter[1] : $filter[0];
         }
 
         if (empty($streamHTML)) {
@@ -1529,6 +1534,7 @@ class CommunitySystemController extends CommunityBaseController {
                 $attachment['target'] = '';
             if (!isset($attachment['element']))
                 $attachment['element'] = '';
+
             $streamHTML = CActivities::getActivitiesByFilter($attachment['filter'], $attachment['target'], $attachment['element']);
         }
 
@@ -1659,7 +1665,11 @@ class CommunitySystemController extends CommunityBaseController {
 
                     /* Notifications to all poster in this activity except myself */
                     $users = $wallModel->getAllPostUsers($act->comment_type, $act->id, $my->id);
+
                     if (!empty($users)) {
+                        if(!in_array($act->actor, $users)){
+                            array_push($users,$act->actor);
+                        }
                         CNotificationLibrary::add('profile_activity_add_comment', $my->id, $users, JText::sprintf('COM_COMMUNITY_ACITIVY_WALL_EMAIL_SUBJECT'), '', 'profile.activityreply', $params);
                     } else {
                         CNotificationLibrary::add('profile_activity_add_comment', $my->id, $act->actor, JText::sprintf('COM_COMMUNITY_ACITIVY_WALL_EMAIL_SUBJECT'), '', 'profile.activitycomment', $params);
@@ -1704,7 +1714,7 @@ class CommunitySystemController extends CommunityBaseController {
                     //get relevent users in the activity
                     $users = $wallModel->getAllPostUsers($act->comment_type, $act->id, $act->actor);
                     if (!empty($users)) {
-                        CNotificationLibrary::add('groups_activity_reply_comment', $my->id, $users, JText::sprintf('COM_COMMUNITY_ACITIVY_WALL_REPLY_EMAIL_SUBJECT'), $table->comment, 'group.activityreply', $params);
+                        CNotificationLibrary::add('groups_activity_add_comment', $my->id, $users, JText::sprintf('COM_COMMUNITY_ACITIVY_WALL_REPLY_EMAIL_SUBJECT'), $table->comment, 'group.activityreply', $params);
                     }
                 }
             } elseif ($act->eventid != 0) {
@@ -1821,13 +1831,13 @@ class CommunitySystemController extends CommunityBaseController {
      *
      */
     public function ajaxStreamAddLike($actid, $type = null) {
-        $filter = JFilterInput::getInstance();
-        $actid = $filter->clean($actid, 'int');
+        $filter      = JFilterInput::getInstance();
+        $actid       = $filter->clean($actid, 'int');
         $objResponse = new JAXResponse();
-        $wallModel = CFactory::getModel('wall');
-        $like = new CLike();
+        $wallModel   = CFactory::getModel('wall');
+        $like        = new CLike();
 
-        $act = JTable::getInstance('Activity', 'CTable');
+        $act         = JTable::getInstance('Activity', 'CTable');
         $act->load($actid);
 
         /**

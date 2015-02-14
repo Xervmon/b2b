@@ -103,7 +103,6 @@ class CCron {
      */
     private function _processAvatarCoverStorage($updateNum = COMMUNITY_PROCESS_STORAGE_LIMIT, $element = 'users') {
         $config = CFactory::getConfig();
-        //$jconfig  = JFactory::getConfig();
         $app = JFactory::getApplication();
 
         // Because the configuration of users remote storage is stored as user_avatar_storage, we need to get the correct name for it.

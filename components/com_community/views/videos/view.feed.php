@@ -32,7 +32,7 @@ class CommunityViewVideos extends CommunityView
 		
 		$my			= CFactory::getUser();
 		$userid		= JRequest::getInt( 'userid' , '' );
-		$groupId	= JRequest::getInt( 'groupid', '', 'GET' );
+		$groupId	= JRequest::getInt( 'groupid', '' );
 		
 		if( !empty($userid) ){  
 			$user		= CFactory::getUser($userid);

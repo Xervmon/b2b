@@ -345,6 +345,7 @@ class CommunityControllerUserPoints extends CommunityController
 		if(count($newRules) > 0)
 		$buttons	.= '<input type="button" class="btn btn-small btn-primary pull-right" onclick="javascript: location.reload();return false;" value="' . JText::_('COM_COMMUNITY_USERPOINTS_REFRESH') . '"/>';
 		$buttons	.= '<input type="button" class="btn btn-small pull-left" onclick="javascript:cWindowHide();" value="' . JText::_('COM_COMMUNITY_CANCEL') . '"/>';
+		$response->addAssign('cwin_logo', 'innerHTML', JText::_('COM_COMMUNITY_USERPOINT_RULE_SCAN_TITLE'));
 		$response->addAssign( 'cWindowContent' , 'innerHTML' , $contents );
 		$response->addScriptCall( 'cWindowActions' , $buttons );
 		return $response->sendResponse();

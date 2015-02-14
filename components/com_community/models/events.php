@@ -207,7 +207,7 @@ class CommunityModelEvents extends JCCModel implements CGeolocationSearchInterfa
         if (!empty($userId)) {
             $join = 'LEFT JOIN ' . $db->quoteName('#__community_events_members') . ' AS b ON a.' . $db->quoteName('id') . '=b.' . $db->quoteName('eventid');
             $extraSQL .= ' AND b.' . $db->quoteName('memberid') . '=' . $db->Quote($userId)
-                    . 'AND b.' . $db->quoteName('status') . '<' . $db->Quote(2);
+                    . 'AND b.' . $db->quoteName('status') . '=' . $db->Quote(1);
         }
 
         if (!empty($search)) {

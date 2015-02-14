@@ -50,7 +50,7 @@ if( $discussions )
 						</a>
 					</div>
 					<div class="span10">
-						<p><?php echo CActivities::format($this->escape( $row->lastmessage ));?><p>
+						<p><?php echo CActivities::format( $row->lastmessage );?><p>
 						<?php if( isset( $row->lastreplier ) && !empty( $row->lastreplier ) ) { ?>
 						<div class="cStream-Actions clearfix small">
 							<span><?php echo JText::sprintf('COM_COMMUNITY_GROUPS_DISCUSSION_REPLY_TIME', '<a href="' . CUrlHelper::userLink( $row->lastreplier->post_by->id ) . '">' . $row->lastreplier->post_by->getDisplayName() . '</a>', JHTML::_('date', $row->lastreplier->date, JText::_('DATE_FORMAT_LC')) ); ?></span>

@@ -2220,8 +2220,9 @@ class CommunityVideosController extends CommunityBaseController {
 
         if ($fileSize > $maxPost) {
             $response->addScriptCall('alert', 'File size exceeded post_max_size');
+            $response->addScriptCall("joms.jQuery('form#uploadVideo #file-upload').siblings('a.btn').html('" . JText::_('COM_COMMUNITY_VIDEOS_SELECT_VIDEO_FILE', true) . "');");
         } else {
-            $response->addScriptCall('joms.jQuery(\'form#uploadVideo button\').prop("disabled", false);');
+            $response->addScriptCall("joms.jQuery('form#uploadVideo button').prop('disabled', false);");
         }
 
         return $response->sendResponse();

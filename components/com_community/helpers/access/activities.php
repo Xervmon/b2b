@@ -233,17 +233,20 @@ Class CActivitiesAccess implements CAccessInterface{
             return true;
         }
 
-        $allowapp = array(	'profile',
-            'groups.wall',
-            'events.wall',
-            'profile.status.share',
-            'videos',
-            'photos'
-        );
+        // $allowapp = array(	'profile',
+        //     'groups.wall',
+        //     'events.wall',
+        //     'profile.status.share',
+        //     'videos',
+        //     'photos',
+        //     'photos.comment',
+        //     'videos.linking',
+        //     'videos.comment'
+        // );
+        // var_dump($obj->app);
+        // $isAllowedApp = in_array($obj->app,$allowapp);
 
-        $isAllowedApp = in_array($obj->app,$allowapp);
-
-        if(( ($actorId == $userId) || COwnerHelper::isCommunityAdmin() || ( $obj->target == $userId )) && $isAllowedApp){
+        if(( ($actorId == $userId) || COwnerHelper::isCommunityAdmin() || ( $obj->target == $userId )) /*&& $isAllowedApp*/){
             return true;
         }
 

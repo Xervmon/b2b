@@ -19,17 +19,14 @@ defined('_JEXEC') or die();
         joms || (joms = {});
         joms.language || (joms.language = {});
         joms.language.multiupload || (joms.language.multiupload = {});
-        joms.language.multiupload.size = '<?php echo JText::_("COM_COMMUNITY_PHOTOS_MULTIUPLOAD_SIZE"); ?>';
-        joms.language.multiupload.status = '<?php echo JText::_("COM_COMMUNITY_PHOTOS_MULTIUPLOAD_STATUS"); ?>';
-        joms.language.multiupload.drag_files = '<?php echo JText::_("COM_COMMUNITY_PHOTOS_MULTIUPLOAD_DRAG_FILES"); ?>';
-        joms.language.multiupload.start_upload = '<?php echo JText::_("COM_COMMUNITY_PHOTOS_MULTIUPLOAD_START_UPLOAD"); ?>';
+        joms.language.multiupload.size = '<?php echo JText::_("COM_COMMUNITY_PHOTOS_MULTIUPLOAD_SIZE", true); ?>';
+        joms.language.multiupload.status = '<?php echo JText::_("COM_COMMUNITY_PHOTOS_MULTIUPLOAD_STATUS", true); ?>';
+        joms.language.multiupload.drag_files = '<?php echo JText::_("COM_COMMUNITY_PHOTOS_MULTIUPLOAD_DRAG_FILES", true); ?>';
+        joms.language.multiupload.start_upload = '<?php echo JText::_("COM_COMMUNITY_PHOTOS_MULTIUPLOAD_START_UPLOAD", true); ?>';
+        joms.language.multiupload.add_files = '<?php echo JText::_("COM_COMMUNITY_PHOTOS_MULTIUPLOAD_ADD_FILES", true); ?>';
+        joms.language.multiupload.filename = '<?php echo JText::_("COM_COMMUNITY_PHOTOS_MULTIUPLOAD_FILENAME", true); ?>';
     </script>
-    <script type="text/javascript" src="<?php echo JURI::root(true);?>/components/com_community/assets/multiupload_js/browserplus-min.js"></script>
     <script type="text/javascript" src="<?php echo JURI::root(true);?>/components/com_community/assets/multiupload_js/plupload.js"></script>
-    <script type="text/javascript" src="<?php echo JURI::root(true);?>/components/com_community/assets/multiupload_js/plupload.gears.js"></script>
-    <script type="text/javascript" src="<?php echo JURI::root(true);?>/components/com_community/assets/multiupload_js/plupload.silverlight.js"></script>
-    <script type="text/javascript" src="<?php echo JURI::root(true);?>/components/com_community/assets/multiupload_js/plupload.flash.js"></script>
-    <script type="text/javascript" src="<?php echo JURI::root(true);?>/components/com_community/assets/multiupload_js/plupload.browserplus.js"></script>
     <script type="text/javascript" src="<?php echo JURI::root(true);?>/components/com_community/assets/multiupload_js/plupload.html4.js"></script>
     <script type="text/javascript" src="<?php echo JURI::root(true);?>/components/com_community/assets/multiupload_js/plupload.html5.js"></script>
     <script type="text/javascript" src="<?php echo JURI::root(true);?>/components/com_community/assets/multiupload_js/jquery.plupload.queue/jquery.plupload.queue.js"></script>

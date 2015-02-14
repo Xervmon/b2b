@@ -152,9 +152,9 @@ defined('_JEXEC') or die();
                         ?>
                         <li class="check-row clearfix">
                             <label for="search_email" class="label-checkbox">
+                                <input type="hidden" name="search_email" value="0">
                                 <input type="checkbox" class="input checkbox" value="1" id="email-email-yes" name="search_email" <?php if ($my->get('_search_email') == 1) { ?>checked="checked" <?php } ?>/>
                                 <?php echo JText::_('COM_COMMUNITY_PRIVACY_EMAIL'); ?>
-                                <!--input type="hidden" name="search_email" value="0" /-->
                             </label>
                         </li>
                         <?php

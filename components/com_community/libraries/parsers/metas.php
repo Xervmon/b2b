@@ -38,12 +38,12 @@ if (!class_exists('CParserMetas')) {
 
         /**
          * Parsed properties
-         * @var JRegistry 
+         * @var JRegistry
          */
         private $_extracted;
 
         /**
-         * 
+         *
          * @param type $properties
          */
         public function __construct($properties = null) {
@@ -53,11 +53,17 @@ if (!class_exists('CParserMetas')) {
         }
 
         /**
-         * 
+         *
          * @return \CParserMetas
          */
         protected function _init() {
-            $this->_dom = str_get_html($this->get('content'));
+            $content = $this->get('content');
+
+            // Remove non-img tags to reduce size.
+            preg_match_all('/<img[^>]*>/i', $content, $matches);
+            $content = preg_replace('/<body.+<\/body>/is', '<body>' . implode(' ', $matches[0]) . '</body>', $content);
+
+            $this->_dom = str_get_html( $content );
             $this->_domBlocks['head'] = $this->_dom->find('head', 0);
             $this->_domBlocks['body'] = $this->_dom->find('body', 0);
             $this->_extracted->def('type', 'website');

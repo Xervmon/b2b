@@ -10,6 +10,17 @@
 defined('_JEXEC') or die();
 ?>
 <link rel="stylesheet" href="<?php echo JURI::root(true);?>/components/com_community/assets/multiupload_js/jquery.plupload.queue/css/jquery.plupload.queue.css" type="text/css" media="screen" />
+<script type="text/javascript">
+    joms || (joms = {});
+    joms.language || (joms.language = {});
+    joms.language.multiupload || (joms.language.multiupload = {});
+    joms.language.multiupload.size = '<?php echo JText::_("COM_COMMUNITY_PHOTOS_MULTIUPLOAD_SIZE", true); ?>';
+    joms.language.multiupload.status = '<?php echo JText::_("COM_COMMUNITY_PHOTOS_MULTIUPLOAD_STATUS", true); ?>';
+    joms.language.multiupload.drag_files = '<?php echo JText::_("COM_COMMUNITY_PHOTOS_MULTIUPLOAD_DRAG_FILES", true); ?>';
+    joms.language.multiupload.start_upload = '<?php echo JText::_("COM_COMMUNITY_PHOTOS_MULTIUPLOAD_START_UPLOAD", true); ?>';
+    joms.language.multiupload.add_files = '<?php echo JText::_("COM_COMMUNITY_PHOTOS_MULTIUPLOAD_ADD_FILES", true); ?>';
+    joms.language.multiupload.filename = '<?php echo JText::_("COM_COMMUNITY_PHOTOS_MULTIUPLOAD_FILENAME", true); ?>';
+</script>
 <script type="text/javascript" src="<?php echo JURI::root(true);?>/components/com_community/assets/multiupload_js/plupload.js"></script>
 <script type="text/javascript" src="<?php echo JURI::root(true);?>/components/com_community/assets/multiupload_js/plupload.html4.js"></script>
 <script type="text/javascript" src="<?php echo JURI::root(true);?>/components/com_community/assets/multiupload_js/plupload.html5.js"></script>

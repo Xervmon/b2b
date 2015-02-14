@@ -536,7 +536,7 @@ if (!class_exists('CommunityViewPhotos')) {
 
             // Load necessary libraries, models
             $album = JTable::getInstance('Album', 'CTable');
-            $albumId = JRequest::getInt('albumid', '', 'GET');
+            $albumId = JRequest::getInt('albumid', '');
             $referrer = $jinput->get->get('referrer', '', 'STRING');
             $album->load($albumId);
             $type = $album->type!='user' ? PHOTOS_GROUP_TYPE : PHOTOS_USER_TYPE;

@@ -28,6 +28,11 @@ class CFieldsGender extends CProfileField {
     }
 
     public function getFieldHTML($field, $required) {
+        $params = new CParameter($field->params);
+        $disabled = '';
+        if($params->get('readonly') == 1){
+            $disabled='disabled="disabled"';
+        }
         $html = '';
         $selectedElement = 0;
         $class = ($field->required == 1) ? ' required validate-custom-radio ' : '';
@@ -41,7 +46,7 @@ class CFieldsGender extends CProfileField {
         $class = !empty($field->tips) ? 'jomNameTips tipRight' : '';
         $html .= '<div class="' . $class . '" style="display: inline-block;" title="' . CStringHelper::escape(JText::_($field->tips)) . '">';
 
-        $html .= '<select name="field' . $field->id . '">';
+        $html .= '<select name="field' . $field->id . '" '.$disabled.'>';
         foreach ($options as $key => $val) {
             $selected = ( $key == $field->value ) ? ' selected="selected" ' : '';
 

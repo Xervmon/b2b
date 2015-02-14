@@ -492,7 +492,16 @@ class CImageHelper {
      */
 
     static public function resizeAspectRatio($source, $destination, $thumb_width, $thumb_height) {
-        $image = imagecreatefromjpeg($source);
+
+        //get extension type
+        $type = explode('.',$source);
+        $type = strtolower($type[count($type)-1]);
+        if($type == 'jpg' || $type == 'jpeg'){
+            $image = imagecreatefromjpeg($source);
+        }else{
+            $image = imagecreatefrompng($source);
+        }
+
         $filename = $destination;
 
         $width = imagesx($image);

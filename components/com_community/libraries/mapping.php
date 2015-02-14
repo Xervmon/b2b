@@ -16,7 +16,7 @@ require_once (AZRUL_SYSTEM_PATH.'/pc_includes/JSON.php');
 class CMapping
 {
 	const GEOCODE_URL = 'maps.google.com/maps/api/geocode/json?';
-	const STATICMAP_URL = 'maps.google.com/maps/api/staticmap?';
+	const STATICMAP_URL = 'https://maps.google.com/maps/api/staticmap?';
 
 	/**
 	 * Restrive the data from cache table instead

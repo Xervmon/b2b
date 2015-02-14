@@ -531,6 +531,7 @@ if (!class_exists('CommunityViewProfile')) {
 
             // Display breadcrumb regardless whether the user is blocked or not
             $pathway = $mainframe->getPathway();
+            $pathway->setPathway(array());
             $pathway->addItem($user->getDisplayName(), '');
 
             $getBlockStatus = new blockUser();
@@ -1068,12 +1069,13 @@ if (!class_exists('CommunityViewProfile')) {
             $skipLink = CRoute::_('index.php?option=com_community&view=frontpage&doSkipAvatar=Y&userid=' . $my->id);
 
             $largeAvatar = $my->getAvatar();
+
             $fileName = JFile::getName($largeAvatar);
             $avatarImageDir = $config->getString('imagefolder') . '/avatar/';
 
-            if (JFile::exists($avatarImageDir . 'profile-' . $fileName)) {
-                $largeAvatar = str_replace($fileName, 'profile-' . $fileName, $largeAvatar);
-            }
+            // if (JFile::exists($avatarImageDir . 'profile-' . $fileName)) {
+            //     $largeAvatar = str_replace($fileName, 'profile-' . $fileName, $largeAvatar);
+            // }
 
             echo $tmpl->set('user', $my)
                     ->set('largeAvatar', $largeAvatar)
@@ -1467,7 +1469,8 @@ if (!class_exists('CommunityViewProfile')) {
             $like = new Clike();
             $isUserLiked = false;
 
-            if ($isLikeEnabled = $like->enabled('profile')) {
+            $isLikeEnabled = $like->enabled('profile') && $params->get('profileLikes',0)? 1 : 0;
+            if ($isLikeEnabled) {
                 $isUserLiked = $like->userLiked('profile', $user->id, $my->id);
             }
             /* likes count */

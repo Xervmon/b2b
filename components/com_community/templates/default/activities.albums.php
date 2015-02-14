@@ -17,6 +17,12 @@ $album->load( $act->cid );
 $wall = JTable::getInstance('Wall', 'CTable');
 $wall->load($param->get('wallid'));
 
+if($album->permissions == 30 && !CFriendsHelper::isConnected($my->id,$album->creator)){
+
+return false;
+
+}
+
 $date = JFactory::getDate($act->created);
 if ( $config->get('activitydateformat') == "lapse" ) {
   $createdTime = CTimeHelper::timeLapse($date);

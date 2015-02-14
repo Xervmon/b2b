@@ -308,7 +308,7 @@ class CommunityFriendsController extends CommunityBaseController
 
 						if(
 							!empty($emails[$i])
-							&& (boolean)CValidateHelper::email($emails[$i])
+							&& (boolean)filter_var($emails[$i], FILTER_VALIDATE_EMAIL)
 						)
 						{
 							//now if the email already exist in system, alert the user.

@@ -104,22 +104,22 @@ defined('_JEXEC') or die('Restricted access');
                     <img src="<?php echo $myKarma; ?>" alt="<?php echo JText::_('MOD_HELLOME_KARMA'); ?>" width="103" height="19" style="margin: 5px 0 0;" />
                 <?php } ?>
             </div>
-            <span id="hellomeLoading" style="display:none"><img src="<?php echo JURI::base() . '/components/com_community/templates/default/images/mini-loader.gif' ?>" alt="Loading..."/></span>
+            <span class="helloMeLoading" style="display:none"><img src="<?php echo JURI::base() . '/components/com_community/templates/default/images/mini-loader.gif' ?>" alt="Loading..."/></span>
 
             <!-- status -->
             <?php if ( $params->get('enable_last_status',1) == 1 ) { ?>
                 <div class="cHello-Status helloMeStatusText">
-                    <div id="helloMeEdit" style="display: none;">
-                        <input name="helloMeStatusText" id="helloMeStatusText" type="text" value="" onblur="helloMe.saveStatus();return false;" onkeyup="helloMe.saveChanges(event);return false;" />
+                    <div class="helloMeEdit" style="display: none;">
+                        <input name="helloMeStatusText" class="helloMeStatusText" type="text" value="" onblur="helloMe.saveStatus(this);return false;" onkeyup="helloMe.saveChanges(event);return false;" />
                     </div>
-                    <div id="helloMeDisplay">
-                        <span href="javascript:void(0);" id="helloMeStatusLink" style="text-decoration: none; cursor: pointer;" onclick="helloMe.changeStatus();">
-                            <span id="helloMeStatus" style="text-decoration: none;"></span>
+                    <div class="helloMeDisplay">
+                        <span href="javascript:void(0);" id="helloMeStatusLink" style="text-decoration: none; cursor: pointer;" onclick="helloMe.changeStatus(this);">
+                            <span class="helloMeStatus" style="text-decoration: none;"></span>
                         </span>
                     </div>
-                    <a href="javascript:void(0);" id="saveLink" style="line-height: 18px; display: none;" onclick="helloMe.saveStatus();"><?php echo JText::_('MOD_HELLOME_SAVE_MY_STATUS'); ?></a>
+                    <a href="javascript:void(0);" class="helloMeSaveLink" style="line-height: 18px; display: none;" onclick="helloMe.saveStatus(this);"><?php echo JText::_('MOD_HELLOME_SAVE_MY_STATUS'); ?></a>
                     <?php if ( $params->get('enable_edit_status',1) == 1 ) { ?>
-                        <a href="javascript:void(0);" id="editLink" style="line-height: 18px; display: inline-block;" onclick="helloMe.changeStatus();"><?php echo JText::_('MOD_HELLOME_EDIT_MY_STATUS'); ?></a>
+                        <a href="javascript:void(0);" class="helloMeEditLink" style="line-height: 18px; display: inline-block;" onclick="helloMe.changeStatus(this);"><?php echo JText::_('MOD_HELLOME_EDIT_MY_STATUS'); ?></a>
                     <?php } ?>
                 </div>
             <?php } ?>
@@ -192,21 +192,21 @@ defined('_JEXEC') or die('Restricted access');
             <?php echo $params->get('pretext'); ?>
                 <fieldset class="input bottom-gap">
                     <p id="form-login-username">
-                        <label for="username">
+                        <label for="hellome-username">
             <?php echo JText::_('COM_COMMUNITY_USERNAME') ?><br />
-                            <input name="username" id="username" type="text" class="input-block-level" alt="username" size="18" />
+                            <input name="username" id="hellome-username" type="text" class="input-block-level" alt="username" size="18" />
                         </label>
                     </p>
                     <p id="form-login-password">
-                        <label for="passwd">
+                        <label for="hellome-password">
                 <?php echo JText::_('COM_COMMUNITY_PASSWORD') ?><br />
-                            <input type="password" name="<?php echo COM_USER_PASSWORD_INPUT; ?>" id="passwd" class="input-block-level" size="18" alt="password" />
+                            <input type="password" name="<?php echo COM_USER_PASSWORD_INPUT; ?>" id="hellome-password" class="input-block-level" size="18" alt="password" />
                         </label>
                     </p>
                             <?php if (JPluginHelper::isEnabled('system', 'remember')) { ?>
                         <p id="form-login-remember">
-                            <label for="remember">
-                                <input type="checkbox" name="remember" id="remember" value="yes" alt="Remember Me" />
+                            <label for="hellome-remember">
+                                <input type="checkbox" name="remember" id="hellome-remember" value="yes" alt="Remember Me" />
                                 &nbsp;<?php echo JText::_('COM_COMMUNITY_REMEMBER_MY_DETAILS') ?>
                             </label>
                         </p>

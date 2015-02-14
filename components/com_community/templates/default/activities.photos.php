@@ -63,7 +63,7 @@ if ($action == 'wall' || $act->app == 'photos.comment') {
 // If we're using new stream style or has old style data (which contains {multiple} )
 if ($act->params->get('style') == COMMUNITY_STREAM_STYLE || strpos($act->title, '{multiple}')) {
     // New style
-    $count = $act->params->get('count', $act->params->get('count', 1));
+    $count = $act->params->get('batchcount', $act->params->get('batchcount', 1));
     if (CStringHelper::isPlural($count)) {
         if($act->groupid){
             $group = JTable::getInstance('Group', 'CTable');

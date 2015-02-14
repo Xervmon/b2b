@@ -7,7 +7,7 @@
 	<authorUrl>http://www.jomsocial.com</authorUrl>
 	<copyright>Copyright 2008 by Slashes &amp; Dots Sdn Bhd. All rights reserved</copyright>
 	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
-	<version>3.2.1.5</version>
+	<version>3.2.1.6</version>
 	<description>JomSocial is a social networking component for Joomla!</description>
 	<scriptfile>install.community3.0.php</scriptfile>
 	<files folder="site">

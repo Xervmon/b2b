@@ -432,14 +432,16 @@ if (!class_exists('CCrawlerResponse')) {
                         $images = $data->get('image');
                         $counter = 0;
                         $limit = $this->get('max_images', 5);
+
+                        $_images = array();
+
                         if (is_array($images)) {
-                            $_images = array();
                             foreach ($images as $key => $imageUrl) {
 
                                 //$imageUrl = strtolower($imageUrl);
                                 /* This imageurl already have valid path */
                                 if (strpos(strtolower($imageUrl), 'http://') !== false || strpos(strtolower($imageUrl), 'https://') !== false) {
-                                    
+
                                 } else {
                                     /* Image have no URL than we need add it */
                                     $host = parse_url($this->getInfo('url'), PHP_URL_HOST);

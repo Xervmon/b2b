@@ -73,7 +73,7 @@ CFactory::attach('assets/jqueryui/drag/jquery.ui.touch-punch.min.js', 'js');
                 <?php if($config->get('creatediscussion')) {?>
                   <li><a href="<?php echo CRoute::_('index.php?option=com_community&view=groups&task=viewdiscussions&groupid='.$group->id)?>"><?php echo ( $totalDiscussion == 1) ?  JText::sprintf('COM_COMMUNITY_GROUPS_DISCUSSION_COUNT',count($discussions)) : JText::sprintf('COM_COMMUNITY_GROUPS_DISCUSSION_COUNT_MANY',$totalDiscussion); ?></a></li>
                 <?php }?>
-                <?php if($config->get('createannouncement')){?>
+                <?php if($config->get('createannouncement') && ($isMember || $isSuperAdmin)){?>
                   <li><a href="<?php echo CRoute::_('index.php?option=com_community&view=groups&task=viewbulletins&groupid='.$group->id)?>"><?php echo ( $totalBulletin == 1 ) ?  JText::sprintf('COM_COMMUNITY_GROUPS_ANNOUNCEMENT_COUNT',$totalBulletin) : JText::sprintf('COM_COMMUNITY_GROUPS_ANNOUNCEMENT_COUNT_MANY',$totalBulletin); ?></a></li>
                 <?php }?>
                 <?php if($showPhotos){ ?>

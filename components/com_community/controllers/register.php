@@ -170,10 +170,10 @@ class CommunityRegisterController extends CommunityBaseController {
             $modelRegister->removeTempUser($token);
             $modelRegister->removeAuthKey($token);
 
-            //$usersConfig = $usersConfig = JComponentHelper::getParams('com_users');
-            //$useractivation = $usersConfig->get('useractivation');
+            $usersConfig = $usersConfig = JComponentHelper::getParams('com_users');
+            $useractivation = $usersConfig->get('useractivation');
 
-            //$this->sendEmail('registration_complete', $user, null, $seractivation);
+            $this->sendEmail('registration_complete', $user, null, $useractivation);
 
             //redirect to avatar upload page.
             $mainframe->redirect(CRoute::_('index.php?option=com_community&view=register&task=registerAvatar', false));

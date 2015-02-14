@@ -770,7 +770,9 @@ class CommunityModelSearch extends JCCModel
 						$condString	.= (!empty($value))? ' = ' . $db->Quote($value) : ' LIKE ' . $db->Quote('%'.$value.'%');
 						$condString .= ' OR a.'.$db->quoteName('value').' =' . $db->Quote($val);
 
-					}
+					}elseif($fieldType == 'checkbox'){
+                        $condString	.= (empty($value))? ' = ' . $db->Quote($value) : ' LIKE ' . $db->Quote($value.',');
+                    }
 					else
 					{
 						$condString	.= (empty($value))? ' = ' . $db->Quote($value) : ' LIKE ' . $db->Quote('%'.$value.'%');

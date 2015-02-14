@@ -30,6 +30,28 @@ class CTableVideoBlip extends CVideoProvider
 		return $this->url.'?skin=rss';
 	}
 
+    public function isValid()
+    {
+        //we remove the support to add
+        if ( !parent::isValid())
+        {
+            return false;
+        }
+
+        // Return Break error
+        $pattern =  "'<span id=\"sitemap404msg\">(.*?)<\/span>'s";
+        preg_match_all($pattern, $this->xmlContent, $matches);
+
+        if(!empty($matches[1][0]) )
+        {
+            $errormsg = 'COM_COMMUNITY_VIDEOS_PROVIDER_NOT_SUPPORTED_ERROR';
+            $this->setError	( JText::_($errormsg) );
+            return false;
+        }
+
+        return true;
+    }
+
 	/**
 	 * Extract Blip video id from the video url submitted by the user
 	 *

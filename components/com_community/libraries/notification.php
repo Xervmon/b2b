@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @copyright (C) 2013 iJoomla, Inc. - All rights reserved.
  * @license GNU General Public License, version 2 (http://www.gnu.org/licenses/gpl-2.0.html)
@@ -9,8 +8,6 @@
  * More info at https://www.jomsocial.com/license-agreement
  */
 defined('_JEXEC') or die('Restricted access');
-
-//CFactory::load( 'libraries' , 'template' );
 
 class CNotification {
 
@@ -41,7 +38,7 @@ class CNotification {
         $config = CFactory::getConfig();
 
         if(is_object($mailParams) && strstr($mailParams->get('url'), JURI::root()) === false){
-            $mailParams->set('url', JURI::root().$mailParams->get('url'));
+            $mailParams->set('url', CRoute::_(JURI::root().$mailParams->get('url')));
         }
 
         if (!is_array($recipients)) {
@@ -141,7 +138,17 @@ class CNotification {
                         case 'inbox':
                         case 'photos':
                         case 'groups':
-                            $sendIt = $params->get('etype_groups_invite');
+                            switch($cmdData[1]){
+                                case 'wall':
+                                    $sendIt = $params->get('etype_groups_wall_create');
+                                break;
+                                case 'invite':
+                                    $sendIt = $params->get('etype_groups_invite');
+                                break;
+                                case 'create':
+                                    $sendIt = $params->get('etype_groups_create_event');
+                                break;
+                            }
                             break;
                         case 'events':
                         case 'friends':
@@ -197,13 +204,7 @@ class CNotification {
                 if($command != 'users_tagged'){
                     $emailSubject = CContentHelper::injectTags($emailSubject, $params, false);
                 }
-                /*var_dump($recipientEmail);echo "<hr>";
-                var_dump($emailSubject);echo "<hr>";
-                var_dump($body);echo "<hr>";
-                var_dump($templateFile);echo "<hr>";
-                var_dump($mailParams);echo "<hr>";
-                var_dump(CNotificationTypesHelper::convertEmailId($command));echo "<hr>";
-                die();*/
+
                 $mailq->add($recipientEmail, $emailSubject, $body, $templateFile, $mailParams, 0, CNotificationTypesHelper::convertEmailId($command));
             }
         }

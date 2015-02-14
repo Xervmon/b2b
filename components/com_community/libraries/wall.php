@@ -657,9 +657,9 @@ class CWall {
                 $paramsHTML .='</a>';
                 $paramsHTML .= '</div>';
             }
-            $url = $params->get('url') ? $params->get('url') : '#';
+            $url = $params->get('url') ? CStringHelper::autoLink($params->get('url')) : '<a href="#">';
             $paramsHTML .='<div class="span9"><div class="joms-stream-fetch-content"' . ( $params->get('image') ? '' : ' style="margin-left:0"' ) . '>';
-            $paramsHTML .='<a href="' . $url . '">';
+            $paramsHTML .= $url;
             $paramsHTML .='<span class="joms-stream-fetch-title">' . $params->get('title') . '</span>';
             $paramsHTML .= '<span class="joms-stream-fetch-desc">' . CStringHelper::trim_words($params->get('description')) . '</span>';
 

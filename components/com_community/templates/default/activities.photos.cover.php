@@ -29,11 +29,11 @@ if (strtolower($type) !== 'profile') {
         if ($cTable) { /* Make sure we had correct cTable */
             $cTable->load($this->act->$id);
             if ($type == 'group') {
-                $extraMessage = '; <a href="' . $cTable->getLink() . '">' . $cTable->name . '</a>';
+                $extraMessage = ' <a href="' . $cTable->getLink() . '">' . $cTable->name . '</a>';
                 $url = $cTable->getLink();
             }
             if ($type == 'event') {
-                $extraMessage = '; <a href="' . CUrlHelper::eventLink($cTable->id) . '">' . $cTable->title . '</a>';
+                $extraMessage = ' <a href="' . CUrlHelper::eventLink($cTable->id) . '">' . $cTable->title . '</a>';
                 $url = CUrlHelper::eventLink($cTable->id);
             }
         } else {

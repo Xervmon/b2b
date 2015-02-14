@@ -359,7 +359,7 @@ if (!class_exists('CommunityViewVideos')) {
             if ($applicationName == 'walls') {
                 $limit = $jinput->request->get('limit', 5, 'INT');
                 $limitstart = $jinput->request->get('limitstart', 0, 'INT');
-                $videoId = JRequest::getInt('videoid', '', 'GET');
+                $videoId = JRequest::getInt('videoid', '');
                 $my = CFactory::getUser();
                 $config = CFactory::getConfig();
 

@@ -30,6 +30,10 @@ if( $fields )
 		{
 			if( !$required && $field->required == 1 )
 				$required	= true;
+            // Override the "readonly setting" to avoid registration fields being uneditable
+            $params = json_decode($field->params, true);
+            $params['readonly'] = 0;
+            $field->params = json_encode($params);
 
 			$html = CProfileLibrary::getFieldHTML($field);
 ?>

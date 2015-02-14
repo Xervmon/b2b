@@ -36,7 +36,7 @@ function CommunityBuildRoute(&$query)
 	// older URLs.
 	if (isset($query['task']) && empty($alias))
 	{
-		$userTasks = array('myvideos', 'myphotos', 'myevents', 'mygroups', 'viewgroup');
+		$userTasks = array('myvideos', 'myphotos', 'myevents', 'mygroups');
 
 		if (in_array($query['task'], $userTasks))
 		{

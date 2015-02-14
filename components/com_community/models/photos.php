@@ -778,8 +778,16 @@ class CommunityModelPhotos extends JCCModel implements CLimitsInterface {
         krsort($data);
         $tmpData = array();
 
+        if ($type == PHOTOS_PROFILE_TYPE) {
+            $type = PHOTOS_USER_TYPE;
+        }
+
         foreach ($data as $_data) {
-            $tmpData[] = $_data;
+            if ( ( $_data->default == 1 ) && ( $type == $_data->type ) ) {
+                array_unshift($tmpData, $_data);
+            } else {
+                $tmpData[] = $_data;
+            }
         }
 
         return $tmpData;

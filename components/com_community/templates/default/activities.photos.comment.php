@@ -33,6 +33,10 @@ if ( $config->get('activitydateformat') == "lapse" ) {
 $photo_info = $photo->getInfo();
 $photo_size = $photo_info['size'];
 
+if($photo->permissions == 30 && !CFriendsHelper::isConnected($my->id,$photo->creator)){
+	return false;
+}
+
 //generate activity based on the photo owner
 if ($photo->creator != $act->actor ) {
     //if user a commented on user b photo, we need to pass in the user info

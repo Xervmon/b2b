@@ -8,10 +8,10 @@ if(!defined('AZ_CACHE_PATH'))
 
 /**
  * Original code by Brian Lozier
- * http://www.massassi.com/php/articles/template_engines/ 
- * Modified by Azrul (www.azrul.com) to run on Joomla 
- */ 
- 
+ * http://www.massassi.com/php/articles/template_engines/
+ *
+ */
+
 class AzrulJXTemplate {
     var $vars; /// Holds all the template variables
 
@@ -49,7 +49,7 @@ class AzrulJXTemplate {
         ob_end_clean();                // End buffering and discard
         return $contents;              // Return the contents
     }
-    
+
     function object_to_array($obj) {
        $_arr = is_object($obj) ? get_object_vars($obj) : $obj;
        $arr = array();
@@ -112,7 +112,7 @@ class AzrulJXCachedTemplate extends AzrulJXTemplate {
              * If we didn't cache, it would be hitting the file system
              * twice as much (file_exists() & filemtime() [twice each]).
              */
-            $this->cached = true; 
+            $this->cached = true;
             return true;
         }
     }
@@ -140,13 +140,13 @@ class AzrulJXCachedTemplate extends AzrulJXTemplate {
         }
         else {
             $contents = $this->fetch($file);
-            
+
             // Check if caller wants to process contents with another function
 			if($processFunc)
                 $contents = $processFunc($contents);
 
 			if(!empty($contents)){
-			
+
 	            // Write the cache, only if there is some data
 	            if($fp = @fopen($this->cache_id, 'w')) {
 	                fwrite($fp, $contents);
@@ -157,9 +157,9 @@ class AzrulJXCachedTemplate extends AzrulJXTemplate {
 	            }
             }
 
-           
+
         }
-        
+
          return $contents;
     }
 }

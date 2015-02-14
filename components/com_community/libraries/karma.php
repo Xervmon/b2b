@@ -97,7 +97,7 @@ class CKarma {
 			else
 			{
 				$imageFile = str_replace( $config->get('template') , 'default' , $imageFile);
-				$imageFile .= '.gif';
+				$imageFile .= '.png';
 			}
 		}
 

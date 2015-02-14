@@ -8,6 +8,8 @@
 * More info at https://www.jomsocial.com/license-agreement
 */
 defined('_JEXEC') or die();
+
+$config = CFactory::getCOnfig();
 ?>
 <div class="cLayout cGroups-Created">
 	<p><?php echo JText::_('COM_COMMUNITY_GROUPS_CREATE_SUCCESS');?></p>
@@ -19,18 +21,22 @@ defined('_JEXEC') or die();
 				<?php echo JText::_('COM_COMMUNITY_GROUPS_UPLOAD_AVATAR');?>
 			</a>
 		</li>
+		<?php if($config->get('createannouncement',0)):?>
 		<li>
 			<i class="com-icon-bell-plus"></i>
 			<a href="<?php echo $linkBulletin; ?>">
 				<?php echo JText::_('COM_COMMUNITY_GROUPS_BULLETIN_CREATE');?>
 			</a>
 		</li>
+		<?php endif;?>
+		<?php if($config->get('creatediscussion',0)):?>
 		<li>
 			<i class="com-icon-comment-plus"></i>
 			<a href="<?php echo $linkDiscussion; ?>">
 				<?php echo JText::_('COM_COMMUNITY_GROUPS_DISCUSSION_CREATE');?>
 			</a>
 		</li>
+		<?php endif;?>
 		<li>
 			<i class="com-icon-groups-edit"></i>
 			<a href="<?php echo $linkEdit;?>">

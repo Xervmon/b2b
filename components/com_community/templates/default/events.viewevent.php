@@ -16,6 +16,7 @@ CFactory::attach('assets/imgareaselect/css/imgareaselect-avatar.css', 'css');
 CFactory::attach('assets/jqueryui/drag/jquery-ui-drag.js', 'js');
 CFactory::attach('assets/jqueryui/drag/jquery.ui.touch-punch.min.js', 'js');
 $showStream = ($isEventGuest || $isMine || $isAdmin || $isCommunityAdmin || $handler->manageable());
+if($waitingApproval) $showStream = 0;
 
 ?>
 
@@ -453,5 +454,8 @@ $showStream = ($isEventGuest || $isMine || $isAdmin || $isCommunityAdmin || $han
   joms || (joms = {});
   joms.constants || (joms.constants = {});
   joms.constants.eventid = <?php echo $event->id; ?>;
+
+  joms.lang || (joms.lang = {});
+  joms.lang.processing = '<?php echo JText::_("COM_COMMUNITY_PROCESSING", true); ?>';
 
 </script>

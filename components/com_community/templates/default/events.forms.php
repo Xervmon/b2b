@@ -8,8 +8,12 @@
 * More info at https://www.jomsocial.com/license-agreement
 */
 defined('_JEXEC') or die();
+
 $startDate = new JDate($event->startdate);
 $endDate = new JDate($event->enddate);
+$isReadOnlyDate = CEventHelper::isToday($event) || CEventHelper::isPast($event);
+$isReadOnlyDate = $isReadOnlyDate && ( $event->id > 0 );
+
 ?>
 <div class="cLayout cEvents-Forms">
 	<form method="post" action="<?php echo CRoute::getURI(); ?>" id="createEvent" name="createEvent" class="cForm community-form-validate">
@@ -205,40 +209,40 @@ $dayNamesMin = array_map(function ($item) {
 				</label>
 				<label for="startdate"></label>
 				<div class="form-field">
-					<span class="jomNameTips" title="<?php echo JText::_('COM_COMMUNITY_EVENTS_START_TIME_TIPS'); ?>">
-						<input type="text" name="startdate" id="startdate" style="width:auto;cursor: pointer;" size="10" class="required input-medium" readonly/>
-						<script>
-							joms.jQuery("#startdate" ).datepicker
-								({
-									minDate: 0,
-									changeMonth: true,
-									changeYear: true,
-									dateFormat: 'yy-mm-dd',
-									firstDay: <?php echo $config->get("event_calendar_firstday") == 'Monday' ? 1 : 0 ?>,
-									closeText: '<?php echo addslashes( JText::_("COM_COMMUNITY_DATEPICKER_CLOSE") ) ?>',
-									prevText: '<?php echo addslashes( JText::_("COM_COMMUNITY_DATEPICKER_PREV") ) ?>',
-									nextText: '<?php echo addslashes( JText::_("COM_COMMUNITY_DATEPICKER_NEXT") ) ?>',
-									currentText: '<?php echo addslashes( JText::_("COM_COMMUNITY_DATEPICKER_CURRENT") ) ?>',
-									weekHeader: '<?php echo addslashes( JText::_("COM_COMMUNITY_DATEPICKER_WEEKHEADER") ) ?>',
-									monthNames: [ <?php echo implode(", ", $monthNames) ?> ],
-									monthNamesShort: [ <?php echo implode(", ", $monthNamesShort) ?> ],
-									dayNames: [ <?php echo implode(", ", $dayNames) ?> ],
-									dayNamesShort: [ <?php echo implode(", ", $dayNamesShort) ?> ],
-									dayNamesMin: [ <?php echo implode(", ", $dayNamesMin) ?> ],
-									onClose: function ( selectedDate ) {
-										var startDate = new Date(selectedDate);
-										var endDate = new Date(joms.jQuery('#enddate').datepicker('getDate'));
-                                                                                /* Set minDate as startdate */
-                                                                                joms.jQuery('#enddate').datepicker('option','minDate',selectedDate);
-										if ( startDate > endDate ) {
-											joms.jQuery('#enddate').datepicker('setDate',selectedDate); /* set mindate as startdate, reset endDate same as startDate */
-										}
+					<input type="text" name="startdate" id="startdate" style="width:auto;cursor: pointer;" size="10" class="required input-medium" value="<?php echo $isReadOnlyDate ? $startDate->format('Y-m-d') : '' ?>" readonly>
+					<?php if (!$isReadOnlyDate) { ?>
+					<script>
+						joms.jQuery("#startdate" ).datepicker
+							({
+								minDate: 0,
+								changeMonth: true,
+								changeYear: true,
+								dateFormat: 'yy-mm-dd',
+								firstDay: <?php echo $config->get("event_calendar_firstday") == 'Monday' ? 1 : 0 ?>,
+								closeText: '<?php echo addslashes( JText::_("COM_COMMUNITY_DATEPICKER_CLOSE") ) ?>',
+								prevText: '<?php echo addslashes( JText::_("COM_COMMUNITY_DATEPICKER_PREV") ) ?>',
+								nextText: '<?php echo addslashes( JText::_("COM_COMMUNITY_DATEPICKER_NEXT") ) ?>',
+								currentText: '<?php echo addslashes( JText::_("COM_COMMUNITY_DATEPICKER_CURRENT") ) ?>',
+								weekHeader: '<?php echo addslashes( JText::_("COM_COMMUNITY_DATEPICKER_WEEKHEADER") ) ?>',
+								monthNames: [ <?php echo implode(", ", $monthNames) ?> ],
+								monthNamesShort: [ <?php echo implode(", ", $monthNamesShort) ?> ],
+								dayNames: [ <?php echo implode(", ", $dayNames) ?> ],
+								dayNamesShort: [ <?php echo implode(", ", $dayNamesShort) ?> ],
+								dayNamesMin: [ <?php echo implode(", ", $dayNamesMin) ?> ],
+								onClose: function ( selectedDate ) {
+									var startDate = new Date(selectedDate);
+									var endDate = new Date(joms.jQuery('#enddate').datepicker('getDate'));
+                                                                            /* Set minDate as startdate */
+                                                                            joms.jQuery('#enddate').datepicker('option','minDate',selectedDate);
+									if ( startDate > endDate ) {
+										joms.jQuery('#enddate').datepicker('setDate',selectedDate); /* set mindate as startdate, reset endDate same as startDate */
 									}
-								}).datepicker('setDate', "<?php echo $startDate->format('Y-m-d');?>"); /* init date when edit event */
-						</script>
-						<span id="start-time">
-						<?php echo $startHourSelect; ?>:<?php  echo $startMinSelect; ?> <?php echo $startAmPmSelect;?>
-						</span>
+								}
+							}).datepicker('setDate', "<?php echo $startDate->format('Y-m-d');?>"); /* init date when edit event */
+					</script>
+					<?php } ?>
+					<span id="start-time">
+					<?php echo $startHourSelect; ?>:<?php  echo $startMinSelect; ?> <?php echo $startAmPmSelect;?>
 					</span>
 				</div>
 			</li>
@@ -250,32 +254,34 @@ $dayNamesMin = array_map(function ($item) {
 				</label>
 				<label for="enddate"></label>
 				<div class="form-field">
-						<input type="text" name="enddate" id="enddate" style="width:auto;cursor: pointer;" size="10" class="required input-medium" readonly/>
-						<script>
-							joms.jQuery("#enddate" ).datepicker
-								({
-									minDate: 0,
-									changeMonth: true,
-									changeYear: true,
-									dateFormat: 'yy-mm-dd',
-									firstDay: <?php echo $config->get("event_calendar_firstday") == 'Monday' ? 1 : 0 ?>,
-									closeText: '<?php echo addslashes( JText::_("COM_COMMUNITY_DATEPICKER_CLOSE") ) ?>',
-									prevText: '<?php echo addslashes( JText::_("COM_COMMUNITY_DATEPICKER_PREV") ) ?>',
-									nextText: '<?php echo addslashes( JText::_("COM_COMMUNITY_DATEPICKER_NEXT") ) ?>',
-									currentText: '<?php echo addslashes( JText::_("COM_COMMUNITY_DATEPICKER_CURRENT") ) ?>',
-									weekHeader: '<?php echo addslashes( JText::_("COM_COMMUNITY_DATEPICKER_WEEKHEADER") ) ?>',
-									monthNames: [ <?php echo implode(", ", $monthNames) ?> ],
-									monthNamesShort: [ <?php echo implode(", ", $monthNamesShort) ?> ],
-									dayNames: [ <?php echo implode(", ", $dayNames) ?> ],
-									dayNamesShort: [ <?php echo implode(", ", $dayNamesShort) ?> ],
-									dayNamesMin: [ <?php echo implode(", ", $dayNamesMin) ?> ]
-								}).datepicker('option','minDate',joms.jQuery('#startdate').datepicker('getDate')) /* set min date */
-								.datepicker('setDate', "<?php echo $endDate->format('Y-m-d');?>"); /* init date when edit event */
+					<input type="text" name="enddate" id="enddate" style="width:auto;cursor: pointer;" size="10" class="required input-medium" value="<?php echo $isReadOnlyDate ? $endDate->format('Y-m-d') : '' ?>" readonly>
+					<?php if (!$isReadOnlyDate) { ?>
+					<script>
+						joms.jQuery("#enddate" ).datepicker
+							({
+								minDate: 0,
+								changeMonth: true,
+								changeYear: true,
+								dateFormat: 'yy-mm-dd',
+								firstDay: <?php echo $config->get("event_calendar_firstday") == 'Monday' ? 1 : 0 ?>,
+								closeText: '<?php echo addslashes( JText::_("COM_COMMUNITY_DATEPICKER_CLOSE") ) ?>',
+								prevText: '<?php echo addslashes( JText::_("COM_COMMUNITY_DATEPICKER_PREV") ) ?>',
+								nextText: '<?php echo addslashes( JText::_("COM_COMMUNITY_DATEPICKER_NEXT") ) ?>',
+								currentText: '<?php echo addslashes( JText::_("COM_COMMUNITY_DATEPICKER_CURRENT") ) ?>',
+								weekHeader: '<?php echo addslashes( JText::_("COM_COMMUNITY_DATEPICKER_WEEKHEADER") ) ?>',
+								monthNames: [ <?php echo implode(", ", $monthNames) ?> ],
+								monthNamesShort: [ <?php echo implode(", ", $monthNamesShort) ?> ],
+								dayNames: [ <?php echo implode(", ", $dayNames) ?> ],
+								dayNamesShort: [ <?php echo implode(", ", $dayNamesShort) ?> ],
+								dayNamesMin: [ <?php echo implode(", ", $dayNamesMin) ?> ]
+							}).datepicker('option','minDate',joms.jQuery('#startdate').datepicker('getDate')) /* set min date */
+							.datepicker('setDate', "<?php echo $endDate->format('Y-m-d');?>"); /* init date when edit event */
 
-						</script>
-                                                <span id="end-time">
-						<?php echo $endHourSelect; ?>:<?php echo $endMinSelect; ?> <?php echo $endAmPmSelect;?>
-						</span>
+					</script>
+					<?php } ?>
+					<span id="end-time">
+					<?php echo $endHourSelect; ?>:<?php echo $endMinSelect; ?> <?php echo $endAmPmSelect;?>
+					</span>
 					</span>
 				</div>
 				<script type="text/javascript">

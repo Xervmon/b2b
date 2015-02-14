@@ -26,6 +26,14 @@ $album->load($act->cid);
 $this->set('album', $album);
 
 
+if($album->permissions == 30 && !CFriendsHelper::isConnected($my->id,$album->creator)){
+
+return false;
+
+}
+
+
+
 ?>
 
 <div class="joms-stream-content">

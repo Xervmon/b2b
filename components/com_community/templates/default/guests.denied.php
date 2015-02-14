@@ -14,4 +14,4 @@ defined('_JEXEC') or die();
 	<?php echo JText::_('COM_COMMUNITY_PERMISSION_DENIED_WARNING');?>
 </div>
 <?php
-$this->load('frontpage.guests.php');
+$this->load('frontpage.guests');

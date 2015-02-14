@@ -473,7 +473,7 @@ class CEventUserHelperHandler extends CEventHelperHandler
 		$jinput 	= $mainframe->input;
 		$task		= $jinput->get->get('task' , ''); //JRequest::getVar( 'task' , '' , 'GET' );
 		$backLink	= array( 'invitefriends', 'viewguest', 'uploadavatar' , 'edit' , 'sendmail', 'app');
-		$categoryId	= JRequest::getInt( 'categoryid', 0, 'GET');
+		$categoryId	= JRequest::getInt( 'categoryid', 0);
 
 		if( in_array( $task , $backLink) )
 		{

@@ -1,4 +1,12 @@
 <?php
+/**
+* @copyright (C) 2013 iJoomla, Inc. - All rights reserved.
+* @license GNU General Public License, version 2 (http://www.gnu.org/licenses/gpl-2.0.html)
+* @author iJoomla.com <webmaster@ijoomla.com>
+* @url https://www.jomsocial.com/license-agreement
+* The PHP code portions are distributed under the GPL license. If not otherwise stated, all images, manuals, cascading style sheets, and included JavaScript *are NOT GPL, and are released under the IJOOMLA Proprietary Use License v1.0
+* More info at https://www.jomsocial.com/license-agreement
+*/
 defined('JPATH_PLATFORM') or die;
 
 class CTableEngagement extends JTable
@@ -15,23 +23,23 @@ class CTableEngagement extends JTable
 	}
 }
 
-class CEngagement 
+class CEngagement
 {
 	public static function log($action, $user_id = null)
 	{
 		$table          = JTable::getInstance('', 'CTableEngagement');
 		$table->action  = $action;
 		$table->user_id = $user_id;
-		
+
 		$date           = new JDate();
 		$table->created = $date->toSql();
 		$table->week    = $date->format('W');
-		
+
 		$table->store();
 	}
-		
+
 	public static function getData($actions, $time, $user_id = null, $range = null)
-	{		
+	{
 		$db = JFactory::getDbo();
 		$actions = "'". implode("','", $actions). "'";
 

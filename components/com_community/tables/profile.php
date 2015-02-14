@@ -136,6 +136,7 @@ class CTableProfile extends JTable {
 
     public function setCover($path) {
         $this->cover = $path;
+        $this->storage = 'file';
         return $this->store();
     }
 

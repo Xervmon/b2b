@@ -8,8 +8,7 @@
 * More info at https://www.jomsocial.com/license-agreement
 */
 defined('_JEXEC') or die();
-?>
-<?php
+
 if( $events )
 {
 ?>
@@ -19,7 +18,7 @@ if( $events )
 	{
 		$event =& $events[$i];
 ?>
-	<li class="<?php echo $event->permission==1?'event-private':'event-public'?>">
+	<li class="<?php echo $event->permission==1 ? 'event-private':'event-public'?>">
 		<div class="cIndex-Box clearfix">
 
 			<a href="<?php echo $event->getLink();?>" class="cIndex-Avatar cFloat-L">

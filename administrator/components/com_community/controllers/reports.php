@@ -160,6 +160,7 @@ class CommunityControllerReports extends CommunityController
 			$output		= call_user_func_array( array( $className , $method[2] ) , $args );
 		}
 
+		$objResponse->addAssign('cwin_logo', 'innerHTML', JText::_('COM_COMMUNITY_REPORT_TITLE'));
 		$objResponse->addAssign( 'cWindowContent' , 'innerHTML' , $output);
 		$objResponse->addScriptCall('cWindowActions', $actions);
 

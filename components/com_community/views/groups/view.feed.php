@@ -180,7 +180,7 @@ class CommunityViewGroups extends CommunityView
 		//CFactory::load( 'models' , 'groups' );
 		//CFactory::load( 'helpers' , 'owner' );
 
-		$id			= JRequest::getInt( 'groupid' , '' , 'GET' );
+		$id			= JRequest::getInt( 'groupid' , '');
 		$my			= CFactory::getUser();
 
 		// Load the group
@@ -236,7 +236,7 @@ class CommunityViewGroups extends CommunityView
 	{
 		$mainframe  = JFactory::getApplication();
 		$document	= JFactory::getDocument();
-		$id			= JRequest::getInt( 'groupid' , '' , 'GET' );
+		$id			= JRequest::getInt( 'groupid' , '');
 		$my			= CFactory::getUser();
 
 		// Load necessary models, libraries & helpers

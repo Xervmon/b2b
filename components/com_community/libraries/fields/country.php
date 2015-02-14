@@ -18,11 +18,15 @@ class CFieldsCountry extends CProfileField
 	 **/
 	public function getFieldData( $field )
 	{
+		$lang = JFactory::getLanguage();
+		$locale = $lang->getLocale();
+		$lang->load( 'com_community.country'); 
+
 		$value = $field['value'];
 		if( empty( $value ) )
-			return $value;
+			return JText::_($value);
 
-		return $value;
+		return JText::_($value);
 	}
 
 	public function getFieldHTML( $field , $required )
@@ -71,8 +75,8 @@ class CFieldsCountry extends CProfileField
             $countriesSorted[$name] = JText::_($name);
         }
 
-        // ...so it can be properly key-value natural-sorted
-        uksort($countriesSorted, 'CStringHelper::compareAscii');
+        // ...so it can be properly value natural-sorted
+        uasort($countriesSorted, 'CStringHelper::compareAscii');
 
         ?>
 		<select id="field<?php echo $field->id;?>" name="field<?php echo $field->id;?>" class="<?php echo !empty( $field->tips ) ? 'jomNameTips tipRight ' : '';?>select validate-country<?php echo $class;?>"<?php echo $tooltips;?>>

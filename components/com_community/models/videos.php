@@ -538,7 +538,8 @@ class CommunityModelVideos extends JCCModel implements CLimitsInterface {
         $query = 'SELECT COUNT(1) FROM '
                 . $db->quoteName('#__community_videos') . ' AS a '
                 . 'WHERE ' . $db->quoteName('creator') . '=' . $db->Quote($userId) . ' '
-                . 'AND ' . $db->quoteName('creator_type') . '=' . $db->Quote($videoType);
+                . 'AND ' . $db->quoteName('creator_type') . '=' . $db->Quote($videoType)
+                . ' AND ' . $db->quoteName('status') . ' = ' . $db->quote('ready');
 
         $db->setQuery($query);
         $count = $db->loadResult();

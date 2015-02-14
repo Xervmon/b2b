@@ -239,7 +239,7 @@ class CommunityModelFriends extends JCCModel
                     break;
                 case 'group':
                     $groupModel = CFactory::getModel('groups');
-                    $approvedMembers = $groupModel->getMembers($rules['group_id'], 0, true, false, true);
+                    $approvedMembers = $groupModel->getMembers($rules['group_id'], 20000, true, false, true);
                     $membersIds = array();
                     foreach($approvedMembers as $member){
                         $membersIds[] = $member->id;
@@ -267,7 +267,7 @@ class CommunityModelFriends extends JCCModel
                     $discussion->load($rules['discussion_id']);
 
                     $groupModel = CFactory::getModel('groups');
-                    $approvedMembers = $groupModel->getMembers($discussion->groupid, 0, true, false, true);
+                    $approvedMembers = $groupModel->getMembers($discussion->groupid, 2000, true, false, true);
                     $membersIds = array();
                     foreach($approvedMembers as $member){
                         $membersIds[] = $member->id;

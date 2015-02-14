@@ -133,6 +133,7 @@ class CommunityControllerVideos extends CommunityController
 		$contents = ob_get_contents();
 		ob_end_clean();
 
+		$response->addAssign('cwin_logo', 'innerHTML', JText::_('COM_COMMUNITY_VIDEO_EDIT_TITLE'));
 		$response->addAssign('cWindowContent', 'innerHTML', $contents);
 
 		$action = '<input type="button" class="btn btn-small btn-info pull-right" onclick="azcommunity.saveVideo();" name="' . JText::_('COM_COMMUNITY_SAVE') . '" value="' . JText::_('COM_COMMUNITY_SAVE') . '" />';
@@ -178,6 +179,7 @@ class CommunityControllerVideos extends CommunityController
 							' . $video->getPlayerHTML('560px','400px') . '
 						</div>';
 
+		$response->addAssign('cwin_logo', 'innerHTML', JText::_('COM_COMMUNITY_VIDEO_VIEW_TITLE'));
 		$response->addScriptCall('cWindowAddContent', $notiHtml);
 
 		//$response->addAssign('cWindowContent', 'innerHTML', $contents);

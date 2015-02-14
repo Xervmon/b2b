@@ -13,7 +13,7 @@
  * same terms as jsmin.c, which has the following license:
  *
  * --
- * Copyright (c) 2002 Douglas Crockford  (www.crockford.com)
+ * @copyright (c) 2002 Douglas Crockford  (www.crockford.com)
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal in

@@ -927,13 +927,13 @@ class CommunityProfileController extends CommunityBaseController {
      * @param	none
      */
     private function _saveProfile() {
-        $model = $this->getModel('profile');
+        $model     = $this->getModel('profile');
         $usermodel = $this->getModel('user');
-        $document = JFactory::getDocument();
-        $my = CFactory::getUser();
+        $document  = JFactory::getDocument();
+        $my        = CFactory::getUser();
         $mainframe = JFactory::getApplication();
-        $jinput = $mainframe->input;
-        $input = CFactory::getInput();
+        $jinput    = $mainframe->input;
+        $input     = CFactory::getInput();
 
         if ($my->id == 0) {
             return $this->blockUnregister();
