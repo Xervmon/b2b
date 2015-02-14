@@ -518,7 +518,8 @@ body.subpage {
   font-size: 11px;
 }
 #sp-slider-wrapper {
-  background-image: url(../images/slider-bg.jpg);
+  *background-image: url(../images/slider-bg.jpg);
+  background-image: url(../images/kisses-1.jpg);
   background-attachment: fixed;
   background-size: cover;
   background-position: 50% 50%;
